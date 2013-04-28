@@ -5,10 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 
-import model.Condutor;
-import model.Locacao;
-import model.PessoaFisica;
-import model.Veiculo;
+import Model.Condutor;
+import Model.Locacao;
+import Model.PessoaFisica;
+import Model.Veiculo;
 import Control.TarifaControladaCtrl;
 import Control.ConsultarVeiculo.ConsultarVeiculoCtrl;
 import Control.ManterCliente.ConsultarClienteCtrl;

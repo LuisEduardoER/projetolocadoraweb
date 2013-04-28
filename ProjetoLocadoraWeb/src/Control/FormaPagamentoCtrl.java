@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import model.Cartao;
-import model.Cheque;
-import model.Devolucao;
-import model.Dinheiro;
-import model.Locacao;
-import model.SistemaCartaoCreditoImpl;
-import model.Dao.FormaPagamentoDAO;
+import Model.Cartao;
+import Model.Cheque;
+import Model.Devolucao;
+import Model.Dinheiro;
+import Model.Locacao;
+import Model.SistemaCartaoCreditoImpl;
+import Model.Dao.FormaPagamentoDAO;
 
 import Control.DevolverVeiculo.CalcularDevolucaoCtrl;
 import Control.DevolverVeiculo.ConcluirDevolucaoCtrl;

@@ -4,8 +4,8 @@ package Control.RealizarLocacao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.Locacao;
-import model.SerasaImpl;
+import Model.Locacao;
+import Model.SerasaImpl;
 import Control.FormaPagamentoCtrl;
 import View.LocacaoAddMotoristaView;
 import View.Mensagens.Mensagem;

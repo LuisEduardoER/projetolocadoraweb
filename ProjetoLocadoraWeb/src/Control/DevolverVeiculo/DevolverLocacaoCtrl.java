@@ -8,10 +8,10 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-import model.Agencia;
-import model.Devolucao;
-import model.Locacao;
-import model.Dao.LocacaoDAO;
+import Model.Agencia;
+import Model.Devolucao;
+import Model.Locacao;
+import Model.Dao.LocacaoDAO;
 
 import Control.TarifaControladaCtrl;
 import Util.Verificacao;

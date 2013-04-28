@@ -4,7 +4,7 @@ package Control.DevolverVeiculo;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-import model.Devolucao;
+import Model.Devolucao;
 
 import Util.Conversao;
 import View.Datas.DataFormatada;

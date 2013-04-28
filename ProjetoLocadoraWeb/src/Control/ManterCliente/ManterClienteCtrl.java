@@ -2,8 +2,8 @@
 package Control.ManterCliente;
 
 
-import model.PessoaFisica;
-import model.PessoaJuridica;
+import Model.PessoaFisica;
+import Model.PessoaJuridica;
 import Util.Verificacao;
 import View.ClienteCadastroPFView;
 import View.ClienteCadastroPJView;

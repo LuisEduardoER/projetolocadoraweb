@@ -4,10 +4,10 @@ package Control.ManterCliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.Cliente;
-import model.PessoaFisica;
-import model.PessoaJuridica;
-import model.Dao.ClienteDAO;
+import Model.Cliente;
+import Model.PessoaFisica;
+import Model.PessoaJuridica;
+import Model.Dao.ClienteDAO;
 
 import View.*;
 import View.Mensagens.Mensagem;

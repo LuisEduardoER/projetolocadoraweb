@@ -4,9 +4,9 @@ package Control.ConsultarVeiculo;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-import model.Grupo;
-import model.Veiculo;
-import model.Dao.VeiculoDAO;
+import Model.Grupo;
+import Model.Veiculo;
+import Model.Dao.VeiculoDAO;
 import Util.Conversao;
 import View.VeiculoDadosView;
 

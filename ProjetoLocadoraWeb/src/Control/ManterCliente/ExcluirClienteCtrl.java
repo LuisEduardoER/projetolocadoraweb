@@ -3,8 +3,8 @@ package Control.ManterCliente;
 
 import javax.swing.JFrame;
 
-import model.Cliente;
-import model.Dao.ClienteDAO;
+import Model.Cliente;
+import Model.Dao.ClienteDAO;
 
 import View.Mensagens.Mensagem;
 

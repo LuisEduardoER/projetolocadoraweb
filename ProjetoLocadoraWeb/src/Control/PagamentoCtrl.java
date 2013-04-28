@@ -1,10 +1,10 @@
 //Classe PagamentoCtrl
 package Control;
 
-import model.Devolucao;
-import model.FormaPagamento;
-import model.Locacao;
-import model.Dao.FormaPagamentoDAO;
+import Model.Devolucao;
+import Model.FormaPagamento;
+import Model.Locacao;
+import Model.Dao.FormaPagamentoDAO;
 import Control.DevolverVeiculo.ConcluirDevolucaoCtrl;
 import Control.RealizarLocacao.ConcluirLocacaoCtrl;
 import View.FormaPagamentoView;

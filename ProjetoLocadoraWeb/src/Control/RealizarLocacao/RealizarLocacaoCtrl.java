@@ -5,12 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import model.Agencia;
-import model.Cliente;
-import model.Locacao;
-import model.PessoaJuridica;
-import model.Veiculo;
-import model.Dao.AgenciaDAO;
+import Model.Agencia;
+import Model.Cliente;
+import Model.Locacao;
+import Model.PessoaJuridica;
+import Model.Veiculo;
+import Model.Dao.AgenciaDAO;
 import Control.TarifaControladaCtrl;
 import Control.ConsultarVeiculo.ConsultarVeiculoCtrl;
 import Control.ManterCliente.ConsultarClienteCtrl;

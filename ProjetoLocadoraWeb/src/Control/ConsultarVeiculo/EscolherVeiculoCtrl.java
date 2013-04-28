@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
-import model.Grupo;
+import Model.Grupo;
 
 import Control.RealizarLocacao.LocacaoPJCtrl;
 import Control.RealizarLocacao.RealizarLocacaoCtrl;

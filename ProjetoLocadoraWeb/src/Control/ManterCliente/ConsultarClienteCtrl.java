@@ -4,7 +4,7 @@ package Control.ManterCliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.Dao.ClienteDAO;
+import Model.Dao.ClienteDAO;
 import Control.RealizarLocacao.LocacaoPJCtrl;
 import Control.RealizarLocacao.RealizarLocacaoCtrl;
 import View.*;
