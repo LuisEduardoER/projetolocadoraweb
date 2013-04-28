@@ -14,5 +14,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/postgresql-8.3-604.jdbc4.jar"/>
+	<classpathentry kind="lib" path="/Users/ivan/Downloads/jre-7u10-macosx-x64-1.dmg.download"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
