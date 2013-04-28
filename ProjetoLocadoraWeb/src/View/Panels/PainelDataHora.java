@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import com.toedter.calendar.JDateChooser;
+import com.itextpdf.text.JDateChooser;
 
 import Util.Idioma;
 import View.Rotulos.Rotulo;
