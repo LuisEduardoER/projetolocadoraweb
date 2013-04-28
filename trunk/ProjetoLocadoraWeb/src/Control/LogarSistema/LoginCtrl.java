@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
-import model.Agencia;
-import model.Usuario;
-import model.Dao.AgenciaDAO;
-import model.Dao.UsuarioDAO;
+import Model.Agencia;
+import Model.Usuario;
+import Model.Dao.AgenciaDAO;
+import Model.Dao.UsuarioDAO;
 import Control.HomePageCtrl;
 import Util.Idioma;
 import View.LoginView;

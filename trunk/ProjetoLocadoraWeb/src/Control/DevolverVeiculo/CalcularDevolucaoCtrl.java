@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
-import model.Agencia;
-import model.Devolucao;
-import model.Locacao;
+import Model.Agencia;
+import Model.Devolucao;
+import Model.Locacao;
 import Control.FormaPagamentoCtrl;
 import Util.Conversao;
 import Util.Verificacao;

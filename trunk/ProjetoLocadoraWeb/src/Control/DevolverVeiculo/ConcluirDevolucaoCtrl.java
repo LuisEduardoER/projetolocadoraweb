@@ -4,8 +4,8 @@ package Control.DevolverVeiculo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.Devolucao;
-import model.Dao.DevolucaoDAO;
+import Model.Devolucao;
+import Model.Dao.DevolucaoDAO;
 
 import View.DevolucaoConfirmarView;
 import View.Mensagens.Mensagem;

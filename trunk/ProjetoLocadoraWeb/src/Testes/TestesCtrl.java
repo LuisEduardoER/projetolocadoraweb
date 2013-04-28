@@ -5,14 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import model.Agencia;
-import model.Cartao;
-import model.Cliente;
-import model.Grupo;
-import model.Locacao;
-import model.SerasaImpl;
-import model.SistemaCartaoCreditoImpl;
-import model.Veiculo;
+import Model.Agencia;
+import Model.Cartao;
+import Model.Cliente;
+import Model.Grupo;
+import Model.Locacao;
+import Model.SerasaImpl;
+import Model.SistemaCartaoCreditoImpl;
+import Model.Veiculo;
 
 import Control.*;
 import Control.ConsultarVeiculo.ConsultarVeiculoCtrl;

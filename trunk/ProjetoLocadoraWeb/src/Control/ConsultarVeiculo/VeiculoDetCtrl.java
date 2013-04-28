@@ -4,7 +4,7 @@ package Control.ConsultarVeiculo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.Veiculo;
+import Model.Veiculo;
 
 import View.VeiculoConsultaDetView;
 

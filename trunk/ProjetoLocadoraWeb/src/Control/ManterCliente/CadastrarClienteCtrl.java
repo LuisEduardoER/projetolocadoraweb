@@ -4,9 +4,9 @@ package Control.ManterCliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.PessoaFisica;
-import model.PessoaJuridica;
-import model.Dao.ClienteDAO;
+import Model.PessoaFisica;
+import Model.PessoaJuridica;
+import Model.Dao.ClienteDAO;
 
 import View.ClienteCadastroPFView;
 import View.ClienteCadastroPJView;

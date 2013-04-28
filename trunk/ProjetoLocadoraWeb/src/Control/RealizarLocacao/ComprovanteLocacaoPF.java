@@ -4,7 +4,7 @@ package Control.RealizarLocacao;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-import model.Locacao;
+import Model.Locacao;
 
 import Util.Conversao;
 import View.Datas.DataFormatada;

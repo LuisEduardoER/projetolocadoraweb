@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.table.DefaultTableModel;
 
-import model.Devolucao;
-import model.Locacao;
+import Model.Devolucao;
+import Model.Locacao;
 
 import Control.DevolverVeiculo.CalcularDevolucaoCtrl;
 import Control.DevolverVeiculo.DevolverLocacaoCtrl;

@@ -4,8 +4,8 @@ package Control.RealizarLocacao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.Locacao;
-import model.Dao.LocacaoDAO;
+import Model.Locacao;
+import Model.Dao.LocacaoDAO;
 import View.LocacaoComprovanteView;
 import View.Mensagens.Mensagem;
 
