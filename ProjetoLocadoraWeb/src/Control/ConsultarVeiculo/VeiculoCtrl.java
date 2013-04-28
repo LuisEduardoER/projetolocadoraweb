@@ -24,7 +24,7 @@ public class VeiculoCtrl {
 		
 		VeiculoDAO dao = new VeiculoDAO();
 		
-		grupos = dao.getListGrupo(idAgencia);
+		grupos = dao.getListGrupoByAgencia(idAgencia);
 		
 		for(int i = 0; i < grupos.size() ; i++){
 			grupo = grupos.get(i);
