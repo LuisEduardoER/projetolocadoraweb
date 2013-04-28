@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import model.Agencia;
-import model.Usuario;
+import Model.Agencia;
+import Model.Usuario;
 
 import Control.ConsultarVeiculo.ConsultarVeiculoCtrl;
 import Control.DevolverVeiculo.DevolverLocacaoCtrl;

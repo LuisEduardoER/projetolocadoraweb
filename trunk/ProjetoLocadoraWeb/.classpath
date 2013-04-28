@@ -15,5 +15,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/ivan/Downloads/itextpdf-5.1.0.jar.zip"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
