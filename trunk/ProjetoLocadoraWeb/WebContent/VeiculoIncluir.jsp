@@ -391,12 +391,12 @@
 			<select name="cbGrupo" size="1" id="cbGrupo_id"
 				style="position: absolute; left: 636px; top: 67px; width: 130px; height: 26px; z-index: 22;" tabindex="8">
 				<% 
-				ArrayList<Grupo> grupos = (ArrayList) request.getSession().getAttribute("listaGrupos");
+				java.util.ArrayList grupos = (ArrayList) request.getSession().getAttribute("listaGrupos");
 				Grupo grupo = new Grupo();
 				
 				for(int i = 0; i < grupos.size() ; i++){
-					grupo = grupos.get(i);
-					%>
+					grupo = (Grupo)grupos.get(i);
+				%>
 					<option value="<%=grupo.getId()%>"><%=grupo.getNome()%></option>
 				
 				<%

@@ -252,11 +252,11 @@
 								  
 				  <%
 				  	try{
-				  	ArrayList<Grupo> grupos = (ArrayList) request.getSession().getAttribute("listaGruposByAgencia");
+				  	ArrayList grupos = (ArrayList) request.getSession().getAttribute("listaGruposByAgencia");
 				  	Grupo grupo = new Grupo();	
 				  
 				  	for(int i = 0; i < grupos.size() ; i++){
-						grupo = grupos.get(i);
+						grupo = (Grupo)grupos.get(i);
 						for (int j = 0; j < grupo.getListaDeVeiculos().size() ; j++) {
 							
 							%>
