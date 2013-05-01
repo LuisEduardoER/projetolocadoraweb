@@ -1,4 +1,15 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+
+<%@page import="Control.LogarSistema.LoginCtrl"%>
+<%@page import="Model.Dao.AgenciaDAO"%>
+<%@page import="Model.Dao.ClienteDAO"%>
+<%@page import="Model.Agencia"%>
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,6 +18,41 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="login" method="POST">
+				
+		<p>
+			<b>Usuario: </b><input type="text" name="usuario" />
+		</p>
+		<p>
+			<b>Senha: </b><input type="password" name="senha" />
+		</p>
+
+		<!-- Barra de Idiomas -->
+		<select name=mytextarea>
+			<option name=portugues value=portugues>Português</option>
+			<option name=inglês value=inglês>Inglês</option>
+			<option name=espanhol value=espanhol>Espanhol</option>
+		</select>
+
+		<!-- Barra de Agencias -->
+		<p>
+			<select name="cbAgencia">
+				<%
+					List retorno = (ArrayList) request.getSession().getAttribute(
+							"listaAgencias");
+					for (Iterator<Agencia> it = retorno.iterator(); it.hasNext();) {
+						Agencia ag = (Agencia) it.next();
+				%>
+				<option name=<%=ag.getNome()%> value=<%=ag.getCodigo()%>><%=ag.getNome()%></option>
+				<%
+					}
+				%>
+			</select>
+		<p>
+			<input type="submit" name="logar" value="Logar">		
+		</p>
+
+	</form>
 
 </body>
 </html>
