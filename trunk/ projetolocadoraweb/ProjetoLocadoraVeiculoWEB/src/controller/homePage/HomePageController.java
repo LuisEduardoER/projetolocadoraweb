@@ -20,7 +20,7 @@ public class HomePageController extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.sendRedirect("HomePageView.jsp");
 	}
 	
 	protected void doPost(HttpServletRequest request,
@@ -30,7 +30,7 @@ public class HomePageController extends HttpServlet {
 
 		try {
 			if ("Manter Veiculo".equals(operacao)) {
-				response.sendRedirect("VeiculoConsulta.jsp");
+				response.sendRedirect("manterVeiculo");
 			}
 			
 		} catch (Exception e) {

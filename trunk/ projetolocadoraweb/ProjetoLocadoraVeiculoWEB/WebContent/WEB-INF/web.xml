@@ -8,7 +8,7 @@
     <description></description>
     <display-name>ManterVeiculoController</display-name>
     <servlet-name>ManterVeiculoController</servlet-name>
-    <servlet-class>Controller.ManterVeiculo.ManterVeiculoController</servlet-class>
+    <servlet-class>controller.manterVeiculo.ManterVeiculoController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ManterVeiculoController</servlet-name>
@@ -18,7 +18,7 @@
     <description></description>
     <display-name>LoginController</display-name>
     <servlet-name>LoginController</servlet-name>
-    <servlet-class>Controller.LogarSistema.LoginController</servlet-class>
+    <servlet-class>controller.logarSistema.LoginController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginController</servlet-name>
@@ -28,7 +28,7 @@
     <description></description>
     <display-name>HomePageController</display-name>
     <servlet-name>HomePageController</servlet-name>
-    <servlet-class>Controller.HomePageController</servlet-class>
+    <servlet-class>controller.homePage.HomePageController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HomePageController</servlet-name>

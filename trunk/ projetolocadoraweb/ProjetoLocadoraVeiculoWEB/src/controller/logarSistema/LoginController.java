@@ -61,9 +61,7 @@ public class LoginController extends HttpServlet {
 			
 			request.getSession().setAttribute("agenciaSelecionada",agencia);
 			
-			System.out.println(agencia.getCodigo());
-			
-			response.sendRedirect("HomePageView.jsp");
+			response.sendRedirect("homePage");
 		}
 		else{
 			System.out.println("login inválido");
