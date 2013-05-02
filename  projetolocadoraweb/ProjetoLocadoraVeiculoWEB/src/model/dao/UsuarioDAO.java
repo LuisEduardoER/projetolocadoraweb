@@ -21,10 +21,15 @@ public class UsuarioDAO extends Dao{
 	
 	
 	public ArrayList<Usuario> getList(){
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
 		try{
 			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-			PreparedStatement stmt = conn.prepareStatement("select * from usuario");
-			ResultSet rs = stmt.executeQuery();
+//			PreparedStatement stmt = conn.prepareStatement("select * from usuario");
+			stmt = conn.prepareStatement("select * from usuario");
+//			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			
 			while(rs.next()){
 				//Criando o obj Usuario
@@ -37,14 +42,44 @@ public class UsuarioDAO extends Dao{
 				//adicionando o objeto à lista
 				usuarios.add(user);
 			}
-			rs.close();
-			stmt.close();
+//			rs.close();
+//			stmt.close();
 			return usuarios;
 			
 		} 
 		catch (SQLException e){
 			e.printStackTrace();
 			return null;
+		} finally {
+			// IMPORTANTE UTILIZACAO DO FINALLY PARA GARANTIR O FECHAMENTO
+			// DA CONEXAO COM O BANCO DE DADOS.
+	
+			// fecha o resultset
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+			// fecha o statement
+			//
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+			// fecha a conexao
+			//
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
 		}
 	}
 	
@@ -75,14 +110,46 @@ public class UsuarioDAO extends Dao{
 				//adicionando o objeto à lista
 				
 			}
-			rs.close();
-			stm.close();
-			return user;
+//			rs.close();
+//			stm.close();
+//			return user;
 			
 		} 
 		catch (SQLException e){
 			e.printStackTrace();
-			return user;
+//			return user;
+		} finally {
+			// IMPORTANTE UTILIZACAO DO FINALLY PARA GARANTIR O FECHAMENTO
+			// DA CONEXAO COM O BANCO DE DADOS.
+	
+			// fecha o resultset
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+			// fecha o statement
+			//
+			if (stm != null) {
+				try {
+					stm.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+			// fecha a conexao
+			//
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+//			
 		}
+		return user;
 	}
 }
