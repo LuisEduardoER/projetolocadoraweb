@@ -11,7 +11,7 @@ public class Cartao extends FormaPagamento{
 	private String cpf;
 	private String numCartao;
 	private Date dtaValidade;
-	private String codSegurança;
+	private String codSeguranca;
 	
 	
 	
@@ -55,12 +55,12 @@ public class Cartao extends FormaPagamento{
 		this.dtaValidade = dtaValidade;
 	}
 	
-	public String getCodSegurança() {
-		return codSegurança;
+	public String getCodSeguranca() {
+		return codSeguranca;
 	}
 	
-	public void setCodSegurança(String codSegurança) {
-		this.codSegurança = codSegurança;
+	public void setCodSeguranca(String codSeguranca) {
+		this.codSeguranca = codSeguranca;
 	}
 	
 	public String toString(){
@@ -71,7 +71,7 @@ public class Cartao extends FormaPagamento{
 	public String getCartaoStr(){
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		return getTipo() + " " + getNomeCliente() + " " + getCpf() + " " + getNumCartao() + " " + sdf.format(getDtaValidade()) + " " +
-				getCodSegurança();
+				getCodSeguranca();
 	}
 	
 }
