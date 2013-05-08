@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 		
 		//ArrayList de agencias como parametro para a tela de login
 		request.getSession().setAttribute("listaAgencias", agencias);
-		
+		//Instalcia Login View
 		request.getRequestDispatcher("LoginView.jsp").forward(request, response);
 	}
 
@@ -61,10 +61,10 @@ public class LoginController extends HttpServlet {
 			
 			request.getSession().setAttribute("agenciaSelecionada",agencia);
 			
-			response.sendRedirect("homePage");
+			response.sendRedirect("homePage"); //Passar de um controle para o outro.(chama o get do outro)
 		}
 		else{
-			System.out.println("login inválido");
+			System.out.println("login invalido");
 			response.sendRedirect("LoginView.jsp");
 		}
 		
