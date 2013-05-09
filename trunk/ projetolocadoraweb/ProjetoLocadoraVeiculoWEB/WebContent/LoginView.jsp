@@ -162,14 +162,12 @@ body {
 		<div id="login-box">
 			<div id="login-box-interno">
 
-				<div id="login-box-label">Login</div>
-
-				<div class="input-div" id="usuario">
-					<input type="text" value="Usuario ou Email" name="usuario"/>
+				<div class="input-div" id="usuario">                  
+					<input type="text" name="usuario" value="Usuario ou Email" onFocus="if (this.value=='Usuario ou Email') this.value='';"/>
 				</div>
 
 				<div class="input-div" id="senha">
-					<input type="password" value="Senha" name="senha" />
+                  <input type="text" name="senha" value="Senha" onFocus="if (this.value=='Senha'){ this.value=''; this.type='password'}"/>      
 				</div>
 
 				<!-- Barra de Idiomas _________________________________________________________________________-->
