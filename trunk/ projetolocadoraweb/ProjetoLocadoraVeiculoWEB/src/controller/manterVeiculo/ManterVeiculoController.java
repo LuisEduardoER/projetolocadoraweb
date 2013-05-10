@@ -5,6 +5,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.postgresql.util.PSQLException;
+
 import java.util.ArrayList;
 import model.Agencia;
 import model.Grupo;
@@ -78,16 +81,25 @@ public class ManterVeiculoController extends HttpServlet {
 				
 			}
 			else if ("salvarInclusao".equals(operacao)) {
-				
+//				request.getSession().setAttribute("isError", false);
 				Veiculo veiculo = new Veiculo();
 				carregarObjeto(request , response , veiculo);
 				
 				Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
 				
 				VeiculoDAO dao = new VeiculoDAO();
-				dao.inserir(veiculo , ag.getCodigo());
 				
-				atualizarConsulta(request, response);
+				try{
+					dao.inserir(veiculo , ag.getCodigo());
+//					request.getSession().setAttribute("isError", false);
+					System.out.println("entrou no try");
+					atualizarConsulta(request, response);
+				}catch(Exception e){
+					System.out.println("entrou no catch");
+//					request.getSession().setAttribute("isError", true);
+				}
+				System.out.println("passou pelo try/catch");
+				
 			}
 			else if("voltarIncluir".equals(operacao)){
 				request.getRequestDispatcher("VeiculoConsulta.jsp").forward(request, response);
