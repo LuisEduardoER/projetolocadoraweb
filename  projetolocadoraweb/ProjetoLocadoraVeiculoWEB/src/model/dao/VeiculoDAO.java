@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.postgresql.util.PSQLException;
+
 
 
 
@@ -180,7 +182,7 @@ public class VeiculoDAO extends Dao{
 	}
 
 
-	public void inserir(Veiculo veiculo, int agenciaCodigo) {
+	public void inserir(Veiculo veiculo, int agenciaCodigo){
 		String sqlInsert = "INSERT INTO VEICULO (fabricante , placa , cidade , km , chassi , modelo , estado , idgrupofk) VALUES "  + 
 							"(? , ? , ? , ? , ? , ? , ? , ?)";
 		
@@ -204,18 +206,14 @@ public class VeiculoDAO extends Dao{
 			stm.setInt(8, veiculo.getGrupo().getId());
 			stm.execute();
 			
-			System.out.println(obterUltimoRegistro());
-			
 			conn.commit();
-			
-			System.out.println("entrando isnerir veiculo");
 			inserirVeiculoAgencia(agenciaCodigo);
-			System.out.println("passou inserir veiculo");
-
+			
 		}
 		catch (Exception e) 
 		{
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 				try 
 				{
 					conn.rollback();

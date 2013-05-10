@@ -7,9 +7,29 @@
 <html>
 	<script language="JavaScript">
 		function executar(form,operacao){
-				form.operacao.value = operacao;
+			form.operacao.value = operacao;
+			if(operacao == "salvarInclusao"){
+				var r = confirm("Deseja Incluir?");
+				if(r == true){
+					form.submit();
+				}
+			}else{
 				form.submit();
+			}
 		}
+// 		function apresentarMensagem(){
+// 			var r = confirm("Deseja Incluir?");
+// 			if(r == true){
+// 				return 
+// 			}else{
+				
+// 			}
+// 		}
+		
+// 		function desejaIncluir() {
+// 			prompt();
+// 		}
+		
 	</script>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -367,9 +387,10 @@
 				style="position: absolute; left: 189px; top: 281px; width: 96px; height: 25px; z-index: 17;"
 				tabindex="11" title="Voltar"
 				onclick="executar(this.form,'voltarIncluir')">
-			<input type="submit" id="btnSalvar_id" name="salvar" value="Salvar"
+			<input type="button" id="btnSalvar_id" name="salvar" value="Salvar"
 				style="position: absolute; left: 308px; top: 281px; width: 96px; height: 25px; z-index: 18;"
-				tabindex="12" title="Salvar">
+				tabindex="12" title="Salvar"
+				onclick="executar(this.form,'salvarInclusao')">
 			<input type="reset" id="btnLimpar_id" name="limpar" value="Limpar"
 				style="position: absolute; left: 427px; top: 281px; width: 96px; height: 25px; z-index: 19;"
 				tabindex="13" title="Limpar">
