@@ -1,21 +1,13 @@
 //Classe VeiculoDAO
 package model.dao;
 
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.postgresql.util.PSQLException;
-
-
-
-
 import model.Grupo;
 import model.Veiculo;
-
 
 public class VeiculoDAO extends Dao{
 	
@@ -25,7 +17,7 @@ public class VeiculoDAO extends Dao{
 	
 	
 //	Método irá retornar ArrayList de gupo
-	public ArrayList<Grupo> getListGrupoByAgencia(int idAgencia) {
+	public ArrayList<Grupo> getListGrupoByAgencia(int idAgencia){
 		String sql = "select v.idveiculo , va.idVeiculoAg , g.idGrupo , g.nome , g.tarifaLivre , g.tarifaControlada , " +
 					 "v.fabricante , v.placa , v.cidade , v.km , v.chassi , v.modelo , v.estado from grupo g inner join " +
 					 "veiculo v on g.idGrupo = v.idGrupoFK inner join " + 
@@ -33,13 +25,18 @@ public class VeiculoDAO extends Dao{
 					 "agencia ag on va.idAgenciaFK = ag.idAgencia " +
 					 "where ag.idAgencia = ? " +
 					 "order by ag.nome , g.nome;";
+		
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		ArrayList<Grupo> grupos = null;
+		
 		try{
-			ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-			PreparedStatement stmt = conn.prepareStatement(sql);
+			grupos = new ArrayList<Grupo>();
+			stmt = conn.prepareStatement(sql);
 			
 			stmt.setInt(1, idAgencia);
 			
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			
 			while(rs.next()){
 //				Se o Array "grupos" estiver vazio .OU. o se não for o último grupo inserido
@@ -86,15 +83,48 @@ public class VeiculoDAO extends Dao{
 				}
 				
 			}
-			rs.close();
-			stmt.close();
+//			rs.close();
+//			stmt.close();
 			return grupos;
 			
 		} 
 		catch (SQLException e){
 			e.printStackTrace();
-			return null;
+//			return null;
+			grupos = null;
 		}
+		finally {
+			// IMPORTANTE UTILIZACAO DO FINALLY PARA GARANTIR O FECHAMENTO
+			// DA CONEXAO COM O BANCO DE DADOS.
+
+			// fecha o resultset
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+			// fecha o statement
+			//
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+			// fecha a conexao
+			//
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+		}
+		return grupos;
 	}
 	
 	private Veiculo consultar(int idVeiculoAg){
@@ -133,15 +163,49 @@ public class VeiculoDAO extends Dao{
 				grupo.setTarifaLivre(rs.getDouble("tarifaLivre"));
 				veiculo.setGrupo(grupo);
 			}
-			rs.close();
-			stm.close();
-			return veiculo;
+//			rs.close();
+//			stm.close();
+//			return veiculo;
 			
 		} 
 		catch (SQLException e){
 			e.printStackTrace();
-			return null;
+//			return null;
+			veiculo = null;
 		}
+		finally {
+			// IMPORTANTE UTILIZACAO DO FINALLY PARA GARANTIR O FECHAMENTO
+			// DA CONEXAO COM O BANCO DE DADOS.
+
+			// fecha o resultset
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+			// fecha o statement
+			//
+			if (stm != null) {
+				try {
+					stm.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+			// fecha a conexao
+			//
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
+		}		
+		return veiculo;
+		
 	}
 	
 	protected static Veiculo consultarById(int id){
@@ -182,7 +246,7 @@ public class VeiculoDAO extends Dao{
 	}
 
 
-	public void inserir(Veiculo veiculo, int agenciaCodigo){
+	public void inserir(Veiculo veiculo, int agenciaCodigo) throws Exception {
 		String sqlInsert = "INSERT INTO VEICULO (fabricante , placa , cidade , km , chassi , modelo , estado , idgrupofk) VALUES "  + 
 							"(? , ? , ? , ? , ? , ? , ? , ?)";
 		
@@ -210,7 +274,7 @@ public class VeiculoDAO extends Dao{
 			inserirVeiculoAgencia(agenciaCodigo);
 			
 		}
-		catch (Exception e) 
+		catch (SQLException e) 
 		{
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -236,11 +300,21 @@ public class VeiculoDAO extends Dao{
 					System.out.print(e1.getStackTrace());
 				}
 			}
+			// fecha a conexao
+			//
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					//
+					System.out.print(e.getStackTrace());
+				}
+			}
 		}
 		
 	}
 	
-	private void inserirVeiculoAgencia(int agenciaCodigo) {
+	private void inserirVeiculoAgencia(int agenciaCodigo) throws Exception {
 		String sqlSelect = "insert into veiculo_agencia (idveiculofk , idagenciafk) values (? , ?)";
 		
 		PreparedStatement stm = null;
@@ -259,7 +333,7 @@ public class VeiculoDAO extends Dao{
 			conn.commit();
 
 		}
-		catch (Exception e) 
+		catch (SQLException e) 
 		{
 			e.printStackTrace();
 				try 
@@ -284,13 +358,11 @@ public class VeiculoDAO extends Dao{
 					System.out.print(e1.getStackTrace());
 				}
 			}
-		}
-		
-		
+		}		
 	}
 
 
-	private int obterUltimoRegistro(){
+	private int obterUltimoRegistro() throws Exception{
 		int indice = -1;
 		String sqlSelect = "select MAX(idveiculo) as idveiculo from VEICULO";
 		
@@ -299,19 +371,13 @@ public class VeiculoDAO extends Dao{
 		
 		try{
 			
-			
-//			stm = conn.prepareStatement(sqlSelect);
 			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-						
+			
 			rs = stm.executeQuery();
 			
 			if(rs.first()){
-				
 				indice = rs.getInt("idveiculo");
-				
-				
 			}
-			System.out.println(indice);
 			rs.close();
 			stm.close();
 			return indice;
@@ -324,7 +390,7 @@ public class VeiculoDAO extends Dao{
 	}
 
 
-	public void alterar(Veiculo veiculo) {
+	public void alterar(Veiculo veiculo) throws Exception{
 		String sqlInsert = "UPDATE veiculo set fabricante = ? , placa = ? , cidade = ? , km = ? , chassi = ? , modelo = ? , estado = ? where idveiculo = ?";
 		
 		PreparedStatement stm = null;
@@ -375,22 +441,28 @@ public class VeiculoDAO extends Dao{
 					System.out.print(e1.getStackTrace());
 				}
 			}
+			// fecha a conexao
+			//
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					//
+				}
+			}
 		}
 		
 	}
 	
-	public void excluirVeiculoAgencia(Veiculo veiculo){
-//		Connection con = null;
+	private void excluirVeiculoAgencia(Veiculo veiculo) throws Exception{
+
 		PreparedStatement stmt = null;
 
 		try {
 			String sql = "delete from veiculo_agencia where idveiculoag = ?";
 			
-//			AcessoBD bd = new AcessoBD();
-//			con = bd.obtemConexao();
 			stmt = conn.prepareStatement(sql);
 
-//			stmt.setLong(1, id);
 			stmt.setInt(1, veiculo.getIdVeiculoAg());
 
 			stmt.execute();
@@ -412,12 +484,11 @@ public class VeiculoDAO extends Dao{
 					//
 				}
 			}
-			
 		}
 	}
 	
-	public void excluir(Veiculo veiculo){
-//		Connection con = null;
+	public void excluir(Veiculo veiculo) throws Exception{
+
 		PreparedStatement stmt = null;
 
 		try {
@@ -425,11 +496,8 @@ public class VeiculoDAO extends Dao{
 			
 			String sql = "delete from veiculo where idveiculo = ?";
 			
-//			AcessoBD bd = new AcessoBD();
-//			con = bd.obtemConexao();
 			stmt = conn.prepareStatement(sql);
 
-//			stmt.setLong(1, id);
 			stmt.setInt(1, veiculo.getId());
 
 			stmt.execute();
@@ -451,121 +519,17 @@ public class VeiculoDAO extends Dao{
 					//
 				}
 			}
-			
+			// fecha a conexao
+			//
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+						//
+				}
+			}
 		}
 	}
-	
-	
-
-//	public void excluir(Veiculo veiculo, int agenciaCodigo) {
-////		String sql = "DELETE FROM veiculo_agencia WHERE idveiculofk = ?";
-//		System.out.println("metodo excluirDAO   ID: " + veiculo.getId());
-//		excluirVeiculo(veiculo);
-//		
-//		String sql = "DELETE FROM veiculo WHERE idveiculo = ?";
-//		
-//		PreparedStatement stmt = null;
-//
-//		try {
-////			String sql = "delete from aluno where id = ?";
-//
-////			AcessoBD bd = new AcessoBD();
-////			conn = bd.obtemConexao();
-////			String sql = "delete from aluno where id = ?";
-////
-////			AcessoBD bd = new AcessoBD();
-////			con = bd.obtemConexao();
-////			stmt = con.prepareStatement(sql);
-////
-////			stmt.setLong(1, id);
-////
-////			stmt.execute();
-//			
-//			
-//			stmt = conn.prepareStatement(sql);
-//			stmt.setInt(1, veiculo.getId());
-//			System.out.println(sql);
-//			stmt.execute();
-////			excluirVeiculo(veiculo);
-//			
-////			String sql = "delete from aluno where id = ?";
-////
-////			AcessoBD bd = new AcessoBD();
-////			con = bd.obtemConexao();
-////			stmt = con.prepareStatement(sql);
-////
-////			stmt.setLong(1, id);
-////
-////			stmt.execute();
-//			
-//
-//		} catch (SQLException sq) {
-//			sq.printStackTrace();
-//			System.out.println("error 1st");
-//		}finally{
-//			if (stmt != null) {
-//				try {
-//					stmt.close();
-//				} catch (SQLException e) {
-//				//
-//				}
-//			}
-//		}
-////		} finally {
-////			// IMPORTANTE UTILIZACAO DO FINALLY PARA GARANTIR O FECHAMENTO
-////			// DA CONEXAO COM O BANCO DE DADOS.
-////
-////			// fecha o statement
-////			//
-////			if (stmt != null) {
-////				try {
-////					stmt.close();
-////				} catch (SQLException e) {
-////					//
-////				}
-////			}
-////			// fecha a conexao
-////			//
-////			if (conn != null) {
-////				try {
-////					conn.close();
-////				} catch (SQLException e) {
-////					//
-////				}
-////			}
-////		}
-//		
-//	}
-//
-//
-//	private void excluirVeiculo(Veiculo veiculo) {
-////		String sql = "DELETE FROM veiculo WHERE idveiculo = ?";
-//		String sql = "DELETE FROM veiculo_agencia WHERE idveiculofk = ?";
-//		PreparedStatement stmt = null;
-//
-//		try {
-////			String sql = "delete from aluno where id = ?";
-//
-////			AcessoBD bd = new AcessoBD();
-////			conn = bd.obtemConexao();
-//			
-//			stmt.setInt(1, veiculo.getId());
-//			stmt = conn.prepareStatement(sql);
-//			stmt.execute();
-//
-//		} catch (SQLException sq) {
-//			sq.printStackTrace();
-//			System.out.println("error 2nd");
-//		}finally{
-//			if (stmt != null) {
-//				try {
-//					stmt.close();
-//				} catch (SQLException e) {
-//				//
-//				}
-//			}
-//		}
-//	}
 	
 	
 //	Select para retornar o veículo na sua respectiva agência
