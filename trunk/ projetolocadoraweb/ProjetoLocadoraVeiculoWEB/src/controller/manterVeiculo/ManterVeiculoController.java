@@ -88,17 +88,21 @@ public class ManterVeiculoController extends HttpServlet {
 				Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
 				
 				VeiculoDAO dao = new VeiculoDAO();
+				dao.inserir(veiculo , ag.getCodigo());
+				atualizarConsulta(request, response);
 				
-				try{
-					dao.inserir(veiculo , ag.getCodigo());
-//					request.getSession().setAttribute("isError", false);
-					System.out.println("entrou no try");
-					atualizarConsulta(request, response);
-				}catch(Exception e){
-					System.out.println("entrou no catch");
-//					request.getSession().setAttribute("isError", true);
-				}
-				System.out.println("passou pelo try/catch");
+//				try{
+//					dao.inserir(veiculo , ag.getCodigo());
+////					request.getSession().setAttribute("isError", false);
+//					System.out.println("entrou no try");
+//					atualizarConsulta(request, response);
+//				}catch(PSQLException e){
+//					System.out.println("entrou no catch");
+////					request.getSession().setAttribute("isError", true);
+//					System.out.println(e.getStackTrace());
+//				}
+//				System.out.println("passou pelo try/catch");
+						
 				
 			}
 			else if("voltarIncluir".equals(operacao)){
