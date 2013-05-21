@@ -168,7 +168,7 @@ body {
 				</div>
 
 				<div class="input-div" id="senha">
-                  <input type="text" name="senha" value="Senha" onFocus="if (this.value=='Senha'){ this.value=''; this.type='password'}"/>      
+                  <input type="password" name="senha" value="Senha" onFocus="if (this.value=='Senha'){ this.value=''; this.type='password'}"/>      
 				</div>
 
 				<!-- Barra de Idiomas _________________________________________________________________________-->
