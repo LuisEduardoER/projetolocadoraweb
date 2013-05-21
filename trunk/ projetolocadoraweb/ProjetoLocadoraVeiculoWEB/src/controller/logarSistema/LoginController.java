@@ -60,7 +60,7 @@ public class LoginController extends HttpServlet {
 			agencia.setCodigo(Integer.parseInt(request.getParameter("cbAgencia")));
 			
 			request.getSession().setAttribute("agenciaSelecionada",agencia);
-			
+			request.getSession().setAttribute("isError",false);
 			response.sendRedirect("homePage"); //Passar de um controle para o outro.(chama o get do outro)
 		}
 		else{

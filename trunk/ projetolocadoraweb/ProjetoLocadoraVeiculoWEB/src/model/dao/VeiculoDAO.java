@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import exception.InsercaoIncorretaException;
+
 import model.Grupo;
 import model.Veiculo;
 
@@ -278,15 +280,16 @@ public class VeiculoDAO extends Dao{
 		{
 			e.printStackTrace();
 			System.out.println(e.getMessage());
-				try 
-				{
-					conn.rollback();
-				}
-				catch (SQLException e1) 
-				{
-					System.out.print(e1.getStackTrace());
-				}
-		} 
+			try 
+			{
+				conn.rollback();
+			}
+			catch (SQLException e1) 
+			{
+				System.out.print(e1.getStackTrace());
+			}
+			throw new InsercaoIncorretaException(e);
+		}
 		finally 
 		{
 			if (stm != null) 

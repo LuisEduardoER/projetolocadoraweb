@@ -12,6 +12,13 @@
 				var r = confirm("Deseja Incluir?");
 				if(r == true){
 					form.submit();
+					var error = <%= (Boolean) request.getSession().getAttribute("isError") %>
+					if(error == true){
+						alert("Não foi possível incluir o Veículo");
+					}else{
+						alert("Inclusão feita com sucesso");
+					}
+
 				}
 			}else{
 				form.submit();
@@ -317,6 +324,8 @@
 	<body>
 		<form action="manterVeiculo" method="post">
 			<input type="hidden" name="operacao" value="salvarInclusao">
+			<input type="hidden" name="message" value="">
+			
 			<div id="wb_lblDadosVeiculo_id"
 				style="position: absolute; left: 309px; top: 18px; width: 135px; height: 18px; z-index: 0;">
 				<span style="color: #000000; font-family: Arial; font-size: 15px;"><strong>Dados do Veículo</strong></span>
