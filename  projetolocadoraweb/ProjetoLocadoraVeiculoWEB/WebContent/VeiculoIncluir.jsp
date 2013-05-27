@@ -12,17 +12,13 @@
 				var r = confirm("Deseja Incluir?");
 				if(r == true){
 					form.submit();
-					var error = <%= (Boolean) request.getSession().getAttribute("isError") %>
-					if(error == true){
-						alert("Não foi possível incluir o Veículo");
-					}else{
-						alert("Inclusão feita com sucesso");
-					}
-
 				}
 			}else{
 				form.submit();
 			}
+		}
+		function atualizaValorCombo(){
+			
 		}
 // 		function apresentarMensagem(){
 // 			var r = confirm("Deseja Incluir?");
