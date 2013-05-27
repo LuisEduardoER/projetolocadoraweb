@@ -81,32 +81,38 @@ public class ManterVeiculoController extends HttpServlet {
 				
 			}
 			else if ("salvarInclusao".equals(operacao)) {
-//				request.getSession().setAttribute("isError", false);
+//				
 				Veiculo veiculo = new Veiculo();
 				carregarObjeto(request , response , veiculo);
 				
 				Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
 				
 				VeiculoDAO dao = new VeiculoDAO();
-//				dao.inserir(veiculo , ag.getCodigo());
-//				atualizarConsulta(request, response);
-				boolean isError;
+				//tenta inserir o veículo no banco
 				try{
 					dao.inserir(veiculo , ag.getCodigo());
-					isError = false;
-//					request.getSession().setAttribute("isError", isError);
-					
+										
 					System.out.println("entrou no try");
 //					atualizarConsulta(request, response);
+					
+					request.getSession().setAttribute("goToServlet", "manterVeiculo");
+					request.getSession().setAttribute("messageTitle", "Mensagem - Inclusão Veículo");
+					request.getSession().setAttribute("messageBody", "Veículo Incluido com sucesso!!!");
+					
+					
 				}catch(Exception e){
 					System.out.println("entrou no catch");
-					isError = true;
-					request.getSession().setAttribute("isError", isError);
 					System.out.println(e.getMessage());
+					
+					request.getSession().setAttribute("goToServlet", "manterVeiculo");
+					request.getSession().setAttribute("messageTitle", "Mensagem - Inclusão Veículo");
+					request.getSession().setAttribute("messageBody", "Não foi possível incluir o veículo");
+//										
 				}
 				System.out.println("passou pelo try/catch");
-				
-				atualizarConsulta(request, response);
+//				Manda para página de Mensagem
+				request.getRequestDispatcher("Mensagem.jsp").forward(request, response);
+//				atualizarConsulta(request, response);
 				
 			}
 			else if("voltarIncluir".equals(operacao)){
