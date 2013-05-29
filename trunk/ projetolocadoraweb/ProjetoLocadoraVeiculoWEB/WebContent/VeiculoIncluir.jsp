@@ -19,6 +19,14 @@
 		}
 		function atualizaValorCombo(){
 			
+// 			var indice = document.getElementById('cbGrupo').selectedIndex;
+// 			alert(indice);
+			
+
+// 			alert(indice);
+			
+// 			gp.setId(Integer.parseInt(request.getParameter("cbGrupo")));
+
 		}
 // 		function apresentarMensagem(){
 // 			var r = confirm("Deseja Incluir?");
@@ -414,7 +422,7 @@
 			</div>
 			
 			
-			<select name="cbGrupo" size="1" id="cbGrupo_id"
+			<select name="cbGrupo" size="1" id="cbGrupo_id" onchange="atualizaValorCombo()"
 				style="position: absolute; left: 636px; top: 67px; width: 130px; height: 26px; z-index: 22;" tabindex="8">
 				<% 
 				ArrayList<Grupo> grupos = (ArrayList) request.getSession().getAttribute("listaGrupos");
@@ -423,7 +431,14 @@
 				for(int i = 0; i < grupos.size() ; i++){
 					grupo = grupos.get(i);
 					%>
+					
+					<script languange="JavaScript">
+						
+					</script>
+										
 					<option value="<%=grupo.getId()%>"><%=grupo.getNome()%></option>
+					
+					
 				
 				<%
 				}
