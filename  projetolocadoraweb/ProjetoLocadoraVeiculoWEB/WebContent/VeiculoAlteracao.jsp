@@ -10,8 +10,15 @@
 <html>
 	<script language="JavaScript">
 		function executar(form,operacao){
-				form.operacao.value = operacao;
+			form.operacao.value = operacao;
+			if(operacao == "salvarAlteracao"){
+				var r = confirm("Deseja Alterar?");
+				if(r == true){
+					form.submit();
+				}
+			}else{
 				form.submit();
+			}
 		}
 	</script>
 	
@@ -367,9 +374,10 @@
 				style="position: absolute; left: 190px; top: 281px; width: 96px; height: 25px; z-index: 17;"
 				tabindex="11" title="Voltar"
 				onclick="executar(this.form,'voltarAlteracao')">
-			<input type="submit" id="btnSalvar_id" name="salvar" value="Salvar"
+			<input type="button" id="btnSalvar_id" name="salvar" value="Salvar"
 				style="position: absolute; left: 309px; top: 281px; width: 96px; height: 25px; z-index: 18;"
-				tabindex="12" title="Salvar">
+				tabindex="12" title="Salvar"
+				onclick="executar(this.form,'salvarAlteracao')">
 			
 			<table
 				style="position: absolute; left: 509px; top: 56px; width: 266px; height: 140px; z-index: 20;"

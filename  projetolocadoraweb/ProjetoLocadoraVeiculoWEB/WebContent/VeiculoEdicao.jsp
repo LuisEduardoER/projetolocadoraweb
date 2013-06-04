@@ -10,8 +10,15 @@
 <html>
 	<script language="JavaScript">
 		function executar(form,operacao){
-				form.operacao.value = operacao;
+			form.operacao.value = operacao;
+			if(operacao == "excluir"){
+				var r = confirm("Deseja Excluir?");
+				if(r == true){
+					form.submit();
+				}
+			}else{
 				form.submit();
+			}
 		}
 	</script>
 	<head>
