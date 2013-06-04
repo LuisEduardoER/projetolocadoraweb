@@ -2,6 +2,7 @@ package controller.logarSistema;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +20,7 @@ import model.dao.UsuarioDAO;
 public class LoginController extends HttpServlet {
 	
 	private Usuario user;
+	ArrayList<Agencia> agencias;
 	private Agencia agencia = null;
 	
 	private static final long serialVersionUID = 1L;
@@ -38,7 +40,7 @@ public class LoginController extends HttpServlet {
 		
 		//Pega uma lista de Agencias para o Tela de Login
 		AgenciaDAO dao = new AgenciaDAO();
-		ArrayList<Agencia> agencias = dao.getList();
+		agencias = dao.getList();
 		
 		//ArrayList de agencias como parametro para a tela de login
 		request.getSession().setAttribute("listaAgencias", agencias);
@@ -55,12 +57,23 @@ public class LoginController extends HttpServlet {
 		user.setLogin(request.getParameter("usuario"));
 		user.setSenha(request.getParameter("senha"));
 		if(verificaLogin() == true){
-
+//			Adiciona o Usuário vigente na sessão
+			request.getSession().setAttribute("usuarioSelecionado",user);
+			
+//			Pega o id da Agência vigente
 			agencia = new Agencia();
 			agencia.setCodigo(Integer.parseInt(request.getParameter("cbAgencia")));
 			
+//			Itera a lista de Agências e pega a agência selecionada
+			for (Iterator<Agencia> it = agencias.iterator(); it.hasNext();) {
+				Agencia ag = (Agencia) it.next();
+				if(ag.getCodigo() == agencia.getCodigo()){
+					agencia = ag;
+					break;
+				}
+			}
+			
 			request.getSession().setAttribute("agenciaSelecionada",agencia);
-			request.getSession().setAttribute("isError",false);
 			response.sendRedirect("homePage"); //Passar de um controle para o outro.(chama o get do outro)
 		}
 		else{
@@ -72,15 +85,13 @@ public class LoginController extends HttpServlet {
 		
 	public boolean verificaLogin(){
 		UsuarioDAO dao = new UsuarioDAO();
-	
 		boolean isCorrect = false;
+		user = dao.verificaLogin(user);
 		
-		Usuario usuario = dao.verificaLogin(user);
-		
-		if(usuario != null){
-			user = usuario;
+		if(user != null){
 			isCorrect = true;
 		}
+		
 		return isCorrect;
 	}
 }

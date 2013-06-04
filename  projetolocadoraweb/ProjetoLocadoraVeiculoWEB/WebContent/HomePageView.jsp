@@ -153,6 +153,8 @@
 	</head>
 
 	<body>
+		<jsp:useBean id="usuarioSelecionado" class="model.Usuario" scope="session"/>
+		<jsp:useBean id="agenciaSelecionada" class="model.Agencia" scope="session"/>
 		<form action="homePage" method="POST">
 			<input type="hidden" name="operacao" value="homePageInitialize">
 			<hr id="Line1"
@@ -161,11 +163,11 @@
 				style="margin: 0; padding: 0; position: absolute; left: 150px; top: 510px; width: 720px; height: 1px; z-index: 1;">
 			<input type="text" id="txtAgencia_id"
 				style="position: absolute; left: 700px; top: 80px; width: 198px; height: 28px; line-height: 28px; z-index: 2;"
-				name="txtAgencia" value="" disabled="disabled">
+				name="txtAgencia" value="<jsp:getProperty name='agenciaSelecionada' property='nome' />" disabled="disabled">
 				
 			<input type="text" id="txtNome_id"
 				style="position: absolute; left: 700px; top: 120px; width: 198px; height: 28px; line-height: 28px; z-index: 3;"
-				name="txtNome" value="" disabled="disabled">
+				name="txtNome" value="<jsp:getProperty name='usuarioSelecionado' property='nome' />" disabled="disabled">
 				
 			<input type="button" id="btnManterVeiculos_id" name="btnManterVeiculos"
 				value="Manter Veiculos"
