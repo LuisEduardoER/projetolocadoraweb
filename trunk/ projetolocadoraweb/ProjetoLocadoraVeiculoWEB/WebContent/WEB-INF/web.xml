@@ -4,6 +4,9 @@
   <welcome-file-list>
     <welcome-file>login</welcome-file>
   </welcome-file-list>
+  
+<!--   Mapeamento UC - Manter Veículo -->
+  
   <servlet>
     <description></description>
     <display-name>ManterVeiculoController</display-name>
@@ -14,6 +17,9 @@
     <servlet-name>ManterVeiculoController</servlet-name>
     <url-pattern>/manterVeiculo</url-pattern>
   </servlet-mapping>
+  
+<!--   Mapeamento UC - Logar no Sistema -->
+  
   <servlet>
     <description></description>
     <display-name>LoginController</display-name>
@@ -24,6 +30,9 @@
     <servlet-name>LoginController</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
+  
+<!--   Mapeamento - Home Page -->
+  
   <servlet>
     <description></description>
     <display-name>HomePageController</display-name>
@@ -34,4 +43,18 @@
     <servlet-name>HomePageController</servlet-name>
     <url-pattern>/homePage</url-pattern>
   </servlet-mapping>
+  
+<!--   Mapeamento UC - Efetuar Pagamento -->
+  <servlet>
+    <description></description>
+    <display-name>FormaPagamentoController</display-name>
+    <servlet-name>FormaPagamentoController</servlet-name>
+    <servlet-class>controller.efetuarPagamento.FormaPagamentoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormaPagamentoController</servlet-name>
+    <url-pattern>/efetuarPagamento</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
