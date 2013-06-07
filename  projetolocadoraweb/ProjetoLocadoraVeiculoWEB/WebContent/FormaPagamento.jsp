@@ -7,9 +7,32 @@
 	
 	function executar(form,operacao){
 		form.operacao.value = operacao;
-		form.submit();
+		if(operacao == "Confirmar"){
+// 			alert("entrou no confirmar");
+			var isOk = verificaCamposBranco(form);
+			
+			if(isOk == true){
+				alert("não tem campos branco");
+			}else{
+				alert("tem campos em branco");
+			}
+			
+			var r = confirm("Tem certeza que deseja Confirmar o Pagamento?");
+			if(r == true){
+				form.submit();
+			}
+		}else{
+			form.submit();
+		}
 	}
-
+	
+	function verificaCamposBranco(form){
+		if(form.txtTipoCartao.value == ""){
+			return false;
+		}
+		return true;
+	}
+	
 	function habilitarCampos(form){
 
 		if(form.tipoPagamento[0].checked){
@@ -497,7 +520,7 @@ a:hover {
 
 <body>
 	<form action="efetuarPagamento" method="POST">
-	<input type="hidden" name="operacao" value="voltar">
+	<input type="hidden" name="operacao" value="Confirmar">
 
 	<div id="space">
 		<br>
@@ -595,7 +618,7 @@ a:hover {
 		</div>
 		<input type="text" id="txtTotal_ID"
 			style="position: absolute; left: 88px; top: 536px; width: 70px; height: 18px; line-height: 18px; z-index: 23;"
-			name="txtTotal" value="" disabled="disabled">
+			name="txtTotal" value="<%="R$" + (Double) request.getSession().getAttribute("totalPedido") %>" disabled="disabled">
 		<hr id="Line4"
 			style="margin: 0; padding: 0; position: absolute; left: 47px; top: 588px; width: 598px; height: 1px; z-index: 24;">
 		
@@ -603,10 +626,10 @@ a:hover {
 
 		<input type="button" id="Button1" name="btnVoltar" value="Voltar"
 			style="position: absolute; left: 236px; top: 614px; width: 96px; height: 25px; z-index: 25;"
-			title="Voltar" onclick="executar(this.form,'voltar')"> 
-		<input type="submit" id="Button2" name="btnConfirmar" value="Confirmar"
+			title="Voltar" onclick="executar(this.form,'Voltar')"> 
+		<input type="button" id="Button2" name="btnConfirmar" value="Confirmar"
 			style="position: absolute; left: 347px; top: 614px; width: 96px; height: 25px; z-index: 26;"
-			title="Confirmar">
+			title="Confirmar" onclick="executar(this.form,'Confirmar')">
 			
 <!-- 		Botões -->		
 		
