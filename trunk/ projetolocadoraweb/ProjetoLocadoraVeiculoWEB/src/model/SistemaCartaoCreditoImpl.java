@@ -26,7 +26,9 @@ public class SistemaCartaoCreditoImpl implements SistemaCartaoCredito{
 	    } // end try 
 	    catch ( FileNotFoundException fileNotFoundException ) 
 	    {
-	    	System.err.println( "Error opening file." ); 
+	    	System.err.println( "Error opening file." );
+	    	System.out.println(fileNotFoundException.toString());
+	    	System.out.println(fileNotFoundException.getMessage());
 	        System.exit( 1 ); 
 	    } // end catch
 	} // end method openFile

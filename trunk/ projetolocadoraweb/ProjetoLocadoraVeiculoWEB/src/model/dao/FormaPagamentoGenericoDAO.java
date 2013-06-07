@@ -71,7 +71,8 @@ public class FormaPagamentoGenericoDAO extends Dao {
 		try{
 			
 			
-			stm = conn.prepareStatement(sqlSelect);
+//			stm = conn.prepareStatement(sqlSelect);
+			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			rs = stm.executeQuery();
 			
@@ -91,6 +92,8 @@ public class FormaPagamentoGenericoDAO extends Dao {
 			return indice;
 		}	
 	}
+	
+		
 	
 	private FormaPagamento consultar(int id){
 		FormaPagamento formaPagamento = null;
