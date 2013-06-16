@@ -23,7 +23,8 @@ public class ClienteDAO extends Dao {
 		
 		pf.setId(obterUltimoRegistro());
 		
-		String sqlInsert = "INSERT INTO PF (idClienteFK , sexo , dtaNascimento ,  rg , numHabilitacao , estadoEmissor , primeiraHabilitacao , validadeCartMotorista) VALUES (? ,  ? , ? , ? , ? , ? , ? , ?)";
+		String sqlInsert = "INSERT INTO PF (idClienteFK , sexo , dtaNascimento ,  rg , numHabilitacao , estadoEmissor ,"+
+						   " primeiraHabilitacao , validadeCartMotorista) VALUES (? ,  ? , ? , ? , ? , ? , ? , ?)";
 		
 		PreparedStatement stm = null;
 		
@@ -75,7 +76,7 @@ public class ClienteDAO extends Dao {
 		}		
 	}
 	
-
+	//CADASTRAR PESSOA JURIDICA**
 	public void cadastrar(PessoaJuridica pj) {
 		pj.setTipo("PJ");
 		cadastrarCliente(pj);
@@ -164,6 +165,7 @@ public class ClienteDAO extends Dao {
 		
 	}
 	
+	
 	private void cadastrarCliente(Cliente cliente){
 		
 		String sqlInsert = "INSERT INTO CLIENTE (nome , registro , telefone , email , tipo , status) VALUES ( ? , ? , ? , ? , ? , 'Y')";
@@ -218,12 +220,13 @@ public class ClienteDAO extends Dao {
 		
 	}
 
+	//ALTERAR PESSOA FISICA**
 	public void alterar(PessoaFisica pf) {
 		alterarCliente(pf);
 				
-		String sqlInsert = "update pf set sexo = ? , dtaNascimento = ? , rg = ? , "+ 
-							"numHabilitacao = ? , estadoEmissor = ? , primeiraHabilitacao = ? , validadeCartMotorista = ? " +
-							"where idClienteFK = ?";
+		String sqlInsert = "update pf set sexo = ? , dtaNascimento = ? , rg = ? , numHabilitacao = ? , "+
+						   "estadoEmissor = ? , primeiraHabilitacao = ? , validadeCartMotorista = ? " +
+						   "where idClienteFK = ?";
 		
 		PreparedStatement stm = null;
 		

@@ -71,23 +71,23 @@ public class ManterVeiculoController extends HttpServlet {
 				Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
 				
 				VeiculoDAO dao = new VeiculoDAO();
-				//tenta inserir o veículo no banco
+				//tenta inserir o veï¿½culo no banco
 				try{
 					dao.inserir(veiculo , ag.getCodigo());
 					
 					request.getSession().setAttribute("goToServlet", "manterVeiculo");
-					request.getSession().setAttribute("messageTitle", "Mensagem - Inclusão Veículo");
-					request.getSession().setAttribute("messageBody", "Veículo Incluido com sucesso!!!");
+					request.getSession().setAttribute("messageTitle", "Mensagem - Inclusï¿½o Veï¿½culo");
+					request.getSession().setAttribute("messageBody", "Veï¿½culo Incluido com sucesso!!!");
 					
 				}catch(Exception e){
 					System.out.println(e.getMessage());
 					
 					request.getSession().setAttribute("goToServlet", "manterVeiculo");
-					request.getSession().setAttribute("messageTitle", "Mensagem - Inclusão Veículo");
-					request.getSession().setAttribute("messageBody", "Não foi possível incluir o veículo");						
+					request.getSession().setAttribute("messageTitle", "Mensagem - Inclusï¿½o Veï¿½culo");
+					request.getSession().setAttribute("messageBody", "Nï¿½o foi possï¿½vel incluir o veï¿½culo");						
 				
 				}
-//				Manda para página de Mensagem
+//				Manda para pï¿½gina de Mensagem
 				request.getRequestDispatcher("Mensagem.jsp").forward(request, response);
 				
 			}
@@ -113,22 +113,22 @@ public class ManterVeiculoController extends HttpServlet {
 			{				
 				Veiculo veiculo = (Veiculo) request.getSession().getAttribute("veiculoSelecionado");
 				VeiculoDAO dao = new VeiculoDAO();
-				//tenta excluir o veículo no banco
+				//tenta excluir o veï¿½culo no banco
 				try{
 					dao.excluir(veiculo);
 					
 					request.getSession().setAttribute("goToServlet", "manterVeiculo");
-					request.getSession().setAttribute("messageTitle", "Mensagem - Exclusão Veículo");
-					request.getSession().setAttribute("messageBody", "Veículo Excluído com sucesso!!!");
+					request.getSession().setAttribute("messageTitle", "Mensagem - Exclusï¿½o Veï¿½culo");
+					request.getSession().setAttribute("messageBody", "Veï¿½culo Excluï¿½do com sucesso!!!");
 										
 				}catch(Exception e){
 					System.out.println(e.getMessage());
 					
 					request.getSession().setAttribute("goToServlet", "manterVeiculo");
-					request.getSession().setAttribute("messageTitle", "Mensagem - Exclusão Veículo");
-					request.getSession().setAttribute("messageBody", "Não foi possível excluir o veículo");
+					request.getSession().setAttribute("messageTitle", "Mensagem - Exclusï¿½o Veï¿½culo");
+					request.getSession().setAttribute("messageBody", "Nï¿½o foi possï¿½vel excluir o veï¿½culo");
 				}
-//				Manda para página de Mensagem
+//				Manda para pï¿½gina de Mensagem
 				request.getRequestDispatcher("Mensagem.jsp").forward(request, response);				
 			}
 			else if("salvarAlteracao".equals(operacao))
@@ -139,23 +139,23 @@ public class ManterVeiculoController extends HttpServlet {
 				
 				VeiculoDAO dao = new VeiculoDAO();
 				
-				//tenta alterar o veículo no banco
+				//tenta alterar o veï¿½culo no banco
 				try{
 					dao.alterar(veiculo);
 					
 					request.getSession().setAttribute("goToServlet", "manterVeiculo");
-					request.getSession().setAttribute("messageTitle", "Mensagem - Alteração Veículo");
-					request.getSession().setAttribute("messageBody", "Veículo Alterado com sucesso!!!");
+					request.getSession().setAttribute("messageTitle", "Mensagem - Alteraï¿½ï¿½o Veï¿½culo");
+					request.getSession().setAttribute("messageBody", "Veï¿½culo Alterado com sucesso!!!");
 										
 				}catch(Exception e){
 					System.out.println(e.getMessage());
 					
 					request.getSession().setAttribute("goToServlet", "manterVeiculo");
-					request.getSession().setAttribute("messageTitle", "Mensagem - Alteração Veículo");
-					request.getSession().setAttribute("messageBody", "Não foi possível alterar o veículo");
+					request.getSession().setAttribute("messageTitle", "Mensagem - Alteraï¿½ï¿½o Veï¿½culo");
+					request.getSession().setAttribute("messageBody", "Nï¿½o foi possï¿½vel alterar o veï¿½culo");
 				}
 				
-//				Manda para página de Mensagem
+//				Manda para pï¿½gina de Mensagem
 				request.getRequestDispatcher("Mensagem.jsp").forward(request, response);
 							
 			}
@@ -166,9 +166,9 @@ public class ManterVeiculoController extends HttpServlet {
 		}catch (Exception e) {
 			trataErro(request, response, e);
 		}
-	}// fim método doPost()
+	}// fim mï¿½todo doPost()
 
-//	Método responsável por selecionar um Veículo na tabela na tela "consultar"
+//	Mï¿½todo responsï¿½vel por selecionar um Veï¿½culo na tabela na tela "consultar"
 	private Veiculo selecionarVeiculo(HttpServletRequest request,
 			HttpServletResponse response) {
 
@@ -176,7 +176,7 @@ public class ManterVeiculoController extends HttpServlet {
 
 		//
 		// Verificacao para garantir que usuario selecionou
-		// um item na lista de veículos
+		// um item na lista de veï¿½culos
 		//
 		if (request.getParameter("item") != null) {
 			
@@ -204,10 +204,12 @@ public class ManterVeiculoController extends HttpServlet {
 		}//fim if
 
 		return veiculoSelecionado;
-	}//fim método selecionarVeiculo()
+	}//fim mï¿½todo selecionarVeiculo()
 
-//	Método responsável por atualizar a tela "Consulta" com os veículos atuais no BD
-	public void atualizarConsulta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+//	Mï¿½todo responsï¿½vel por atualizar a tela "Consulta" com os veï¿½culos atuais no BD
+	public void atualizarConsulta(HttpServletRequest request, 
+			HttpServletResponse response) throws ServletException, IOException{
+		
 		ArrayList<Grupo> grupos = new ArrayList<Grupo>();
 		VeiculoDAO dao = new VeiculoDAO();
 		Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
@@ -218,7 +220,7 @@ public class ManterVeiculoController extends HttpServlet {
 		request.getRequestDispatcher("VeiculoConsulta.jsp").forward(request, response);
 	}
 	
-//	Método responsável por carregar um objeto Veículo do .jsp
+//	Mï¿½todo responsï¿½vel por carregar um objeto Veï¿½culo do .jsp
 	private void carregarObjeto(HttpServletRequest request,
 			HttpServletResponse response, Veiculo veiculo) {
 		
@@ -239,9 +241,9 @@ public class ManterVeiculoController extends HttpServlet {
 		}
 		
 		veiculo.setGrupo(gp);
-	}//fim do método carregarObjeto()
+	}//fim do mï¿½todo carregarObjeto()
 	
-//	Método responsável por redirecionar para a página de erro
+//	Mï¿½todo responsï¿½vel por redirecionar para a pï¿½gina de erro
 	private void trataErro(HttpServletRequest request,
 			HttpServletResponse response, Exception e) throws ServletException,
 			IOException {
