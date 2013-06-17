@@ -174,9 +174,10 @@
 				style="position: absolute; left: 301px; top: 300px; width: 100px; height: 28px; z-index: 4;"
 				onclick="executar(this.form,'Manter Veiculo')">
 				
-			<input type="button" id="btnRealizarLocacao_id"
-				name="btnRealizarLocacao" value="Realizar Locação"
-				style="position: absolute; left: 300px; top: 350px; width: 100px; height: 28px; z-index: 5;">
+			<input type="button" id="btnRealizarLocacao_id"	name="btnRealizarLocacao" 
+				value="Realizar Locação"
+				style="position: absolute; left: 300px; top: 350px; width: 100px; height: 28px; z-index: 5;"
+				onclick="executar(this.form,'Realizar Locacao')">
 				
 			<input type="button" id="btnConslutarVeiuclos_id"
 				name="btnConsultarVeiculos" value="Consultar Veiculos"

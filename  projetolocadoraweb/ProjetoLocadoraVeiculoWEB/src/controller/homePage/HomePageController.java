@@ -31,6 +31,9 @@ public class HomePageController extends HttpServlet {
 			if ("Manter Veiculo".equals(operacao)) {
 				response.sendRedirect("manterVeiculo");
 			}
+			else if("Realizar Locacao".equals(operacao)){
+				response.sendRedirect("realizarLocacao");
+			}
 			
 		} catch (Exception e) {
 			trataErro(request, response, e);

@@ -1,7 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="model.Locacao"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Agencia"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script language="JavaScript">
+	function executar(form,operacao){
+			form.operacao.value = operacao;
+			form.submit();
+	}
+</script>
+
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Realizar Locação - Escolhe Data</title>
@@ -244,9 +258,9 @@ a:hover {
 <body>
 	<div id="wb_Form1"
 		style="position: absolute; left: 2px; top: 1px; width: 761px; height: 380px; z-index: 23;">
-		<form name="Form1" method="post"
-			action="mailto:yourname@yourdomain.com" enctype="text/plain"
-			id="Form1">
+		
+		<%Locacao locacao = (Locacao) request.getSession().getAttribute("locacao");%>
+		<form action="realizarLocacao" method="POST" id="Form1">
 			<input type="hidden" name="operacao" value="avancar">
 			<hr id="Line2" class="ui-widget-header"
 				style="margin: 0; padding: 0; position: absolute; left: 434px; top: 57px; width: 272px; height: 173px; z-index: 0;">
@@ -254,16 +268,18 @@ a:hover {
 				style="margin: 0; padding: 0; position: absolute; left: 56px; top: 56px; width: 272px; height: 173px; z-index: 1;">
 			<input type="button" id="Button1" name="btnCancelar" value="Cancelar"
 				style="position: absolute; left: 266px; top: 314px; width: 96px; height: 25px; z-index: 2;"
-				tabindex="10" title="Cancelar"> <input type="button"
+				tabindex="10" title="Cancelar" onclick="executar(this.form,'cancelarEscolheData')"> 
+			<input type="button"
 				id="Button2" name="btnAvancar" value="Avançar"
 				style="position: absolute; left: 405px; top: 314px; width: 96px; height: 25px; z-index: 3;"
-				tabindex="11" title="Avançar">
+				tabindex="11" title="Avançar" onclick="executar(this.form,'avancarEscolheData')">
 			<div id="wb_Text9"
 				style="position: absolute; left: 489px; top: 256px; width: 87px; height: 16px; z-index: 4;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Tipo
 					de Tarifa:</span>
 			</div>
-			<select name="Combobox7" size="1" id="Combobox7"
+					
+			<select name="comboTarifa" size="1" id="Combobox7"
 				style="position: absolute; left: 577px; top: 253px; width: 116px; height: 20px; z-index: 5;"
 				tabindex="9">
 				<option selected value="kmLivre">KM Livre</option>
@@ -276,19 +292,40 @@ a:hover {
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Agência:</span>
 			</div>
 			<div id="wb_Text5"
-				style="position: absolute; left: 81px; top: 156px; width: 55px; height: 16px; z-index: 8;">
+				style="position: absolute; left: 81px; top: 156px; width: 130px; height: 16px; z-index: 8;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Agência:</span>
 			</div>
-			<select name="comboAgenciaDevolucao" size="1" id="Combobox6"
-				style="position: absolute; left: 598px; top: 155px; width: 32px; height: 21px; z-index: 9;"
+
+<!-- 			Combo Box Agencia Retirada-->
+			<select name="comboAgenciaDevolucao" size="1" id="Combobox6" 
+				style="position: absolute; left: 558px; top: 155px; width: 130px; height: 21px; z-index: 9;"
 				tabindex="8">
-			</select> <select name="comboAgenciaRetirada" size="1" id="Combobox3"
-				style="position: absolute; left: 220px; top: 154px; width: 32px; height: 21px; z-index: 10;"
-				tabindex="4">
-			</select> <input type="date" id="Editbox1"
+				<%
+				List retorno = (ArrayList) request.getSession().getAttribute(
+						"listaAgencias");
+				for (Iterator<Agencia> it = retorno.iterator(); it.hasNext();) {
+					Agencia ag = (Agencia) it.next();
+			%>
+				<option name=<%=ag.getNome()%> value=<%=ag.getCodigo()%>><%=ag.getNome()%></option>
+				<%
+				}
+			%>
+			</select>
+			
+				
+<!-- 			Combo Box Agencia Retirada-->
+				
+			 <select name="comboAgenciaRetirada" size="1"id="Combobox3"
+				style="position: absolute; left: 180px; top: 154px; width: 130px; height: 21px; z-index: 10;" tabindex="4"disabled="disabled">
+				<option value="<%=locacao.getAgenciaRetirada().getCodigo()%>"><%=locacao.getAgenciaRetirada().getNome()%></option>
+				
+			</select>
+<!-- 			Fim Combo Box Agencia Retirada -->
+			
+			<input type="date" id="Editbox1"
 				style="position: absolute; left: 81px; top: 123px; width: 126px; height: 18px; line-height: 18px; z-index: 11;"
-				name="txtDataRetirada" value="" tabindex="1"> <select
-				name="comboHorasRetirada" size="1" id="Combobox1"
+				name="txtDataRetirada" value="" tabindex="1"> 
+				<select name="comboHorasRetirada" size="1" id="Combobox1"
 				style="position: absolute; left: 220px; top: 123px; width: 40px; height: 21px; z-index: 12;"
 				tabindex="2">
 				<option selected value="00">00</option>
@@ -378,10 +415,11 @@ a:hover {
 				<option value="57">57</option>
 				<option value="58">58</option>
 				<option value="59">59</option>
-			</select> <input type="date" id="Editbox2"
+			</select> 
+			<input type="date" id="Editbox2"
 				style="position: absolute; left: 459px; top: 124px; width: 126px; height: 18px; line-height: 18px; z-index: 14;"
-				name="txtDataRetirada" value="" tabindex="5"> <select
-				name="comboHorasDevolucao" size="1" id="Combobox4"
+				name="txtDataDevolucao" value="" tabindex="5"> 
+			<select name="comboHorasDevolucao" size="1" id="Combobox4"
 				style="position: absolute; left: 598px; top: 124px; width: 40px; height: 21px; z-index: 15;"
 				tabindex="6">
 				<option selected value="00">00</option>
