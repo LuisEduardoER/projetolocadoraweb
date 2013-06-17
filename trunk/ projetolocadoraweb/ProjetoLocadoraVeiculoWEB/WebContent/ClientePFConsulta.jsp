@@ -139,7 +139,11 @@
 			    <td width="20px" class="tdDados"><%=pf.getRg()%></td>
 			  </tr>  
 			<tr>
-	   		
+	   		<td colspan="13">
+	   			<INPUT TYPE="button" NAME="incluir" Value="Incluir" onclick="executar(this.form,'incluir')">
+				<INPUT TYPE="button" NAME="alterar" Value="Alterar" onclick="executar(this.form,'alterar')">
+				<INPUT TYPE="button" NAME="detalhar" Value="Detalhar" onclick="executar(this.form,'detalhar')">
+			</td>
 			</tr>		    	  
 		</table>
 	</form>
