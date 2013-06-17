@@ -61,20 +61,49 @@
 				</tr>
 			
 				<tr>
-					<td><label>Id</label></td>
-					<td><input readonly="true" type="text" maxlength="5" size="5" tabindex="1" name="id"
-						value="<jsp:getProperty name='clienteSelecionado' property='id' />"></td>
-				</tr>			
-				<tr>
 					<td><label>Nome</label></td>
-					<td>
-					 <input type="text" maxlength="20" size="20" tabindex="2" name="nome" 
-					 	value="<jsp:getProperty name='clienteSelecionado' property='nome' />"></td>
+					<td><input type="text" maxlength="60" size="60" tabindex="0" name="nome"></td>
 				</tr>
 				<tr>
-					<td><label>RA</label></td>
-					<td><input type="text" maxlength="7" size="10" tabindex="3" name="ra"
-						value="<jsp:getProperty name='clienteSelecionado' property='ra' />"></td>
+				<tr>
+					<td><label>CPF</label></td>
+					<td><input type="text" maxlength="60" size="60" tabindex="0" name="cpf"></td>
+				</tr>
+				<tr>
+					<td><label>RG</label></td>
+					<td><input type="text" maxlength="7" size="10" tabindex="1" name="rg"></td>
+				</tr>
+                <tr>
+					<td><label>Data de Nascimento</label></td>
+					<td><input type="date" maxlength="60" size="60" tabindex="0" name="dtaNascimento"></td>
+				</tr>
+				<tr>
+					<td><label>Telefone</label></td>
+					<td><input type="text" maxlength="60" size="60" tabindex="0" name="fone"></td>
+				</tr>
+				<tr>
+					<td><label>E-mail</label></td>
+					<td><input type="text" maxlength="60" size="60" tabindex="0" name="email"></td>
+				</tr>
+                <tr>
+					<td><label>Sexo (M,F)</label></td>
+					<td><input type="text" maxlength="1" size="1" tabindex="0" name="sexo"></td>
+				</tr>
+                <tr>
+					<td><label>Número da Habilitação</label></td>
+					<td><input type="text" maxlength="11" size="11" tabindex="0" name="nroHabilitacao"></td>
+				</tr>
+                <tr>
+					<td><label>Estado Emissor</label></td>
+					<td><input type="text" maxlength="2" size="2" tabindex="0" name="estadoEmissor"></td>
+				</tr>
+                <tr>
+					<td><label>Data da Primeira Habilitação</label></td>
+					<td><input type="date" maxlength="60" size="60" tabindex="0" name="primeiraHabilitacao"></td>
+				</tr>
+                <tr>
+					<td><label>Validade da Habilitação</label></td>
+					<td><input type="date" maxlength="6" size="6" tabindex="0" name="valHabilitacao"></td>
 				</tr>
 
 				<tr>
