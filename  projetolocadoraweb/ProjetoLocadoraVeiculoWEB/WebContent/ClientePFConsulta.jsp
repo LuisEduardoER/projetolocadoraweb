@@ -126,25 +126,18 @@
 		    <td width="10px" class="tdDados">&nbsp;</td>
 		    <td width="20px" class="tdDados">ID</td>
 		    <td width="20px" class="tdDados">Nome</td>
-		    <td width="20px" class="tdDados">RA</td>
+		    <td width="20px" class="tdDados">RG</td>
 		  </tr>
 		  <%
-		  	List retorno = (ArrayList)request.getSession().getAttribute("listaClientes");
-		  		  	for(Iterator<PessoaFisica> it = retorno.iterator(); it.hasNext(); ) {
-		  		  	PessoaFisica c = (PessoaFisica)it.next();
+		  	PessoaFisica pf = (PessoaFisica)request.getSession().getAttribute("ListaCliente");
 		  %>
 			  <tr align="center">
 			    <td width="10px" class="tdDados">
-			    	<input type="radio" name="item" 
-			    			checked="checked" 
-			    			value="<%=c.getId()%>"></td>
-			    <td width="20px" class="tdDados"><%=c.getId()%></td>
-			    <td width="20px" class="tdDados"><%=c.getNome()%></td>
-			    <td width="20px" class="tdDados"><%=c.getRg()%></td>
-			  </tr>
-		  <%
-		  	}
-		  %>  
+			    	<input type="radio" name="item" checked="checked" value="<%=pf.getIdPF()%>"></td>
+			    <td width="20px" class="tdDados"><%=pf.getId()%></td>
+			    <td width="20px" class="tdDados"><%=pf.getNome()%></td>
+			    <td width="20px" class="tdDados"><%=pf.getRg()%></td>
+			  </tr>  
 			<tr>
 	   		<td colspan="13">
 	   			<INPUT TYPE="button" NAME="incluir" Value="Incluir" onclick="executar(this.form,'incluir')">
