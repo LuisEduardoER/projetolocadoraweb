@@ -47,7 +47,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Cadastro de Veículos</title>
+<title>Alterar Dados do Cliente</title>
 </head>
 <body>
 	<jsp:useBean id="clienteSelecionado" class="model.PessoaFisica" scope="session"/>
