@@ -105,7 +105,16 @@ public class RealizarLocacaoController extends HttpServlet {
 				
 				if(verificaDataHora(locacao)){
 					System.out.println("data ok");
-					request.getRequestDispatcher("LocacaoEscolheData.jsp").forward(request, response);
+					
+					
+					if(locacao.getTipoTarifa().equals("kmLivre")){
+//						Tarifa Livre
+						request.getRequestDispatcher("LocacaoDados.jsp").forward(request, response);
+					}else{
+//						Tarifa Controlada
+						request.getRequestDispatcher("LocacaoDados.jsp").forward(request, response);
+					}
+					
 				}else{
 					System.out.println("Data Inválida");
 					request.getRequestDispatcher("LocacaoEscolheData.jsp").forward(request, response);
