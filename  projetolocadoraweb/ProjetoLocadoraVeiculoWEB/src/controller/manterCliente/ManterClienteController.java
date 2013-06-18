@@ -58,12 +58,12 @@ public class ManterClienteController extends HttpServlet {
 				pf.setNome(request.getParameter("nome"));
 				pf.setRg(request.getParameter("rg"));
 
-				List<PessoaFisica> retorno = new ArrayList<PessoaFisica>();
-				retorno = pf.pesquisar(); //OBS: TEM QUE COLOCAR O PESQUISAR*****************************************
+				//List<PessoaFisica> retorno = new ArrayList<PessoaFisica>();
+				//retorno = pf.pesquisar(); //OBS: TEM QUE COLOCAR O PESQUISAR*****************************************
 				//
 				// coloca o resultado na pesquisa na sesscao Web
 				//
-				request.getSession().setAttribute("listaCliente", retorno);
+				request.getSession().setAttribute("listaCliente", pf);
 				request.getRequestDispatcher("ClientePFConsulta.jsp").forward(request,response);				
 
 			} else if ("incluir".equals(operacao)) {
