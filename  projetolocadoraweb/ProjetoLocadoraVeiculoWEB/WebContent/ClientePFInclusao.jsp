@@ -58,7 +58,6 @@
 					<td><input type="text" maxlength="60" size="60" tabindex="0" name="nome"></td>
 				</tr>
 				<tr>
-				<tr>
 					<td><label>CPF</label></td>
 					<td><input type="text" maxlength="60" size="60" tabindex="0" name="cpf"></td>
 				</tr>
