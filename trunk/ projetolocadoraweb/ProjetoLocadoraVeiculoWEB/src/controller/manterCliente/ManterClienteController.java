@@ -32,7 +32,7 @@ public class ManterClienteController extends HttpServlet {
 		
 		// coloca uma lista vazia na sessao
 		//
-		request.getSession().setAttribute("listaClientes",new ArrayList<PessoaFisica>());
+		//request.getSession().setAttribute("listaClientes",new ArrayList<PessoaFisica>());
 		request.getRequestDispatcher("ClientePFConsulta.jsp").forward(request, response);
 	}
 
@@ -55,16 +55,17 @@ public class ManterClienteController extends HttpServlet {
 				// da classe Cliente
 				//
 				PessoaFisica pf = new PessoaFisica();
-				pf.setNome(request.getParameter("nome"));
-				pf.setRg(request.getParameter("rg"));
+				pf.setRegistro(request.getParameter("cpf"));
+				//pf.setRg(request.getParameter("rg"));
 
 				//List<PessoaFisica> retorno = new ArrayList<PessoaFisica>();
 				//retorno = pf.pesquisar(); //OBS: TEM QUE COLOCAR O PESQUISAR*****************************************
 				//
 				// coloca o resultado na pesquisa na sesscao Web
 				//
-				request.getSession().setAttribute("listaCliente", pf);
-				request.getRequestDispatcher("ClientePFConsulta.jsp").forward(request,response);				
+				
+				request.getSession().setAttribute("listaCliente", pf.pesquisar());
+				request.getRequestDispatcher("ClientePFDetalhe.jsp").forward(request,response);				
 
 			} else if ("incluir".equals(operacao)) {
 				request.getRequestDispatcher("ClientePFInclusao.jsp").forward(request,response);
