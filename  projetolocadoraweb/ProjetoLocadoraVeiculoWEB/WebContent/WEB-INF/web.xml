@@ -61,7 +61,7 @@
     <description></description>
     <display-name>ManterClientePFController</display-name>
     <servlet-name>ManterClientePFController</servlet-name>
-    <servlet-class>br.usjt.arqdesis.tutorial.controller.ManterClientePFController</servlet-class>
+    <servlet-class>controller.manterCliente.ManterClienteController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ManterClientePFController</servlet-name>
