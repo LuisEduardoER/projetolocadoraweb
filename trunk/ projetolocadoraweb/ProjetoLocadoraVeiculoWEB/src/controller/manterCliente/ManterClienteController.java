@@ -90,9 +90,9 @@ public class ManterClienteController extends HttpServlet {
 
 			} else if ("salvarAlteracao".equals(request.getParameter("operacao"))) {
 				PessoaFisica v = new PessoaFisica();
-				v.setId(Integer.parseInt(request.getParameter("id")));
+				v.setRegistro(request.getParameter("cpf"));
 				v.setNome(request.getParameter("nome"));
-				v.setRg(request.getParameter("ra"));
+				v.setRg(request.getParameter("rg"));
 
 				v.alterar(new PessoaFisica());// IMPLENTAR O ALTERAR CORRETAMENTE**************************************
 				
@@ -118,18 +118,13 @@ public class ManterClienteController extends HttpServlet {
 
 				pf.excluir();
 				
-				request.getSession().setAttribute("listaCliente",
-						new ArrayList<PessoaFisica>());				
-				request.getRequestDispatcher("consulta.jsp").forward(request,response);
+				request.getSession().setAttribute("listaCliente",new ArrayList<PessoaFisica>());				
+				request.getRequestDispatcher("ClientePFConsulta.jsp").forward(request,response);
 
 
 			} else {
-				// coloca uma lista vazia na sessao
-				//
-				request.getSession().setAttribute("listaCliente",
-						new ArrayList<PessoaFisica>());
-				request.getRequestDispatcher("consulta.jsp").forward(request,
-						response);
+			
+				request.getRequestDispatcher("ClientePFConsulta.jsp").forward(request,response);
 			}
 
 		} catch (Exception e) {
