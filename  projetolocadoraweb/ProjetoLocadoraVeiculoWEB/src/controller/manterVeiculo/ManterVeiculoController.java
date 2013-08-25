@@ -58,7 +58,7 @@ public class ManterVeiculoController extends HttpServlet {
 			{
 				
 				ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-				//FactoryDao dao = new FactoryDao();
+				//FactoryDao dao = new FactoryDao(); // Objeto FactoryDao, intanciado diretamento no objeto gupos
 				grupos = FactoryDao.obterVeiculoDao().getListGrupo();
 				request.getSession().setAttribute("listaGrupos",grupos);
 				request.getRequestDispatcher("VeiculoIncluir.jsp").forward(request, response);
@@ -71,7 +71,7 @@ public class ManterVeiculoController extends HttpServlet {
 				
 				Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
 				
-				//FactoryDao dao = new FactoryDao();
+				//FactoryDao dao = new FactoryDao(); // Objeto FactoryDao, intanciado diretamento dentro do try
 				//tenta inserir o ve�culo no banco
 				try{
 					FactoryDao.obterVeiculoDao().inserir(veiculo , ag.getCodigo());
@@ -113,7 +113,7 @@ public class ManterVeiculoController extends HttpServlet {
 			else if("excluir".equals(operacao))
 			{				
 				Veiculo veiculo = (Veiculo) request.getSession().getAttribute("veiculoSelecionado");
-				//FactoryDao dao = new FactoryDao();
+				//FactoryDao dao = new FactoryDao(); // Objeto FactoryDao, intanciado diretamento no try, catch
 				//tenta excluir o ve�culo no banco
 				try{
 					FactoryDao.obterVeiculoDao().excluir(veiculo);
@@ -138,7 +138,7 @@ public class ManterVeiculoController extends HttpServlet {
 				
 				carregarObjeto(request , response , veiculo);
 				
-				//FactoryDao dao = new FactoryDao();
+				//FactoryDao dao = new FactoryDao(); // Objeto FactoryDao, intanciado diretamento no try, catch
 				
 				//tenta alterar o ve�culo no banco
 				try{
@@ -212,7 +212,7 @@ public class ManterVeiculoController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException{
 		
 		ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-		//FactoryDao dao = new FactoryDao();
+		//FactoryDao dao = new FactoryDao(); // Objeto FactoryDao, intanciado diretamento no objeto grupos
 		Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
 		grupos = FactoryDao.obterVeiculoDao().getListGrupoByAgencia(ag.getCodigo());
 		
