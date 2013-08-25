@@ -17,7 +17,7 @@ public class LocacaoDAO extends Dao{
 	public LocacaoDAO(){
 		super();
 	}
-	
+	//-------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public void inserir(Locacao locacao){
 		
 		String sqlInsert = "INSERT INTO LOCACAO ( tipoTarifa , dtaRetirada , dtaPrevDevolucao , total , kmInicialControlado, idAgenciaDevolucaoFK , idAgenciaRetiradaFK , " +
@@ -33,7 +33,7 @@ public class LocacaoDAO extends Dao{
 			//
 			stm = conn.prepareStatement(sqlInsert);
 			
-//			Para inserir Data e Hora, devemos utilizar a classe Timestamp e passar como parâmetro um horário no tipo Long
+//			Para inserir Data e Hora, devemos utilizar a classe Timestamp e passar como parï¿½metro um horï¿½rio no tipo Long
 //			date.getTime() - retorno a data e hora no formato de Long
 			Timestamp dataRetirada = new Timestamp(locacao.getDtaRetirada().getTime());
 			Timestamp dataDevolucao = new Timestamp(locacao.getDtaPrevDevolucao().getTime());
@@ -91,9 +91,7 @@ public class LocacaoDAO extends Dao{
 			}
 		}
 	}
-	
-	
-		
+	//------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	private void inserirCondutores(ArrayList<Condutor> condutores , int idLocacao){
 		
 		String sqlInsert = "insert into condutor ( idLocacaoFK , idVeiculoAgFK , idPfFK , total , kmInicialControlado) values " + 
@@ -153,7 +151,7 @@ public class LocacaoDAO extends Dao{
 		}
 	}
 	
-	
+	//-----------------------------------------------------------------------------------------------------------------------------------------------------------
 	public ArrayList<Condutor> consultarCondutores(int idLocacao){
 		ArrayList<Condutor> condutores = new ArrayList<Condutor>();
 		String sqlSelect = "select * from condutor where idLocacaoFK = ?";
@@ -176,7 +174,7 @@ public class LocacaoDAO extends Dao{
 				cond.setKmInicialControlado(rs.getInt("kmInicialControlado"));
 				cond.setPf(ClienteDAO.consultarPfById(rs.getInt("idPfFk")));
 				cond.setTotal(rs.getDouble("total"));
-				cond.setVeiculo(VeiculoDAO.consultarById(rs.getInt("idVeiculoAgFK")));
+				cond.setVeiculo(VeiculoDao.consultarById(rs.getInt("idVeiculoAgFK")));
 				
 				condutores.add(cond);
 				
@@ -191,9 +189,7 @@ public class LocacaoDAO extends Dao{
 			return condutores;
 		}
 	}
-	
-	
-	
+	//------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public int obterUltimoRegistro(){
 		int indice = -1;
 		String sqlSelect = "select MAX(idLocacao) as idLocacao from LOCACAO";
@@ -224,7 +220,7 @@ public class LocacaoDAO extends Dao{
 			return indice;
 		}
 	}
-	
+	//------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 	public Locacao consultar(int id){
 		Locacao locacao = null;
@@ -255,7 +251,7 @@ public class LocacaoDAO extends Dao{
 				locacao.setAgenciaRetirada(AgenciaDAO.consultarById(rs.getInt("idAgenciaRetiradaFK")));
 				locacao.setFormaPagamento(FormaPagamentoDAO.consultarById(rs.getInt("idFormPagFK")));
 				
-				locacao.setVeiculoEscolhido(VeiculoDAO.consultarById(rs.getInt("idVeiculoAgFK")));
+				locacao.setVeiculoEscolhido(VeiculoDao.consultarById(rs.getInt("idVeiculoAgFK")));
 				
 				locacao.setClienteEscolhido(ClienteDAO.consultarById(rs.getInt("idClienteFK")));
 				if(locacao.getClienteEscolhido().getTipo().equals("PJ")){
@@ -274,8 +270,8 @@ public class LocacaoDAO extends Dao{
 			return locacao;
 		}
 	}
-	
-//	Retorna se a locação já foi devolvida (true) ou não (false)
+	//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//	Retorna se a locaï¿½ï¿½o jï¿½ foi devolvida (true) ou nï¿½o (false)
 	public boolean isDevolvido(int idLocacao){
 		boolean flag = false;
 		String sqlSelect = "select * from devolucao where idLocacaoFK = ?";
@@ -303,8 +299,8 @@ public class LocacaoDAO extends Dao{
 			return flag;
 		}
 	}
-	
-//	Retorna os números das locações em aberto que o cliente PF efetuou
+	//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//	Retorna os nï¿½meros das locaï¿½ï¿½es em aberto que o cliente PF efetuou
 	public ArrayList<Integer> consultaLocacao(String registro){
 		ArrayList<Integer> nroLocacoes = new ArrayList<Integer>();
 		String sqlSelect = "select idLocacao from cliente " + 
@@ -337,7 +333,7 @@ public class LocacaoDAO extends Dao{
 			return nroLocacoes;
 		}
 	}
-	
+	//------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 //	INSERT INTO LOCACAO ( tipoTarifa , dtaRetirada , dtaPrevDevolucao , total , idAgenciaDevolucaoFK , idAgenciaRetiradaFK ,
 //            idFormPagFK , idVeiculoAgFK , idClienteFK) VALUES
