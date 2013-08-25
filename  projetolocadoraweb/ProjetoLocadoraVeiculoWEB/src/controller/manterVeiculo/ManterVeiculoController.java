@@ -57,7 +57,7 @@ public class ManterVeiculoController extends HttpServlet {
 			{
 				
 				ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-				VeiculoDAO dao = new VeiculoDAO();
+				VeiculoDao dao = new VeiculoDa();
 				grupos = dao.getListGrupo();
 				request.getSession().setAttribute("listaGrupos",grupos);
 				request.getRequestDispatcher("VeiculoIncluir.jsp").forward(request, response);
