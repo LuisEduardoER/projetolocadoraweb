@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import model.Agencia;
 import model.Grupo;
 import model.Veiculo;
-import model.dao.VeiculoDAO;
+import model.dao.FactoryDao;
+import model.dao.VeiculoDao;
 
 /**
  * Servlet implementation class ManterVeiculoController
@@ -57,8 +58,8 @@ public class ManterVeiculoController extends HttpServlet {
 			{
 				
 				ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-				VeiculoDao dao = new VeiculoDa();
-				grupos = dao.getListGrupo();
+				//FactoryDao dao = new FactoryDao();
+				grupos = FactoryDao.obterVeiculoDao().getListGrupo();
 				request.getSession().setAttribute("listaGrupos",grupos);
 				request.getRequestDispatcher("VeiculoIncluir.jsp").forward(request, response);
 				
@@ -70,10 +71,10 @@ public class ManterVeiculoController extends HttpServlet {
 				
 				Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
 				
-				VeiculoDAO dao = new VeiculoDAO();
+				//FactoryDao dao = new FactoryDao();
 				//tenta inserir o ve�culo no banco
 				try{
-					dao.inserir(veiculo , ag.getCodigo());
+					FactoryDao.obterVeiculoDao().inserir(veiculo , ag.getCodigo());
 					
 					request.getSession().setAttribute("goToServlet", "manterVeiculo");
 					request.getSession().setAttribute("messageTitle", "Mensagem - Inclus�o Ve�culo");
@@ -112,10 +113,10 @@ public class ManterVeiculoController extends HttpServlet {
 			else if("excluir".equals(operacao))
 			{				
 				Veiculo veiculo = (Veiculo) request.getSession().getAttribute("veiculoSelecionado");
-				VeiculoDAO dao = new VeiculoDAO();
+				//FactoryDao dao = new FactoryDao();
 				//tenta excluir o ve�culo no banco
 				try{
-					dao.excluir(veiculo);
+					FactoryDao.obterVeiculoDao().excluir(veiculo);
 					
 					request.getSession().setAttribute("goToServlet", "manterVeiculo");
 					request.getSession().setAttribute("messageTitle", "Mensagem - Exclus�o Ve�culo");
@@ -137,11 +138,11 @@ public class ManterVeiculoController extends HttpServlet {
 				
 				carregarObjeto(request , response , veiculo);
 				
-				VeiculoDAO dao = new VeiculoDAO();
+				//FactoryDao dao = new FactoryDao();
 				
 				//tenta alterar o ve�culo no banco
 				try{
-					dao.alterar(veiculo);
+					FactoryDao.obterVeiculoDao().alterar(veiculo);
 					
 					request.getSession().setAttribute("goToServlet", "manterVeiculo");
 					request.getSession().setAttribute("messageTitle", "Mensagem - Altera��o Ve�culo");
@@ -211,9 +212,9 @@ public class ManterVeiculoController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException{
 		
 		ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-		VeiculoDAO dao = new VeiculoDAO();
+		//FactoryDao dao = new FactoryDao();
 		Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
-		grupos = dao.getListGrupoByAgencia(ag.getCodigo());
+		grupos = FactoryDao.obterVeiculoDao().getListGrupoByAgencia(ag.getCodigo());
 		
 			
 		request.getSession().setAttribute("listaGruposByAgencia",grupos);
