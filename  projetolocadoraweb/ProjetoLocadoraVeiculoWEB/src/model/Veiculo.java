@@ -1,8 +1,18 @@
 //Classe Veiculo
 package model;
 
-public class Veiculo {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import model.dao.FactoryDao;
+import model.dao.VeiculoDao;
+
+public class Veiculo{
 	
+	/**
+	 * 
+	 */
+		
 	private int id;
 	private String modelo;
 	private String fabricante;
@@ -122,5 +132,42 @@ public class Veiculo {
 	public void setIdVeiculoAg(int idVeiculoAg) {
 		this.idVeiculoAg = idVeiculoAg;
 	}
+
+	public ArrayList<Grupo> getListGrupoByAgencia(int idAgencia) {
+		// TODO Auto-generated method stub
+		System.out.println("teste");
+		VeiculoDao dao = FactoryDao.obterVeiculoDao();
+		System.out.println("teste");
+		return dao.getListGrupoByAgencia(idAgencia);
+	}
+
+	
+	public Veiculo consultar(int idVeiculoAg) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	public ArrayList<Grupo> getListGrupo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void inserir(int agenciaCodigo) throws Exception {
+		VeiculoDao dao = FactoryDao.obterVeiculoDao();
+		dao.inserir(this, agenciaCodigo);
+	}
+
+	
+	public void alterar(Veiculo veiculo) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void excluir(Veiculo veiculo) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	
 		
 }

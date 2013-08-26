@@ -86,7 +86,7 @@ public class VeiculoPostgresDao extends Dao implements VeiculoDao{
 			}
 //			rs.close();
 //			stmt.close();
-			return grupos;
+//			return grupos;
 			
 		} 
 		catch (SQLException e){
@@ -210,8 +210,9 @@ public class VeiculoPostgresDao extends Dao implements VeiculoDao{
 	}
 	//-----------------------------------------------------------------------------------------------------------------------------------------------------------
 	public Veiculo consultarById(int id){
-		VeiculoPostgresDao dao = new VeiculoPostgresDao();
-		return dao.consultar(id);
+//		VeiculoPostgresDao dao = new VeiculoPostgresDao();
+//		return dao.consultar(id);
+		return consultar(id);
 	}
 	//-----------------------------------------------------------------------------------------------------------------------------------------------------------
 	public ArrayList<Grupo> getListGrupo(){
