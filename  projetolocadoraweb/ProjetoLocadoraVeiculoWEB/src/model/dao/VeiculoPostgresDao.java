@@ -11,7 +11,7 @@ import exception.InsercaoIncorretaException;
 import model.Grupo;
 import model.Veiculo;
 
-public class VeiculoPostgresDao extends Dao implements VeiculoDao{
+public class VeiculoPostgresDao extends Dao implements VeiculoDao2{
 	
 	public VeiculoPostgresDao(){
 		super();

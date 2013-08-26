@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import model.dao.FactoryDao;
 import model.dao.VeiculoDao;
+import model.dao.VeiculoDao2;
 
 public class Veiculo{
 	
@@ -136,7 +137,9 @@ public class Veiculo{
 	public ArrayList<Grupo> getListGrupoByAgencia(int idAgencia) {
 		// TODO Auto-generated method stub
 		System.out.println("teste");
-		VeiculoDao dao = FactoryDao.obterVeiculoDao();
+		//VeiculoDao2 dao = FactoryDao.obterVeiculoDao();
+		VeiculoDao2 dao = FactoryDao.obterVeiculoDao();
+ 
 		System.out.println("teste");
 		return dao.getListGrupoByAgencia(idAgencia);
 	}
@@ -154,7 +157,7 @@ public class Veiculo{
 	}
 
 	public void inserir(int agenciaCodigo) throws Exception {
-		VeiculoDao dao = FactoryDao.obterVeiculoDao();
+		VeiculoDao2 dao = FactoryDao.obterVeiculoDao();
 		dao.inserir(this, agenciaCodigo);
 	}
 
