@@ -11,7 +11,7 @@ import exception.InsercaoIncorretaException;
 import model.Grupo;
 import model.Veiculo;
 
-public class VeiculoPostgresDao extends Dao implements VeiculoDao2{
+public class VeiculoPostgresDao extends Dao implements VeiculoDao{
 	
 	public VeiculoPostgresDao(){
 		super();
@@ -208,12 +208,7 @@ public class VeiculoPostgresDao extends Dao implements VeiculoDao2{
 		return veiculo;
 		
 	}
-	//-----------------------------------------------------------------------------------------------------------------------------------------------------------
-	public Veiculo consultarById(int id){
-//		VeiculoPostgresDao dao = new VeiculoPostgresDao();
-//		return dao.consultar(id);
-		return consultar(id);
-	}
+	
 	//-----------------------------------------------------------------------------------------------------------------------------------------------------------
 	public ArrayList<Grupo> getListGrupo(){
 		String sql = "select * from grupo";
@@ -529,6 +524,10 @@ public class VeiculoPostgresDao extends Dao implements VeiculoDao2{
 				}
 			}
 		}
+	}
+	@Override
+	public Veiculo consultarById(int id) {
+		return this.consultar(id);
 	}
 
 //	Select para retornar o ve�culo na sua respectiva ag�ncia

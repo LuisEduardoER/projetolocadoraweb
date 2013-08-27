@@ -6,13 +6,14 @@ import model.Grupo;
 import model.Veiculo;
 
 public interface VeiculoDao {
+	
 	public ArrayList<Grupo> getListGrupoByAgencia(int idAgencia);
 	
 	public Veiculo consultar(int idVeiculoAg);
-	
-	public Veiculo consultarById(int id);	//old protected static
-	
+		
 	public ArrayList<Grupo> getListGrupo();
+	
+	public Veiculo consultarById(int id);
 	
 	public void inserir(Veiculo veiculo, int agenciaCodigo) throws Exception;
 	
@@ -25,4 +26,5 @@ public interface VeiculoDao {
 	public void excluirVeiculoAgencia(Veiculo veiculo) throws Exception;	//old private void
 	
 	public void excluir(Veiculo veiculo) throws Exception;
+	
 }
