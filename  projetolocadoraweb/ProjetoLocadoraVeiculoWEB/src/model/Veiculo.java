@@ -6,10 +6,13 @@ import java.util.ArrayList;
 
 import model.dao.FactoryDao;
 import model.dao.VeiculoDao;
-import model.dao.VeiculoDao2;
 
-public class Veiculo{
+public class Veiculo implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7944968351289224500L;
 	/**
 	 * 
 	 */
@@ -136,41 +139,39 @@ public class Veiculo{
 
 	public ArrayList<Grupo> getListGrupoByAgencia(int idAgencia) {
 		// TODO Auto-generated method stub
-		System.out.println("teste");
-		//VeiculoDao2 dao = FactoryDao.obterVeiculoDao();
-		VeiculoDao2 dao = FactoryDao.obterVeiculoDao();
- 
-		System.out.println("teste");
+		VeiculoDao dao = FactoryDao.obterVeiculoDao();
 		return dao.getListGrupoByAgencia(idAgencia);
 	}
 
 	
 	public Veiculo consultar(int idVeiculoAg) {
 		// TODO Auto-generated method stub
-		return null;
+		VeiculoDao dao = FactoryDao.obterVeiculoDao();
+		return dao.consultar(idVeiculoAg);
 	}
 
 	
 	public ArrayList<Grupo> getListGrupo() {
 		// TODO Auto-generated method stub
-		return null;
+		VeiculoDao dao = FactoryDao.obterVeiculoDao();
+		return dao.getListGrupo();
 	}
 
 	public void inserir(int agenciaCodigo) throws Exception {
-		VeiculoDao2 dao = FactoryDao.obterVeiculoDao();
+		VeiculoDao dao = FactoryDao.obterVeiculoDao();
 		dao.inserir(this, agenciaCodigo);
 	}
 
 	
-	public void alterar(Veiculo veiculo) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void alterar() throws Exception {
+		VeiculoDao dao = FactoryDao.obterVeiculoDao();
+		dao.alterar(this);		
 	}
 
-	public void excluir(Veiculo veiculo) throws Exception {
+	public void excluir() throws Exception {
 		// TODO Auto-generated method stub
-		
+		VeiculoDao dao = FactoryDao.obterVeiculoDao();
+		dao.excluir(this);
 	}
-	
-		
+			
 }
