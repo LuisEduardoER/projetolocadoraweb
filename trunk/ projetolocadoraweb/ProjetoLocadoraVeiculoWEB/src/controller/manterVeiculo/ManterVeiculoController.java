@@ -71,10 +71,11 @@ public class ManterVeiculoController extends HttpServlet {
 				
 				Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
 				
+
 				//FactoryDao dao = new FactoryDao(); // Objeto FactoryDao, intanciado diretamento dentro do try
 				//tenta inserir o ve�culo no banco
 				try{
-					FactoryDao.obterVeiculoDao().inserir(veiculo , ag.getCodigo());
+					veiculo.inserir(ag.getCodigo());
 					
 					request.getSession().setAttribute("goToServlet", "manterVeiculo");
 					request.getSession().setAttribute("messageTitle", "Mensagem - Inclus�o Ve�culo");
@@ -113,7 +114,7 @@ public class ManterVeiculoController extends HttpServlet {
 			else if("excluir".equals(operacao))
 			{				
 				Veiculo veiculo = (Veiculo) request.getSession().getAttribute("veiculoSelecionado");
-				//FactoryDao dao = new FactoryDao(); // Objeto FactoryDao, intanciado diretamento no try, catch
+				//FactoryDao dao = new FactoryDao();
 				//tenta excluir o ve�culo no banco
 				try{
 					FactoryDao.obterVeiculoDao().excluir(veiculo);
@@ -138,7 +139,7 @@ public class ManterVeiculoController extends HttpServlet {
 				
 				carregarObjeto(request , response , veiculo);
 				
-				//FactoryDao dao = new FactoryDao(); // Objeto FactoryDao, intanciado diretamento no try, catch
+				//FactoryDao dao = new FactoryDao();
 				
 				//tenta alterar o ve�culo no banco
 				try{
@@ -212,11 +213,12 @@ public class ManterVeiculoController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException{
 		
 		ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-		//FactoryDao dao = new FactoryDao(); // Objeto FactoryDao, intanciado diretamento no objeto grupos
+		Veiculo veiculo = new Veiculo();
+		//FactoryDao dao = new FactoryDao();
 		Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
-		grupos = FactoryDao.obterVeiculoDao().getListGrupoByAgencia(ag.getCodigo());
-		
-			
+//		grupos = FactoryDao.obterVeiculoDao().getListGrupoByAgencia(ag.getCodigo());
+		grupos = veiculo.getListGrupoByAgencia(ag.getCodigo());
+		System.out.println("teste");
 		request.getSession().setAttribute("listaGruposByAgencia",grupos);
 		request.getRequestDispatcher("VeiculoConsulta.jsp").forward(request, response);
 	}
