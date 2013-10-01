@@ -20,6 +20,7 @@
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controller.FrontController</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/fc</url-pattern>
@@ -31,10 +32,23 @@
     <servlet-name>LoginController</servlet-name>
     <servlet-class>controller.logarSistema.LoginController</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>LoginController</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
+  
+  <filter>
+        <display-name>LoginFilter</display-name>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>controler.filter.LoginFilter</filter-class>
+    </filter>
+    
+  <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/protected/*</url-pattern>
+  </filter-mapping>
+  
 <!--   <servlet> -->
 <!--     <description></description> -->
 <!--     <display-name>HomePageController</display-name> -->
