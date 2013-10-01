@@ -1,4 +1,4 @@
-package controller.efetuarPagamento;
+package controller.cmd.efetuarPagamento;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -146,7 +146,7 @@ public class FormaPagamentoController extends HttpServlet {
 		
 //		SistemaCartaoCreditoImpl sistemaCartao = new SistemaCartaoCreditoImpl();
 //		if(!sistemaCartao.debitar(cartao)){
-//			System.out.println("não foi possível debitar o cartão");
+//			System.out.println("nï¿½o foi possï¿½vel debitar o cartï¿½o");
 //		}
 //		else{
 		FormaPagamentoDAO dao = new FormaPagamentoDAO();
@@ -168,7 +168,7 @@ public class FormaPagamentoController extends HttpServlet {
 	}
 	
 	
-//	Método responsável por carregar um objeto Cartão do .jsp
+//	Mï¿½todo responsï¿½vel por carregar um objeto Cartï¿½o do .jsp
 	private void carregarObjetoCartao(HttpServletRequest request,
 			HttpServletResponse response, Cartao cartao) {
 		
@@ -181,7 +181,7 @@ public class FormaPagamentoController extends HttpServlet {
 		
 //		RESOLVER O BUG DA DATA
 		/*
-		 * DATA ESTÁ VINDO DO JSP NO FORMATO yyyy-MM-dd
+		 * DATA ESTï¿½ VINDO DO JSP NO FORMATO yyyy-MM-dd
 		 * tem q ser tratado no formato dd-MM-yyyy
 		 * */
 		cartao.setDtaValidade(DataFormatada.parseDataSimples(
@@ -189,7 +189,7 @@ public class FormaPagamentoController extends HttpServlet {
 //		----BUG----
 				
 		cartao.setCodSeguranca(request.getParameter("txtCodSegCartao"));
-	}//fim do método carregarObjetoCartao()
+	}//fim do mï¿½todo carregarObjetoCartao()
 	
 	
 	/*
@@ -224,7 +224,7 @@ public class FormaPagamentoController extends HttpServlet {
 		public void actionPerformed(ActionEvent e) {
 			if(pagamentoView.getRbCartao().isSelected()){
 				if(!carregarValoresCartao()){
-//					Não foi possível adicionar o pagamento
+//					Nï¿½o foi possï¿½vel adicionar o pagamento
 				}
 				else{ 
 					debitar(cartao);
@@ -232,7 +232,7 @@ public class FormaPagamentoController extends HttpServlet {
 			}
 			if(pagamentoView.getRbCheque().isSelected()){
 				if(!carregarValoresCheque()){
-//					Não foi possível adicionar o pagamento
+//					Nï¿½o foi possï¿½vel adicionar o pagamento
 				}
 				else{ 
 					debitar(cheque);
@@ -245,7 +245,7 @@ public class FormaPagamentoController extends HttpServlet {
 	}
 	
 //	=========================================
-//	MÉTODO DE NEGÓCIO - ADICIONAR PAGAMENTO - CHEQUE
+//	Mï¿½TODO DE NEGï¿½CIO - ADICIONAR PAGAMENTO - CHEQUE
 	public void debitar(Cheque cheque) {
 		int op = Mensagem.desejaInserirPagamento();
 		if(op == 0){
@@ -271,7 +271,7 @@ public class FormaPagamentoController extends HttpServlet {
 //	=========================================
 	
 //	=========================================
-//	MÉTODO DE NEGÓCIO - ADICIONAR PAGAMENTO - DINHEIRO
+//	Mï¿½TODO DE NEGï¿½CIO - ADICIONAR PAGAMENTO - DINHEIRO
 	public void debitar(Dinheiro dinheiro) {
 		int op = Mensagem.desejaInserirPagamento();
 		if(op == 0){
@@ -283,7 +283,7 @@ public class FormaPagamentoController extends HttpServlet {
 //	=========================================
 
 //	=========================================
-//	MÉTODO DE NEGÓCIO - ADICIONAR PAGAMENTO - CARTÃO
+//	Mï¿½TODO DE NEGï¿½CIO - ADICIONAR PAGAMENTO - CARTï¿½O
 	public void debitar(Cartao cartao) {
 		int op = Mensagem.desejaInserirPagamento();
 		if(op == 0){

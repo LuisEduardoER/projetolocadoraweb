@@ -1,4 +1,4 @@
-package controller.manterCliente;
+package controller.cmd.manterCliente;
 
 import java.io.IOException;
 import java.util.ArrayList;
