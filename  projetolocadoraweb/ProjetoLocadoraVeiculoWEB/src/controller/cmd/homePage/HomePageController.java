@@ -1,4 +1,4 @@
-package controller.homePage;
+package controller.cmd.homePage;
 
 import java.io.IOException;
 import java.util.ArrayList;

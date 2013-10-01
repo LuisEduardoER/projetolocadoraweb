@@ -4,22 +4,27 @@
   <welcome-file-list>
     <welcome-file>login</welcome-file>
   </welcome-file-list>
-  
-<!--   Mapeamento UC - Manter Veículo -->
-  
-  <servlet>
-    <description></description>
-    <display-name>ManterVeiculoController</display-name>
-    <servlet-name>ManterVeiculoController</servlet-name>
-    <servlet-class>controller.manterVeiculo.ManterVeiculoController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ManterVeiculoController</servlet-name>
-    <url-pattern>/manterVeiculo</url-pattern>
-  </servlet-mapping>
-  
-<!--   Mapeamento UC - Logar no Sistema -->
-  
+<!--   <servlet> -->
+<!--     <description></description> -->
+<!--     <display-name>ManterVeiculoController</display-name> -->
+<!--     <servlet-name>ManterVeiculoController</servlet-name> -->
+<!--     <servlet-class>controller.manterVeiculo.ManterVeiculoController</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>ManterVeiculoController</servlet-name> -->
+<!--     <url-pattern>/manterVeiculo</url-pattern> -->
+<!--   </servlet-mapping> -->
+ 	<servlet>
+        <description/>
+        <display-name>FrontController</display-name>
+        <servlet-name>FrontController</servlet-name>
+        <servlet-class>controller.FrontController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FrontController</servlet-name>
+        <url-pattern>/fc</url-pattern>
+    </servlet-mapping>
+    
   <servlet>
     <description></description>
     <display-name>LoginController</display-name>
@@ -30,54 +35,44 @@
     <servlet-name>LoginController</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
-  
-<!--   Mapeamento - Home Page -->
-  
-  <servlet>
-    <description></description>
-    <display-name>HomePageController</display-name>
-    <servlet-name>HomePageController</servlet-name>
-    <servlet-class>controller.homePage.HomePageController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HomePageController</servlet-name>
-    <url-pattern>/homePage</url-pattern>
-  </servlet-mapping>
-  
-<!--   Mapeamento UC - Efetuar Pagamento -->
-  <servlet>
-    <description></description>
-    <display-name>FormaPagamentoController</display-name>
-    <servlet-name>FormaPagamentoController</servlet-name>
-    <servlet-class>controller.efetuarPagamento.FormaPagamentoController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FormaPagamentoController</servlet-name>
-    <url-pattern>/efetuarPagamento</url-pattern>
-  </servlet-mapping>
-  
-  <!--   Mapeamento UC - Manter Cliente PF-->
-  <servlet>
-    <description></description>
-    <display-name>ManterClientePFController</display-name>
-    <servlet-name>ManterClientePFController</servlet-name>
-    <servlet-class>controller.manterCliente.ManterClienteController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ManterClientePFController</servlet-name>
-    <url-pattern>/manterClientePF</url-pattern>
-  </servlet-mapping>  
-  
-<!--   Mapeamento UC - Realizar Locação PF-->
-  <servlet>
-    <description></description>
-    <display-name>RealizarLocacaoController</display-name>
-    <servlet-name>RealizarLocacaoController</servlet-name>
-    <servlet-class>controller.realizarLocacao.RealizarLocacaoController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RealizarLocacaoController</servlet-name>
-    <url-pattern>/realizarLocacao</url-pattern>
-  </servlet-mapping>  
-  
+<!--   <servlet> -->
+<!--     <description></description> -->
+<!--     <display-name>HomePageController</display-name> -->
+<!--     <servlet-name>HomePageController</servlet-name> -->
+<!--     <servlet-class>controller.homePage.HomePageController</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>HomePageController</servlet-name> -->
+<!--     <url-pattern>/homePage</url-pattern> -->
+<!--   </servlet-mapping> -->
+<!--   <servlet> -->
+<!--     <description></description> -->
+<!--     <display-name>FormaPagamentoController</display-name> -->
+<!--     <servlet-name>FormaPagamentoController</servlet-name> -->
+<!--     <servlet-class>controller.efetuarPagamento.FormaPagamentoController</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>FormaPagamentoController</servlet-name> -->
+<!--     <url-pattern>/efetuarPagamento</url-pattern> -->
+<!--   </servlet-mapping> -->
+<!--   <servlet> -->
+<!--     <description></description> -->
+<!--     <display-name>ManterClientePFController</display-name> -->
+<!--     <servlet-name>ManterClientePFController</servlet-name> -->
+<!--     <servlet-class>controller.manterCliente.ManterClienteController</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>ManterClientePFController</servlet-name> -->
+<!--     <url-pattern>/manterClientePF</url-pattern> -->
+<!--   </servlet-mapping> -->
+<!--   <servlet> -->
+<!--     <description></description> -->
+<!--     <display-name>RealizarLocacaoController</display-name> -->
+<!--     <servlet-name>RealizarLocacaoController</servlet-name> -->
+<!--     <servlet-class>controller.realizarLocacao.RealizarLocacaoController</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>RealizarLocacaoController</servlet-name> -->
+<!--     <url-pattern>/realizarLocacao</url-pattern> -->
+<!--   </servlet-mapping> -->
 </web-app>

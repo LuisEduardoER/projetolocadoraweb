@@ -1,4 +1,4 @@
-package controller.logarSistema;
+package controller.cmd.logarSistema;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,14 +57,14 @@ public class LoginController extends HttpServlet {
 		user.setLogin(request.getParameter("usuario"));
 		user.setSenha(request.getParameter("senha"));
 		if(verificaLogin() == true){
-//			Adiciona o Usuário vigente na sessão
+//			Adiciona o Usuï¿½rio vigente na sessï¿½o
 			request.getSession().setAttribute("usuarioSelecionado",user);
 			
-//			Pega o id da Agência vigente
+//			Pega o id da Agï¿½ncia vigente
 			agencia = new Agencia();
 			agencia.setCodigo(Integer.parseInt(request.getParameter("cbAgencia")));
 			
-//			Itera a lista de Agências e pega a agência selecionada
+//			Itera a lista de Agï¿½ncias e pega a agï¿½ncia selecionada
 			for (Iterator<Agencia> it = agencias.iterator(); it.hasNext();) {
 				Agencia ag = (Agencia) it.next();
 				if(ag.getCodigo() == agencia.getCodigo()){

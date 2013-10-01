@@ -1,4 +1,4 @@
-package controller.manterVeiculo;
+package controller.cmd.manterVeiculo;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

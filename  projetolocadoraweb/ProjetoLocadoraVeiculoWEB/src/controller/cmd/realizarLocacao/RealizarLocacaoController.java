@@ -1,4 +1,4 @@
-package controller.realizarLocacao;
+package controller.cmd.realizarLocacao;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,8 +45,8 @@ public class RealizarLocacaoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 //		APENAS PARA TESTE
-//		CLIENTE (PF) ESCOLHIDO LOCAÇÃO
-//		VEÍCULO ESCOLHIDO LOCAÇÃO
+//		CLIENTE (PF) ESCOLHIDO LOCAï¿½ï¿½O
+//		VEï¿½CULO ESCOLHIDO LOCAï¿½ï¿½O
 		
 		PessoaFisica pf = new PessoaFisica();
 		pf.setId(2);
@@ -55,14 +55,14 @@ public class RealizarLocacaoController extends HttpServlet {
 		Veiculo veiculo = new Veiculo();
 		veiculo.setId(1);
 		veiculo.setCidade("guarulhos");
-		veiculo.setEstado("são paulo");
+		veiculo.setEstado("sï¿½o paulo");
 		veiculo.setModelo("hey hey het");
 		veiculo.setIdVeiculoAg(2);
 		Grupo grupo = new Grupo("A", 12.2, 34.2);
 		veiculo.setGrupo(grupo);
 		
 			
-//		Agência Retirada
+//		Agï¿½ncia Retirada
 		
 		Agencia ag = (Agencia) request.getSession().getAttribute("agenciaSelecionada");
 				
@@ -92,7 +92,7 @@ public class RealizarLocacaoController extends HttpServlet {
 		try{
 			
 			if("cancelarEscolheData".equals(operacao)){
-//				Volta para a página Inicial
+//				Volta para a pï¿½gina Inicial
 				response.sendRedirect("HomePageView.jsp");
 			}
 			else if("avancarEscolheData".equals(operacao)){
@@ -116,7 +116,7 @@ public class RealizarLocacaoController extends HttpServlet {
 					}
 					
 				}else{
-					System.out.println("Data Inválida");
+					System.out.println("Data Invï¿½lida");
 					request.getRequestDispatcher("LocacaoEscolheData.jsp").forward(request, response);
 				}				
 				
@@ -132,7 +132,7 @@ public class RealizarLocacaoController extends HttpServlet {
 	private void carregarObjeto(HttpServletRequest request,
 			HttpServletResponse response, Locacao locacao) {
 				
-//		Pega a Agência Devolução escolhida
+//		Pega a Agï¿½ncia Devoluï¿½ï¿½o escolhida
 		
 		Agencia agencia = new Agencia();
 		agencia.setCodigo(Integer.parseInt(request.getParameter("comboAgenciaDevolucao")));
@@ -192,7 +192,7 @@ public class RealizarLocacaoController extends HttpServlet {
 		return Integer.parseInt(request.getParameter("comboHoras" + tipo));
 	}
 	
-//	Método para verificar se a DataHora está correta
+//	Mï¿½todo para verificar se a DataHora estï¿½ correta
 	private boolean verificaDataHora(Locacao locacao) {
 		
 		if(Verificacao.isCorrectDate(locacao.getDtaRetirada())){
