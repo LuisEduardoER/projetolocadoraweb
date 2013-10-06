@@ -1,11 +1,16 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Agencia;
+import model.dao.AgenciaDAO;
 
 import controller.cmd.Command;
 import controller.cmd.CommandFactory;
@@ -29,6 +34,8 @@ public class FrontController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.sendRedirect("HomePageView.jsp");	
 		
 	}
 
@@ -61,7 +68,8 @@ public class FrontController extends HttpServlet {
 		// envia para pagina de erro
 		//
 		request.getSession().setAttribute("erro", e.toString());
-		request.getRequestDispatcher("erro.jsp").forward(request, response);
+		request.getSession().setAttribute("errorTitle", "Front Controller Error");
+		request.getRequestDispatcher("ManterVeiculoErro.jsp").forward(request, response);
 	}
 	
 

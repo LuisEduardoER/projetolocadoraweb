@@ -326,7 +326,7 @@
 	</head>
 	
 	<body>
-		<form action="manterVeiculo" method="post">
+		<form action="fc" method="POST">
 			<input type="hidden" name="operacao" value="salvarInclusao">
 			<input type="hidden" name="message" value="">
 			

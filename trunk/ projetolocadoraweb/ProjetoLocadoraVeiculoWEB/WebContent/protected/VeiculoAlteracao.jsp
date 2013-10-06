@@ -301,7 +301,7 @@
 		<body>
 		<jsp:useBean id="veiculoSelecionado" class="model.Veiculo" scope="session"/>
 		<%Veiculo veiculo = (Veiculo) request.getSession().getAttribute("veiculoSelecionado");%>
-		<form action="manterVeiculo" method="post">
+		<form action="fc" method="POST">
 			<input type="hidden" name="operacao" value="salvarAlteracao">
 			<div id="wb_lblDadosVeiculo_id"
 				style="position: absolute; left: 309px; top: 18px; width: 135px; height: 18px; z-index: 0;">
