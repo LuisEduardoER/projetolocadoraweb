@@ -140,7 +140,7 @@ a:hover {
 
 
 <body>
-	<form action="manterVeiculo" method="POST">
+	<form action="fc" method="POST">
 		<input type="hidden" name="operacao" value="consultar">
 		<table
 			style="position: absolute; left: 369px; top: 47px; width: 256px; height: 172px; z-index: 0;"
