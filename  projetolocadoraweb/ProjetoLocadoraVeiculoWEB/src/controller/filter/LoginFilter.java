@@ -35,7 +35,7 @@ public class LoginFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         
-        String login = (String) httpRequest.getSession().getAttribute("LoginView");
+        String login = (String) httpRequest.getSession().getAttribute("login");
         
         if (login == null) {
             httpResponse.sendRedirect("../LoginView.jsp");
