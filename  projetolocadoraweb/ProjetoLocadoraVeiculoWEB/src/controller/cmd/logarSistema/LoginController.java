@@ -74,10 +74,12 @@ public class LoginController extends HttpServlet {
 			}
 			
 			request.getSession().setAttribute("agenciaSelecionada",agencia);
+			request.getSession().setAttribute("login",user.getLogin());
 //			response.sendRedirect("homePage"); //Passar de um controle para o outro.(chama o get do outro)
 			
 			//Redireciona para o FrontController
-			response.sendRedirect("protected/fc");
+//			response.sendRedirect("protected/fc");
+			response.sendRedirect("fc");
 		}
 		else{
 			System.out.println("login invalido");

@@ -15,7 +15,7 @@
 <!--     <url-pattern>/manterVeiculo</url-pattern> -->
 <!--   </servlet-mapping> -->
  	<servlet>
-        <description/>
+        <description></description>
         <display-name>FrontController</display-name>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controller.FrontController</servlet-class>
@@ -39,13 +39,13 @@
   </servlet-mapping>
   
   <filter>
-        <display-name>LoginFilter</display-name>
-        <filter-name>LoginFilter</filter-name>
-        <filter-class>controler.filter.LoginFilter</filter-class>
+        <display-name>LoginFilterCtrl</display-name>
+        <filter-name>LoginFilterCtrl</filter-name>
+        <filter-class>controller.filter.LoginFilterCtrl</filter-class>
     </filter>
     
   <filter-mapping>
-        <filter-name>LoginFilter</filter-name>
+        <filter-name>LoginFilterCtrl</filter-name>
         <url-pattern>/protected/*</url-pattern>
   </filter-mapping>
   
