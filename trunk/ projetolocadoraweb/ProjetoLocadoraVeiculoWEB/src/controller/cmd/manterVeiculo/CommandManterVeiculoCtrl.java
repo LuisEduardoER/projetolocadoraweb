@@ -16,7 +16,7 @@ public abstract class CommandManterVeiculoCtrl extends Command{
 	
 	
 //	M�todo respons�vel por selecionar um Ve�culo na tabela na tela "consultar"
-	private Veiculo selecionarVeiculo(HttpServletRequest request,
+	protected Veiculo selecionarVeiculo(HttpServletRequest request,
 			HttpServletResponse response) {
 
 		Veiculo veiculoSelecionado = null;
@@ -54,7 +54,7 @@ public abstract class CommandManterVeiculoCtrl extends Command{
 	}//fim m�todo selecionarVeiculo()
 
 //	M�todo respons�vel por atualizar a tela "Consulta" com os ve�culos atuais no BD
-	public String atualizarConsulta(HttpServletRequest request, 
+	protected String atualizarConsulta(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException{
 		
 		ArrayList<Grupo> grupos = new ArrayList<Grupo>();
@@ -67,7 +67,7 @@ public abstract class CommandManterVeiculoCtrl extends Command{
 	}
 	
 //	M�todo respons�vel por carregar um objeto Ve�culo do .jsp
-	public void carregarObjeto(HttpServletRequest request,
+	protected void carregarObjeto(HttpServletRequest request,
 			HttpServletResponse response, Veiculo veiculo) {
 		
 		veiculo.setChassi(request.getParameter("txtChassi"));

@@ -3,13 +3,16 @@ package controller.cmd.manterVeiculo;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CommandVoltarIncluir extends CommandManterVeiculoCtrl{
+import model.Veiculo;
+
+public class CommandDetalhesVeiculo extends CommandManterVeiculoCtrl{
 
 	@Override
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
-		return "VeiculoConsulta.jsp";
+		selecionarVeiculo(request , response);
+		Veiculo veiculo = (Veiculo) request.getSession().getAttribute("veiculoSelecionado");
+		return "VeiculoEdicao.jsp";
 	}
 
 }
