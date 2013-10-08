@@ -155,7 +155,7 @@
 	<body>
 		<jsp:useBean id="usuarioSelecionado" class="model.Usuario" scope="session"/>
 		<jsp:useBean id="agenciaSelecionada" class="model.Agencia" scope="session"/>
-		<form action="fc" method="POST">
+		<form action="../fc" method="POST">
 			<input type="hidden" name="operacao" value="homePageInitialize">
 			<hr id="Line1"
 				style="margin: 0; padding: 0; position: absolute; left: 260px; top: 260px; width: 600px; height: 1px; z-index: 0;">

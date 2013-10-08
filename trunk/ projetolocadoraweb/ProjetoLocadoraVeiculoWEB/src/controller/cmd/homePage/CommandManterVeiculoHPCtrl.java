@@ -10,8 +10,8 @@ public class CommandManterVeiculoHPCtrl extends Command{
 	@Override
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return 	"VeiculoConsulta.jsp";
 	}
 
 }
