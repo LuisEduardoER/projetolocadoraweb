@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import model.Agencia;
 import model.Grupo;
 import model.Veiculo;
-import model.dao.FactoryDao;
 import model.dao.VeiculoDao;
 
 /**

@@ -174,7 +174,7 @@ public class LocacaoDAO extends Dao{
 				cond.setKmInicialControlado(rs.getInt("kmInicialControlado"));
 				cond.setPf(ClienteDAO.consultarPfById(rs.getInt("idPfFk")));
 				cond.setTotal(rs.getDouble("total"));
-				cond.setVeiculo(FactoryDao.obterVeiculoDao().consultarById(rs.getInt("idVeiculoAgFK")));
+				cond.setVeiculo(DaoFactoryDinamico.obterVeiculoDao().consultarById(rs.getInt("idVeiculoAgFK")));
 				
 				condutores.add(cond);
 				
@@ -251,7 +251,7 @@ public class LocacaoDAO extends Dao{
 				locacao.setAgenciaRetirada(AgenciaDAO.consultarById(rs.getInt("idAgenciaRetiradaFK")));
 				locacao.setFormaPagamento(FormaPagamentoDAO.consultarById(rs.getInt("idFormPagFK")));
 				
-				locacao.setVeiculoEscolhido(FactoryDao.obterVeiculoDao().consultarById(rs.getInt("idVeiculoAgFK")));
+				locacao.setVeiculoEscolhido(DaoFactoryDinamico.obterVeiculoDao().consultarById(rs.getInt("idVeiculoAgFK")));
 				
 				locacao.setClienteEscolhido(ClienteDAO.consultarById(rs.getInt("idClienteFK")));
 				if(locacao.getClienteEscolhido().getTipo().equals("PJ")){
