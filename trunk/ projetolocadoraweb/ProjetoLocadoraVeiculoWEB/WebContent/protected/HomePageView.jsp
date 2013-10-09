@@ -155,7 +155,7 @@
 	<body>
 		<jsp:useBean id="usuarioSelecionado" class="model.Usuario" scope="session"/>
 		<jsp:useBean id="agenciaSelecionada" class="model.Agencia" scope="session"/>
-		<form action="../fc" method="POST">
+		<form action="fc" method="POST">
 			<input type="hidden" name="operacao" value="homePageInitialize">
 			<hr id="Line1"
 				style="margin: 0; padding: 0; position: absolute; left: 260px; top: 260px; width: 600px; height: 1px; z-index: 0;">
@@ -172,12 +172,12 @@
 			<input type="button" id="btnManterVeiculos_id" name="btnManterVeiculos"
 				value="Manter Veiculos"
 				style="position: absolute; left: 301px; top: 300px; width: 100px; height: 28px; z-index: 4;"
-				onclick="executar(this.form,'Manter Veiculo')">
+				onclick="executar(this.form,'ManterVeiculoHomePage')">
 				
 			<input type="button" id="btnRealizarLocacao_id"	name="btnRealizarLocacao" 
 				value="Realizar Locação"
 				style="position: absolute; left: 300px; top: 350px; width: 100px; height: 28px; z-index: 5;"
-				onclick="executar(this.form,'Realizar Locacao')">
+				onclick="executar(this.form,'ManterVeiculoHomePage')">
 				
 			<input type="button" id="btnConslutarVeiuclos_id"
 				name="btnConsultarVeiculos" value="Consultar Veiculos"

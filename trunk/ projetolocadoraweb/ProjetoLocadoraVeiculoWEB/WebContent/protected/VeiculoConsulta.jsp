@@ -141,7 +141,7 @@ a:hover {
 
 <body>
 	<form action="fc" method="POST">
-		<input type="hidden" name="operacao" value="consultar">
+		<input type="hidden" name="operacao" value="consultarVeiculo">
 		<table
 			style="position: absolute; left: 369px; top: 47px; width: 256px; height: 172px; z-index: 0;"
 			cellpadding="1" cellspacing="1" id="Table1">
@@ -261,7 +261,7 @@ a:hover {
 		
 		<input type="button" id="botao_ID" name="btnVoltar" value="Voltar"
 		style="position: absolute; left: 201px; top: 479px; width: 96px; height: 25px; z-index: 10;"
-		tabindex="5" title="Voltar" onclick="executar(this.form,'voltar')">
+		tabindex="5" title="Voltar" onclick="executar(this.form,'voltarVeiculo')">
 		
 		<input type="submit" id="botao_ID" name="btnConsultar"
 		value="Consultar"
@@ -271,12 +271,12 @@ a:hover {
 		<input type="button" id="botao_ID" name="btnIncluir"
 		value="Incluir"
 		style="position: absolute; left: 465px; top: 479px; width: 96px; height: 25px; z-index: 12;"
-		tabindex="7" title="Incluir" onclick="executar(this.form,'incluir')">
+		tabindex="7" title="Incluir" onclick="executar(this.form,'incluirVeiculo')">
 		
 		<input type="button" id="botao_ID" name="btnDetalhes"
 		value="Detalhes"
 		style="position: absolute; left: 597px; top: 479px; width: 96px; height: 25px; z-index: 13;"
-		tabindex="8" title="Detalhes" onclick="executar(this.form,'detalhes')">
+		tabindex="8" title="Detalhes" onclick="executar(this.form,'detalhesVeiculo')">
 	</form>
 	
 </body>

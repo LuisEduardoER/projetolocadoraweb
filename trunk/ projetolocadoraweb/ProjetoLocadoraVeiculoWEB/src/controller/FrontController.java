@@ -35,7 +35,7 @@ public class FrontController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.sendRedirect("protected/HomePageView.jsp");
+		request.getRequestDispatcher("protected/HomePageView.jsp").forward(request,response);
 		
 	}
 
@@ -51,8 +51,8 @@ public class FrontController extends HttpServlet {
 		System.out.println(operacao);
 		try {
 			Command cmd = CommandFactory.obterCommand(operacao);
-			String paginaDestino = cmd.executar(request, response);
-
+			String paginaDestino = "protected/" + cmd.executar(request, response);
+			
 			request.getRequestDispatcher(paginaDestino).forward(request,response);
 
 		} catch (Exception e) {
