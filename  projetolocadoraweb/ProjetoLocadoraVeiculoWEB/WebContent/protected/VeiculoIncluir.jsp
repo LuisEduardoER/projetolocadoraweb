@@ -8,7 +8,7 @@
 	<script language="JavaScript">
 		function executar(form,operacao){
 			form.operacao.value = operacao;
-			if(operacao == "salvarInclusao"){
+			if(operacao == "salvarInclusaoVeiculo"){
 				var r = confirm("Deseja Incluir?");
 				if(r == true){
 					form.submit();
@@ -327,7 +327,7 @@
 	
 	<body>
 		<form action="fc" method="POST">
-			<input type="hidden" name="operacao" value="salvarInclusao">
+			<input type="hidden" name="operacao" value="salvarInclusaoVeiculo">
 			<input type="hidden" name="message" value="">
 			
 			<div id="wb_lblDadosVeiculo_id"
@@ -399,11 +399,11 @@
 			<input type="button" id="btnVoltar_id" name="voltar" value="Voltar"
 				style="position: absolute; left: 189px; top: 281px; width: 96px; height: 25px; z-index: 17;"
 				tabindex="11" title="Voltar"
-				onclick="executar(this.form,'voltarIncluir')">
+				onclick="executar(this.form,'voltarIncluirVeiculo')">
 			<input type="button" id="btnSalvar_id" name="salvar" value="Salvar"
 				style="position: absolute; left: 308px; top: 281px; width: 96px; height: 25px; z-index: 18;"
 				tabindex="12" title="Salvar"
-				onclick="executar(this.form,'salvarInclusao')">
+				onclick="executar(this.form,'salvarInclusaoVeiculo')">
 			<input type="reset" id="btnLimpar_id" name="limpar" value="Limpar"
 				style="position: absolute; left: 427px; top: 281px; width: 96px; height: 25px; z-index: 19;"
 				tabindex="13" title="Limpar">

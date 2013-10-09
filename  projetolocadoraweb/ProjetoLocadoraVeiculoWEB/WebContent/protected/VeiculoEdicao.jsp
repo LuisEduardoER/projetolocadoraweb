@@ -11,7 +11,7 @@
 	<script language="JavaScript">
 		function executar(form,operacao){
 			form.operacao.value = operacao;
-			if(operacao == "excluir"){
+			if(operacao == "excluirVeiculo"){
 				var r = confirm("Deseja Excluir?");
 				if(r == true){
 					form.submit();
@@ -307,7 +307,7 @@
 		<jsp:useBean id="veiculoSelecionado" class="model.Veiculo" scope="session"/>
 		<%Veiculo veiculo = (Veiculo) request.getSession().getAttribute("veiculoSelecionado");%>
 		<form action="fc" method="POST">
-			<input type="hidden" name="operacao" value="alterar">
+			<input type="hidden" name="operacao" value="alterarVeiculo">
 			<div id="wb_lblDadosVeiculo_id"
 				style="position: absolute; left: 309px; top: 18px; width: 135px; height: 18px; z-index: 0;">
 				<span style="color: #000000; font-family: Arial; font-size: 15px;"><strong>Dados do Veículo</strong></span>
@@ -378,14 +378,14 @@
 			<input type="button" id="btnVoltar_id" name="voltar" value="Voltar"
 				style="position: absolute; left: 190px; top: 281px; width: 96px; height: 25px; z-index: 17;"
 				tabindex="11" title="Voltar"
-				onclick="executar(this.form,'voltarEdicao')">
+				onclick="executar(this.form,'voltarEdicaoVeiculo')">
 			<input type="submit" id="btnAlterar_id" name="alterar" value="Alterar"
 				style="position: absolute; left: 309px; top: 281px; width: 96px; height: 25px; z-index: 18;"
 				tabindex="12" title="Alterar">
 			<input type="button" id="btnExcluir_id" name="excluir" value="Excluir"
 				style="position: absolute; left: 427px; top: 281px; width: 96px; height: 25px; z-index: 19;"
 				tabindex="13" title="Excluir"
-				onclick="executar(this.form,'excluir')">
+				onclick="executar(this.form,'excluirVeiculo')">
 			<table
 				style="position: absolute; left: 509px; top: 56px; width: 266px; height: 140px; z-index: 20;"
 				cellpadding="0" cellspacing="1" id="Table1">

@@ -46,7 +46,7 @@ public class CommandFactory {
 		{
 			return new CommandSalvarInclusao();
 		}
-		else if("voltarIncluir".equals(operacao))
+		else if("voltarIncluirVeiculo".equals(operacao))
 		{
 			return new CommandVoltarIncluir();
 		}
