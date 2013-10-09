@@ -255,29 +255,18 @@ a:hover {
 					} }catch(Exception e) {} %>
 
 			<tr>
-				<td colspan="13"></td>
+				<td colspan="13" style="width: 1037px; "><input type="button" id="botao_ID" name="btnVoltar" value="Voltar" style="position: absolute; left: 201px; top: 479px; width: 96px; height: 25px; z-index: 10;" tabindex="5" title="Voltar" onclick="executar(this.form,'voltarVeiculo')"><input type="submit" id="botao_ID" name="btnConsultar" value="Consultar" style="position: absolute; left: 333px; top: 479px; width: 96px; height: 25px; z-index: 11;" tabindex="6" title="Consultar"><input type="button" id="botao_ID" name="btnIncluir" value="Incluir" style="position: absolute; left: 465px; top: 479px; width: 96px; height: 25px; z-index: 12;" tabindex="7" title="Incluir" onclick="executar(this.form,'incluirVeiculo')"><input type="button" id="botao_ID" name="btnDetalhes" value="Detalhes" style="position: absolute; left: 597px; top: 479px; width: 96px; height: 25px; z-index: 13;" tabindex="8" title="Detalhes" onclick="executar(this.form,'detalhesVeiculo')"></td>
 			</tr>
 		</table>
 		
-		<input type="button" id="botao_ID" name="btnVoltar" value="Voltar"
-		style="position: absolute; left: 201px; top: 479px; width: 96px; height: 25px; z-index: 10;"
-		tabindex="5" title="Voltar" onclick="executar(this.form,'voltarVeiculo')">
 		
-		<input type="submit" id="botao_ID" name="btnConsultar"
-		value="Consultar"
-		style="position: absolute; left: 333px; top: 479px; width: 96px; height: 25px; z-index: 11;"
-		tabindex="6" title="Consultar">
 		
-		<input type="button" id="botao_ID" name="btnIncluir"
-		value="Incluir"
-		style="position: absolute; left: 465px; top: 479px; width: 96px; height: 25px; z-index: 12;"
-		tabindex="7" title="Incluir" onclick="executar(this.form,'incluirVeiculo')">
 		
-		<input type="button" id="botao_ID" name="btnDetalhes"
-		value="Detalhes"
-		style="position: absolute; left: 597px; top: 479px; width: 96px; height: 25px; z-index: 13;"
-		tabindex="8" title="Detalhes" onclick="executar(this.form,'detalhesVeiculo')">
+		
+		
 	</form>
+		
+		
 	
 </body>
 </html>
