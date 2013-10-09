@@ -13,7 +13,7 @@ import model.Agencia;
 import model.dao.AgenciaDAO;
 
 import controller.cmd.Command;
-import controller.cmd.CommandFactory;
+import controller.cmd.CommandFactoryDynamic;
 
 /**
  * Servlet implementation class FrontController
@@ -50,7 +50,7 @@ public class FrontController extends HttpServlet {
 		String operacao = request.getParameter("operacao");
 		System.out.println(operacao);
 		try {
-			Command cmd = CommandFactory.obterCommand(operacao);
+			Command cmd = CommandFactoryDynamic.obterCommand(operacao);
 			String paginaDestino = "protected/" + cmd.executar(request, response);
 			
 			request.getRequestDispatcher(paginaDestino).forward(request,response);
