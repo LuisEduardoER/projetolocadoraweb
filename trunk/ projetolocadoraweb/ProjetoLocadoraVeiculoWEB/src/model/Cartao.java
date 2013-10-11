@@ -73,5 +73,11 @@ public class Cartao extends FormaPagamento{
 		return getTipo() + " " + getNomeCliente() + " " + getCpf() + " " + getNumCartao() + " " + sdf.format(getDtaValidade()) + " " +
 				getCodSeguranca();
 	}
+
+	@Override
+	public void debitar() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

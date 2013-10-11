@@ -63,5 +63,11 @@ public class Cheque extends FormaPagamento{
 	public String toString(){
 		return "Cheque";
 	}
+
+	@Override
+	public void debitar() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
