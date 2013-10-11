@@ -112,7 +112,7 @@ public class FormaPagamentoGenericoDAO extends Dao {
 			
 			if(rs.first()){
 				//Criando o obj FormaPagamento
-				formaPagamento = new FormaPagamento();
+				formaPagamento = FormaPagamento.obterFormaPagamento();
 				formaPagamento.setId(rs.getInt("idFormaPagamento"));
 				formaPagamento.setTotal(rs.getDouble("total"));
 			}

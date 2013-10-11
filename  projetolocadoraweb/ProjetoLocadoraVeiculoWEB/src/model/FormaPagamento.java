@@ -1,7 +1,7 @@
 //Classe FormaPagamento
 package model;
 
-public class FormaPagamento {
+public abstract class FormaPagamento {
 	
 	private int id;
 	private double total;
@@ -33,6 +33,18 @@ public class FormaPagamento {
 	public void setId(int id) {
 		this.id = id;
 	}
-		
+	
+	public abstract void debitar();
+	
+	public static FormaPagamento obterFormaPagamento(){
+		return new FormaPagamento() {
+			
+			@Override
+			public void debitar() {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+	}
 	
 }
