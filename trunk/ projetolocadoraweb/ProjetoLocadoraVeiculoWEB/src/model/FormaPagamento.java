@@ -34,7 +34,7 @@ public abstract class FormaPagamento {
 		this.id = id;
 	}
 	
-	public abstract void debitar();
+	public abstract void debitar() throws Exception;
 	
 	public static FormaPagamento obterFormaPagamento(){
 		return new FormaPagamento() {
