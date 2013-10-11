@@ -3,6 +3,8 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import model.dao.DaoFactoryDinamico;
+import model.dao.FormaPagamentoDao;
 
 public class Cartao extends FormaPagamento{
 	
@@ -75,8 +77,20 @@ public class Cartao extends FormaPagamento{
 	}
 
 	@Override
-	public void debitar() {
-		// TODO Auto-generated method stub
+	public void debitar() throws Exception{
+		
+//		IMPLEMENTAR A LEITURA DE ARQUIVO POSTERIORMENTE
+		
+//		SistemaCartaoCreditoImpl sistemaCartao = new SistemaCartaoCreditoImpl();
+//		if(!sistemaCartao.debitar(cartao)){
+//			System.out.println("n�o foi poss�vel debitar o cart�o");
+//		}
+//		else{
+		FormaPagamentoDao dao = DaoFactoryDinamico.obterFormaPagamentoDao();
+		dao.inserirFormaPag(this);
+		setId(dao.obterUltimoRegistro());
+		System.out.println("debitou com sucesso\n" + getId() );
+//		}
 		
 	}
 	

@@ -6,15 +6,15 @@ import java.sql.SQLException;
 
 import model.Cheque;
 
-public class FormaPagamentoDAO extends FormaPagamentoGenericoDAO{
+public class FormaPagamentoPostgresDAO extends FormaPagamentoGenericoPostgresDAO{
 
 	
-	public FormaPagamentoDAO(){
+	public FormaPagamentoPostgresDAO(){
 		super();
 	}
 	
 	
-	public void inserirFormaPag(Cheque cheque){
+	public void inserirFormaPag(Cheque cheque) throws Exception{
 		super.inserirFormaPag(cheque);
 		int ultimoRegistro = obterUltimoRegistro();
 		

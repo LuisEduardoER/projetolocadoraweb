@@ -1,6 +1,9 @@
 //Classe Cheque
 package model;
 
+import model.dao.DaoFactoryDinamico;
+import model.dao.FormaPagamentoDao;
+
 public class Cheque extends FormaPagamento{
 	
 	private String nomeBanco;
@@ -65,9 +68,13 @@ public class Cheque extends FormaPagamento{
 	}
 
 	@Override
-	public void debitar() {
-		// TODO Auto-generated method stub
+	public void debitar() throws Exception{
 		
+		FormaPagamentoDao dao = DaoFactoryDinamico.obterFormaPagamentoDao();
+		dao.inserirFormaPag(this);
+		setId(dao.obterUltimoRegistro());
+		System.out.println("debitou com sucesso\n" + getId() );
+				
 	}
 	
 }

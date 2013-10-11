@@ -16,10 +16,15 @@ public class DaoFactoryDinamico {
 	private static Properties p = null;
 
 	private static String C_CHAVE_VEICULO = "dao.veiculo.impl";
-
+	private static String C_CHAVE_FORMA_PAGAMENTO = "dao.formaPagamento.impl";
+	
 	public static VeiculoDao obterVeiculoDao(){
 
 		return (VeiculoDao) obtemDao(C_CHAVE_VEICULO);
+	}
+	
+	public static FormaPagamentoDao obterFormaPagamentoDao(){
+		return (FormaPagamentoDao) obtemDao(C_CHAVE_FORMA_PAGAMENTO);
 	}
 
 

@@ -7,13 +7,13 @@ import java.sql.SQLException;
 
 import model.FormaPagamento;
 
-public class FormaPagamentoGenericoDAO extends Dao {
+public class FormaPagamentoGenericoPostgresDAO extends Dao implements FormaPagamentoDao{
 	
-	public FormaPagamentoGenericoDAO(){
+	public FormaPagamentoGenericoPostgresDAO(){
 		super();
 	}
 	
-	public void inserirFormaPag(FormaPagamento pagamento){
+	public void inserirFormaPag(FormaPagamento pagamento) throws Exception{
 		
 		String sqlInsert = "insert into forma_pagamento (tipo , total) values (? , ?)";
 			
@@ -61,7 +61,7 @@ public class FormaPagamentoGenericoDAO extends Dao {
 		}
 	}
 	
-	public int obterUltimoRegistro(){
+	public int obterUltimoRegistro()throws Exception{
 		int indice = -1;
 		String sqlSelect = "select MAX(idFormaPagamento) as idFormaPagamento from FORMA_PAGAMENTO";
 		
@@ -128,7 +128,7 @@ public class FormaPagamentoGenericoDAO extends Dao {
 	}
 	
 	protected static FormaPagamento consultarById(int id){
-		FormaPagamentoGenericoDAO dao = new FormaPagamentoDAO();
+		FormaPagamentoGenericoPostgresDAO dao = new FormaPagamentoPostgresDAO();
 		return dao.consultar(id);
 	}
 	

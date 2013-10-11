@@ -20,7 +20,7 @@ import model.FormaPagamento;
 import model.Grupo;
 import model.SistemaCartaoCreditoImpl;
 import model.Veiculo;
-import model.dao.FormaPagamentoDAO;
+import model.dao.FormaPagamentoPostgresDAO;
 //import Model.Cartao;
 //import Model.Cheque;
 //import Model.Dinheiro;
@@ -103,9 +103,9 @@ public class FormaPagamentoController extends HttpServlet {
 	
 	
 	private void debitar(Dinheiro dinheiro, HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+			HttpServletResponse response) throws ServletException, IOException, Exception {
 		
-		FormaPagamentoDAO dao = new FormaPagamentoDAO();
+		FormaPagamentoPostgresDAO dao = new FormaPagamentoPostgresDAO();
 		dao.inserirFormaPag(dinheiro);
 		dinheiro.setId(dao.obterUltimoRegistro());
 		System.out.println("debitou com sucesso\n" + dinheiro.getId() );
@@ -128,9 +128,9 @@ public class FormaPagamentoController extends HttpServlet {
 	}
 
 	private void debitar(Cheque cheque, HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+			HttpServletResponse response) throws ServletException, IOException, Exception {
 		
-		FormaPagamentoDAO dao = new FormaPagamentoDAO();
+		FormaPagamentoPostgresDAO dao = new FormaPagamentoPostgresDAO();
 		dao.inserirFormaPag(cheque);
 		cheque.setId(dao.obterUltimoRegistro());
 		System.out.println("debitou com sucesso\n" + cheque.getId() );
@@ -140,7 +140,7 @@ public class FormaPagamentoController extends HttpServlet {
 	
 	
 
-	private void debitar(Cartao cartao, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void debitar(Cartao cartao, HttpServletRequest request, HttpServletResponse response) throws Exception,ServletException, IOException {
 		
 //		IMPLEMENTAR A LEITURA DE ARQUIVO POSTERIORMENTE
 		
@@ -149,7 +149,7 @@ public class FormaPagamentoController extends HttpServlet {
 //			System.out.println("n�o foi poss�vel debitar o cart�o");
 //		}
 //		else{
-		FormaPagamentoDAO dao = new FormaPagamentoDAO();
+		FormaPagamentoPostgresDAO dao = new FormaPagamentoPostgresDAO();
 		dao.inserirFormaPag(cartao);
 		cartao.setId(dao.obterUltimoRegistro());
 		System.out.println("debitou com sucesso\n" + cartao.getId() );
