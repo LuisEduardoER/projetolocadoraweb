@@ -21,7 +21,36 @@ public class CommandManterClientePfCtrl extends Command{
 	}
 	
 	//Metodo responsavel por selecionar um cliente
-	
+		
+	/**
+	 * Metodo auxiliar para selecionar objeto Cliente da sessao do usuario.
+	 * 
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+
+	/**
+	 * Metodo auxiliar para tratamento de erros
+	 * 
+	 * @param request
+	 * @param response
+	 * @param e
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void trataErro(HttpServletRequest request,
+			HttpServletResponse response, Exception e) throws ServletException,
+			IOException {
+		// envia para pagina de erro
+		//
+		request.getSession().setAttribute("erro", e.toString());
+		request.getRequestDispatcher("erro.jsp").forward(request, response);
+	}
+
 	protected PessoaFisica selecionarCliente(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		List<PessoaFisica> retorno = null;
