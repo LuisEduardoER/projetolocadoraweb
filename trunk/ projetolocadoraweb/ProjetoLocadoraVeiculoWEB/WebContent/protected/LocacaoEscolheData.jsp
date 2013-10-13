@@ -260,8 +260,8 @@ a:hover {
 		style="position: absolute; left: 2px; top: 1px; width: 761px; height: 380px; z-index: 23;">
 		
 		<%Locacao locacao = (Locacao) request.getSession().getAttribute("locacao");%>
-		<form action="realizarLocacao" method="POST" id="Form1">
-			<input type="hidden" name="operacao" value="avancar">
+		<form action="fc" method="POST">
+			<input type="hidden" name="operacao" value="avancarEscolheData">
 			<hr id="Line2" class="ui-widget-header"
 				style="margin: 0; padding: 0; position: absolute; left: 434px; top: 57px; width: 272px; height: 173px; z-index: 0;">
 			<hr id="Line1" class="ui-widget-header"
@@ -296,7 +296,7 @@ a:hover {
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Agência:</span>
 			</div>
 
-<!-- 			Combo Box Agencia Retirada-->
+<!-- 			Combo Box Agencia Devolução-->
 			<select name="comboAgenciaDevolucao" size="1" id="Combobox6" 
 				style="position: absolute; left: 558px; top: 155px; width: 130px; height: 21px; z-index: 9;"
 				tabindex="8">
