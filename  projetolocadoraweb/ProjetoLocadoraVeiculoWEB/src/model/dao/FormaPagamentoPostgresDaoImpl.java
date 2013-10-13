@@ -1,4 +1,3 @@
-//Classe FormaPagamentoDAO
 package model.dao;
 
 import java.sql.PreparedStatement;
@@ -6,13 +5,11 @@ import java.sql.SQLException;
 
 import model.Cheque;
 
-public class FormaPagamentoPostgresDAO extends FormaPagamentoGenericoPostgresDAO{
-
+public class FormaPagamentoPostgresDaoImpl extends FormaPagamentoGenericoPostgresDaoImpl{
 	
-	public FormaPagamentoPostgresDAO(){
+	public FormaPagamentoPostgresDaoImpl(){
 		super();
 	}
-	
 	
 	public void inserirFormaPag(Cheque cheque) throws Exception{
 		super.inserirFormaPag(cheque);
@@ -68,5 +65,7 @@ public class FormaPagamentoPostgresDAO extends FormaPagamentoGenericoPostgresDAO
 				}
 			}
 		}
-	}	
+	}
+	
+	
 }

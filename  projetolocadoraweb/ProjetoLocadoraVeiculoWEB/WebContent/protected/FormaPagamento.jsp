@@ -7,7 +7,7 @@
 	
 	function executar(form,operacao){
 		form.operacao.value = operacao;
-		if(operacao == "Confirmar"){
+		if(operacao == "confirmarPagamento"){
 // 			alert("entrou no confirmar");
 			var isOk = verificaCamposBranco(form);
 			
@@ -519,8 +519,8 @@ a:hover {
 
 
 <body>
-	<form action="efetuarPagamento" method="POST">
-	<input type="hidden" name="operacao" value="Confirmar">
+	<form action="fc" method="POST">
+	<input type="hidden" name="operacao" value="confirmarPagamento">
 
 	<div id="space">
 		<br>
@@ -626,10 +626,10 @@ a:hover {
 
 		<input type="button" id="Button1" name="btnVoltar" value="Voltar"
 			style="position: absolute; left: 236px; top: 614px; width: 96px; height: 25px; z-index: 25;"
-			title="Voltar" onclick="executar(this.form,'Voltar')"> 
+			title="Voltar" onclick="executar(this.form,'voltarPagamento')"> 
 		<input type="button" id="Button2" name="btnConfirmar" value="Confirmar"
 			style="position: absolute; left: 347px; top: 614px; width: 96px; height: 25px; z-index: 26;"
-			title="Confirmar" onclick="executar(this.form,'Confirmar')">
+			title="Confirmar" onclick="executar(this.form,'confirmarPagamento')">
 			
 <!-- 		Botões -->		
 		

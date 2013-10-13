@@ -249,7 +249,7 @@ public class LocacaoDAO extends Dao{
 				
 				locacao.setAgenciaDevolucao(AgenciaDAO.consultarById(rs.getInt("idAgenciaDevolucaoFK")));
 				locacao.setAgenciaRetirada(AgenciaDAO.consultarById(rs.getInt("idAgenciaRetiradaFK")));
-				locacao.setFormaPagamento(FormaPagamentoPostgresDAO.consultarById(rs.getInt("idFormPagFK")));
+				locacao.setFormaPagamento(FormaPagamentoPostgresDaoImpl.consultarById(rs.getInt("idFormPagFK")));
 				
 				locacao.setVeiculoEscolhido(DaoFactoryDinamico.obterVeiculoDao().consultarById(rs.getInt("idVeiculoAgFK")));
 				

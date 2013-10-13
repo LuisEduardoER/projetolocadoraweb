@@ -4,7 +4,8 @@ package model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import model.dao.DaoFactoryDinamico;
-import model.dao.FormaPagamentoDao;
+import model.dao.FormaPagamentoPostgresDaoImpl;
+import model.dao.FormaPgtoDao;
 
 public class Cartao extends FormaPagamento{
 	
@@ -86,7 +87,7 @@ public class Cartao extends FormaPagamento{
 //			System.out.println("n�o foi poss�vel debitar o cart�o");
 //		}
 //		else{
-		FormaPagamentoDao dao = DaoFactoryDinamico.obterFormaPagamentoDao();
+		FormaPgtoDao dao = DaoFactoryDinamico.obterFormaPagamentoDao();		
 		dao.inserirFormaPag(this);
 		setId(dao.obterUltimoRegistro());
 		System.out.println("debitou com sucesso\n" + getId() );

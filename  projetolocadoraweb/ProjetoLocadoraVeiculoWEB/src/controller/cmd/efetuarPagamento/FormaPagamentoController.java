@@ -20,13 +20,13 @@ import model.FormaPagamento;
 import model.Grupo;
 import model.SistemaCartaoCreditoImpl;
 import model.Veiculo;
-import model.dao.FormaPagamentoPostgresDAO;
 //import Model.Cartao;
 //import Model.Cheque;
 //import Model.Dinheiro;
 //import Model.SistemaCartaoCreditoImpl;
 //import View.FormaPagamentoView;
 //import View.Mensagens.Mensagem;
+import model.dao.FormaPagamentoPostgresDaoImpl;
 
 /**
  * Servlet implementation class FormaPagamentoController
@@ -105,7 +105,7 @@ public class FormaPagamentoController extends HttpServlet {
 	private void debitar(Dinheiro dinheiro, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException, Exception {
 		
-		FormaPagamentoPostgresDAO dao = new FormaPagamentoPostgresDAO();
+		FormaPagamentoPostgresDaoImpl dao = new FormaPagamentoPostgresDaoImpl();
 		dao.inserirFormaPag(dinheiro);
 		dinheiro.setId(dao.obterUltimoRegistro());
 		System.out.println("debitou com sucesso\n" + dinheiro.getId() );
@@ -130,7 +130,7 @@ public class FormaPagamentoController extends HttpServlet {
 	private void debitar(Cheque cheque, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException, Exception {
 		
-		FormaPagamentoPostgresDAO dao = new FormaPagamentoPostgresDAO();
+		FormaPagamentoPostgresDaoImpl dao = new FormaPagamentoPostgresDaoImpl();
 		dao.inserirFormaPag(cheque);
 		cheque.setId(dao.obterUltimoRegistro());
 		System.out.println("debitou com sucesso\n" + cheque.getId() );
@@ -149,7 +149,7 @@ public class FormaPagamentoController extends HttpServlet {
 //			System.out.println("n�o foi poss�vel debitar o cart�o");
 //		}
 //		else{
-		FormaPagamentoPostgresDAO dao = new FormaPagamentoPostgresDAO();
+		FormaPagamentoPostgresDaoImpl dao = new FormaPagamentoPostgresDaoImpl();
 		dao.inserirFormaPag(cartao);
 		cartao.setId(dao.obterUltimoRegistro());
 		System.out.println("debitou com sucesso\n" + cartao.getId() );
