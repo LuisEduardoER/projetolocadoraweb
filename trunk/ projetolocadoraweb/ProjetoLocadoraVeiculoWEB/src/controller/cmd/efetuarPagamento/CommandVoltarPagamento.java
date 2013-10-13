@@ -11,7 +11,7 @@ public class CommandVoltarPagamento extends Command{
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		return null;
+		return "HomePageView.jsp";
 	}
 
 }

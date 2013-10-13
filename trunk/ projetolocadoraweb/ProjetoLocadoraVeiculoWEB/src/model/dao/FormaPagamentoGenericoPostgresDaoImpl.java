@@ -1,4 +1,3 @@
-//Classe FormaPagamentoGenericoDAO
 package model.dao;
 
 import java.sql.PreparedStatement;
@@ -7,16 +6,16 @@ import java.sql.SQLException;
 
 import model.FormaPagamento;
 
-public class FormaPagamentoGenericoPostgresDAO extends Dao implements FormaPagamentoDao{
+public class FormaPagamentoGenericoPostgresDaoImpl extends Dao implements FormaPgtoDao{
 	
-	public FormaPagamentoGenericoPostgresDAO(){
+	public FormaPagamentoGenericoPostgresDaoImpl(){
 		super();
 	}
-	
-	public void inserirFormaPag(FormaPagamento pagamento) throws Exception{
-		
+
+	@Override
+	public void inserirFormaPag(FormaPagamento pagamento) throws Exception {
 		String sqlInsert = "insert into forma_pagamento (tipo , total) values (? , ?)";
-			
+		
 		PreparedStatement stm = null;
 		
 		try 
@@ -59,9 +58,11 @@ public class FormaPagamentoGenericoPostgresDAO extends Dao implements FormaPagam
 				}
 			}
 		}
+		
 	}
-	
-	public int obterUltimoRegistro()throws Exception{
+
+	@Override
+	public int obterUltimoRegistro() throws Exception {
 		int indice = -1;
 		String sqlSelect = "select MAX(idFormaPagamento) as idFormaPagamento from FORMA_PAGAMENTO";
 		
@@ -90,10 +91,8 @@ public class FormaPagamentoGenericoPostgresDAO extends Dao implements FormaPagam
 		catch (SQLException e){
 			e.printStackTrace();
 			return indice;
-		}	
+		}
 	}
-	
-		
 	
 	private FormaPagamento consultar(int id){
 		FormaPagamento formaPagamento = null;
@@ -128,8 +127,8 @@ public class FormaPagamentoGenericoPostgresDAO extends Dao implements FormaPagam
 	}
 	
 	protected static FormaPagamento consultarById(int id){
-		FormaPagamentoGenericoPostgresDAO dao = new FormaPagamentoPostgresDAO();
+		FormaPagamentoGenericoPostgresDaoImpl dao = new FormaPagamentoGenericoPostgresDaoImpl();
 		return dao.consultar(id);
-	}
-	
+	}	
+
 }

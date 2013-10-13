@@ -2,7 +2,7 @@
 package model;
 
 import model.dao.DaoFactoryDinamico;
-import model.dao.FormaPagamentoDao;
+import model.dao.FormaPgtoDao;
 
 public class Cheque extends FormaPagamento{
 	
@@ -70,7 +70,7 @@ public class Cheque extends FormaPagamento{
 	@Override
 	public void debitar() throws Exception{
 		
-		FormaPagamentoDao dao = DaoFactoryDinamico.obterFormaPagamentoDao();
+		FormaPgtoDao dao = DaoFactoryDinamico.obterFormaPagamentoDao();
 		dao.inserirFormaPag(this);
 		setId(dao.obterUltimoRegistro());
 		System.out.println("debitou com sucesso\n" + getId() );

@@ -2,9 +2,7 @@
 package model;
 
 import model.dao.DaoFactoryDinamico;
-import model.dao.FormaPagamentoDao;
-import model.dao.FormaPagamentoPostgresDAO;
-import model.dao.VeiculoDao;
+import model.dao.FormaPgtoDao;
 
 public class Dinheiro extends FormaPagamento{
 	
@@ -16,7 +14,7 @@ public class Dinheiro extends FormaPagamento{
 	@Override
 	public void debitar() throws Exception{
 		
-		FormaPagamentoDao dao = DaoFactoryDinamico.obterFormaPagamentoDao();
+		FormaPgtoDao dao = DaoFactoryDinamico.obterFormaPagamentoDao();
 		dao.inserirFormaPag(this);
 		setId(dao.obterUltimoRegistro());
 		System.out.println("debitou com sucesso\n" + getId() );		

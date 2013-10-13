@@ -23,8 +23,8 @@ public class DaoFactoryDinamico {
 		return (VeiculoDao) obtemDao(C_CHAVE_VEICULO);
 	}
 	
-	public static FormaPagamentoDao obterFormaPagamentoDao(){
-		return (FormaPagamentoDao) obtemDao(C_CHAVE_FORMA_PAGAMENTO);
+	public static FormaPgtoDao obterFormaPagamentoDao(){
+		return (FormaPgtoDao) obtemDao(C_CHAVE_FORMA_PAGAMENTO);
 	}
 
 
@@ -46,6 +46,7 @@ public class DaoFactoryDinamico {
 			// carrega DAO dinamicamente
 			//
 			Class c = DaoFactoryDinamico.class.getClassLoader().loadClass(daoImpl);
+			System.out.println("passou no dao class");
 			return c.newInstance();
 
 		} catch (Exception e) {
