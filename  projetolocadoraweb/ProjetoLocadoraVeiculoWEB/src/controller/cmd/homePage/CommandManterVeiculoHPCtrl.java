@@ -10,7 +10,7 @@ public class CommandManterVeiculoHPCtrl extends Command{
 	@Override
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
+		request.getSession().setAttribute("isEscolherVeiculo", "Y");
 		return 	"VeiculoConsulta.jsp";
 	}
 
