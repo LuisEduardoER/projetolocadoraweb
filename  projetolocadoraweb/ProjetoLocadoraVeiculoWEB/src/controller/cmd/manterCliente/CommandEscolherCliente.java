@@ -11,7 +11,7 @@ public class CommandEscolherCliente extends Command{
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		String opcao = request.getParameter("tipoPagamento");
+		String opcao = request.getParameter("escolherCliente");
 		
 		System.out.println(opcao);
 		
