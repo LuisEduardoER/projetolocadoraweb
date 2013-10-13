@@ -11,11 +11,15 @@ public class CommandRealizarLocacaoHPCtrl extends Command{
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-//		TESTE FORMA PAGAMENTO
-		double total = 321;
-		request.getSession().setAttribute("totalPedido", total);
-		return "FormaPagamento.jsp";
-//		=====
+////		TESTE FORMA PAGAMENTO
+//		double total = 321;
+//		request.getSession().setAttribute("totalPedido", total);
+//		return "FormaPagamento.jsp";
+////		=====
+		
+		return "ClienteEscolher.jsp";
+		
+		
 	}
 
 }
