@@ -2,6 +2,15 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script language="JavaScript">
+
+		function executar(form,operacao){
+				form.operacao.value = operacao;
+				form.submit();
+		}
+		
+</script>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Consultar Cliente</title>
@@ -177,6 +186,8 @@ a:hover {
 </style>
 </head>
 <body>
+  <form action="fc" method="POST">
+    <input type="hidden" name="operacao" value="pesquisarCliente">
 	<div id="wb_txtCpnjCpf1_id"
 		style="position: absolute; left: 60px; top: 100px; width: 250px; height: 32px; z-index: 0;">
 		<span style="color: #000000; font-family: Arial; font-size: 13px;">CNPJ/CPF<br></span>
@@ -206,13 +217,13 @@ a:hover {
 	</div>
 	<hr id="Line2"
 		style="margin: 0; padding: 0; position: absolute; left: 0px; top: 528px; width: 1000px; height: 1px; z-index: 8;">
-	<input type="submit" id="btnCancelar_id" name="" value="Cancelar"
+	<input type="button" id="btnCancelar_id" name="" value="Cancelar"
 		style="position: absolute; left: 200px; top: 600px; width: 96px; height: 25px; z-index: 9;">
-	<input type="submit" id="btnAlterar_id" name="" value="Alterar"
+	<input type="button" id="btnAlterar_id" name="" value="Alterar"
 		style="position: absolute; left: 400px; top: 600px; width: 96px; height: 25px; z-index: 10;">
-	<input type="submit" id="btnLocar_id" name="" value="Locar"
-		style="position: absolute; left: 600px; top: 600px; width: 96px; height: 25px; z-index: 11;">
-	<input type="submit" id="btnDetalhes_id" name="" value="+ Detalhes"
+	<input type="button" id="btnLocar_id" name="btnLocar" value="Locar"
+		style="position: absolute; left: 600px; top: 600px; width: 96px; height: 25px; z-index: 11;" onclick="executar(this.form,'locarCliente')">
+	<input type="button" id="btnDetalhes_id" name="" value="+ Detalhes"
 		style="position: absolute; left: 400px; top: 300px; width: 96px; height: 25px; z-index: 12;">
 	<input type="text" id="lblNome_id"
 		style="position: absolute; left: 180px; top: 300px; width: 94px; height: 19px; line-height: 19px; z-index: 13;"
@@ -226,5 +237,6 @@ a:hover {
 	<input type="text" id="lblEmail_id"
 		style="position: absolute; left: 180px; top: 450px; width: 94px; height: 19px; line-height: 19px; z-index: 16;"
 		name="Editbox2" value="">
+	</form>
 </body>
 </html>

@@ -7,6 +7,8 @@ import model.Cartao;
 import model.Cheque;
 import model.Dinheiro;
 import model.FormaPagamento;
+import model.Locacao;
+import model.dao.LocacaoDAO;
 import controller.cmd.Command;
 
 public class CommandConfirmarPagamento extends Command {
@@ -15,6 +17,7 @@ public class CommandConfirmarPagamento extends Command {
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
+		String nextPage = null;
 		String opcao = request.getParameter("tipoPagamento");
 		
 		System.out.println(opcao);
@@ -42,13 +45,53 @@ public class CommandConfirmarPagamento extends Command {
 		
 		try{
 			fp.debitar();
-			}catch(Exception e){
 			
+			String acao = (String) request.getSession().getAttribute("acaoLocarDevolver");
+			if("Locar".equals(acao)){
+//				Recupera a Locação e adiciona a Forma de Pagamento
+				Locacao locacao = (Locacao) request.getSession().getAttribute("locacao");
+				locacao.setFormaPagamento(fp);
+				
+//				Criar uma Locação no Banco
+				LocacaoDAO dao = new LocacaoDAO();
+				dao.inserir(locacao);
+				locacao.setId(dao.obterUltimoRegistro());
+				request.getSession().setAttribute("locacao", locacao);
+				
+				nextPage = "LocacaoComprovante.jsp";
+				
+			}else if("Devolver".equals(acao)){
+				nextPage = "LocacaoComprovante.jsp";
+			}
+			
+		}catch(Exception e){
+			nextPage = "HomePageView.jsp";
 		}
 		
 //		return "FormaPagamento.jsp";
-		return "HomePageView.jsp";
+//		return "HomePageView.jsp";
+		return nextPage;
 	}
+	
+	
+//	public void debitar(FormaPagamento formaPagamento){
+//		FormaPagamentoDAO dao = new FormaPagamentoDAO();
+//		dao.inserirFormaPag(formaPagamento);
+//		Mensagem.pagamentoSucesso();
+//		formaPagamento.setId(dao.obterUltimoRegistro());
+//		pagamentoView.dispose();
+//		if(getLocacao() != null){
+//			getLocacao().setFormaPagamento(formaPagamento);
+//			ConcluirLocacaoCtrl app = new ConcluirLocacaoCtrl(getLocacao());
+//		}else{
+//			if(getDevolucao() != null){
+//				getDevolucao().setFormaPagamento(formaPagamento);
+//				getDevolucao().setTotal( getDevolucao().getTotal() + getDevolucao().getLocacao().getTotal() );
+//				ConcluirDevolucaoCtrl app = new ConcluirDevolucaoCtrl(getDevolucao());
+//			}
+//		}
+//	}
+	
 	
 //	private void debitar(Dinheiro dinheiro, HttpServletRequest request,
 //			HttpServletResponse response) throws ServletException, IOException {
