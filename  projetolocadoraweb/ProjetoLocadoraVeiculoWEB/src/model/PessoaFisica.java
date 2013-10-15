@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import model.dao.ClienteDAO;
+import model.dao.ClienteDao;
 
 public class PessoaFisica extends Cliente{
 	
@@ -129,18 +129,18 @@ public class PessoaFisica extends Cliente{
 	
 	//Metodo responsavel por incluir um novo cliente PF
 	public void incluir(){
-		ClienteDAO cDAO = new ClienteDAO();
+		ClienteDAO cDAO = new ClienteDao();
 		cDAO.cadastrar(this);
 	}
 	
 	//Metodo responsavel por alterar um cliente existente no banco de dados
 	public void alterar(PessoaFisica pf){
-		ClienteDAO cDAO = new ClienteDAO();
+		ClienteDAO cDAO = new ClienteDao();
 		cDAO.alterar(this);	
 	}
 	//Metodo responsavel por exibir os dados de um cliente
 	public PessoaFisica pesquisar(){
-		ClienteDAO cDAO = new ClienteDAO();
+		ClienteDAO cDAO = new ClienteDao();
 		return cDAO.consultarPF(getRegistro());
 	}
 	//Metodo responsave por excluir um cliente da base de dados

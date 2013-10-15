@@ -2,6 +2,9 @@ package model.dao;
 
 import java.util.Properties;
 
+import model.Cliente;
+import model.PessoaFisica;
+
 /**
  * Exemplo de implementacao de Factory com carga dinamica de classes.
  * 
@@ -18,6 +21,7 @@ public class DaoFactoryDinamico {
 	private static String C_CHAVE_VEICULO = "dao.veiculo.impl";
 	private static String C_CHAVE_FORMA_PAGAMENTO = "dao.formaPagamento.impl";
 	private static String C_CHAVE_LOCACAO = "dao.locacao.impl";
+	private static String C_CHAVE_CLIENTE = "dao.cliente.impl";
 	
 	public static VeiculoDao obterVeiculoDao(){
 
@@ -31,6 +35,20 @@ public class DaoFactoryDinamico {
 	public static RealizarLocacaoDao obterLocacaoDao(){
 		return (RealizarLocacaoDao) obtemDao(C_CHAVE_FORMA_PAGAMENTO);
 	}
+
+	//Testar se está funcionando=================================================================================================================
+		//*************************************************************
+		public static Cliente consultarById(int int1) {				//*
+			// TODO Auto-generated method stub						  *
+			return (Cliente) obtemDao(C_CHAVE_CLIENTE);				//*
+		}															//*
+																	//*
+		public static PessoaFisica consultarPfById(int int1) {		//*
+			// TODO Auto-generated method stub						//*
+			return  (PessoaFisica) obtemDao(C_CHAVE_CLIENTE);		//*
+		}															//*
+		//*************************************************************
+		//=============================================================================================================================================
 
 	private static Object obtemDao(String chave) {
 		try {
