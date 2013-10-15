@@ -33,7 +33,7 @@ public class DaoFactoryDinamico {
 	}
 	
 	public static RealizarLocacaoDao obterLocacaoDao(){
-		return (RealizarLocacaoDao) obtemDao(C_CHAVE_FORMA_PAGAMENTO);
+		return (RealizarLocacaoDao) obtemDao(C_CHAVE_LOCACAO);
 	}
 
 	//Testar se está funcionando=================================================================================================================
