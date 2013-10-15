@@ -67,6 +67,7 @@ public class CommandConfirmarPagamento extends Command {
 			}
 			
 		}catch(Exception e){
+			System.out.println(e.getMessage());
 			nextPage = "HomePageView.jsp";
 		}
 		
