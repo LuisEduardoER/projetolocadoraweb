@@ -4,6 +4,10 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import model.dao.DaoFactoryDinamico;
+import model.dao.RealizarLocacaoDao;
+import model.dao.VeiculoDao;
+
 public class Locacao {
 	private int id;
 	private String tipoTarifa;
@@ -184,5 +188,14 @@ public class Locacao {
 		
 	}
 	
+	public void inserir() throws Exception {
+		RealizarLocacaoDao dao = DaoFactoryDinamico.obterLocacaoDao();
+		dao.inserir(this);
+	}
+	
+	public int obterUltimoRegistro() throws Exception{
+		RealizarLocacaoDao dao = DaoFactoryDinamico.obterLocacaoDao();
+		return dao.obterUltimoRegistro();
+	}
 	
 }
