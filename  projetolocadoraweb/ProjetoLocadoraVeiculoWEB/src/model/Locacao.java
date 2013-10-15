@@ -143,4 +143,46 @@ public class Locacao {
 	public Condutor getCondutor(int i){
 		return condutores.get(i);
 	}
+	
+//	Método de Negócio
+//	Calcular Total da Locação
+	
+	public double calcularTotal(){
+		if(getTipoTarifa().equals("livre")){
+			setTotal(calcularTotalTarifaLivre());
+		}
+		else{
+			setTotal(calcularTotalTarifaControlada());
+		}
+		return getTotal();
+	}
+	
+
+	private double calcularTotalTarifaLivre() {
+//		valor veiculo(s) escolhido(s)
+//		qtd de dias
+//		tipo de tarifa - ok
+		
+		double valorVeiculo = getVeiculoEscolhido().getGrupo().getTarifaLivre();
+//		int qtdDias = calculaQtdDias();
+		if(getQtdDias() < 7){
+			valorVeiculo = valorVeiculo * (double) getQtdDias();
+		}else{
+			valorVeiculo = getVeiculoEscolhido().getGrupo().getDiaExtra() * getQtdDias();
+		}
+		valorVeiculo = valorVeiculo + getVeiculoEscolhido().getTotalAcessorios();
+		return valorVeiculo;
+	}
+
+	private double calcularTotalTarifaControlada() {
+		
+		double valorVeiculo = getVeiculoEscolhido().getGrupo().getTarifaControloda();
+		valorVeiculo = valorVeiculo * (double) getQtdDias();
+		valorVeiculo = valorVeiculo + getVeiculoEscolhido().getTotalAcessorios();
+		
+		return valorVeiculo;
+		
+	}
+	
+	
 }

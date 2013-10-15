@@ -1,7 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="model.Locacao"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Agencia"%>
+<%@page import="util.DataFormatada"%>
+<%@page import="util.Conversao"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
+<script language="JavaScript">
+	function executar(form,operacao){
+			form.operacao.value = operacao;
+			form.submit();
+	}
+</script>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Realizar Locação - Dados Locação</title>
@@ -282,35 +298,29 @@ a:hover {
 </style>
 </head>
 <body>
-	<div id="wb_Form1"
-		style="position: absolute; left: 1px; top: 12px; width: 718px; height: 427px; z-index: 24;">
-		<form name="Form1" method="post"
-			action="mailto:yourname@yourdomain.com" enctype="text/plain"
-			id="Form1">
+	<div id="wb_Form1" style="position: absolute; left: 1px; top: 12px; width: 718px; height: 427px; z-index: 24;">
+		<%Locacao locacao = (Locacao) request.getSession().getAttribute("locacao");%>
+		<form action="fc" method="POST">
+			<input type="hidden" name="operacao" value="avancarCalcularLocacao">
 			<div id="wb_Text1"
 				style="position: absolute; left: 20px; top: 16px; width: 131px; height: 16px; z-index: 0;">
-				<span style="color: #000000; font-family: Arial; font-size: 13px;">Dados
-					da Locação</span>
+				<span style="color: #000000; font-family: Arial; font-size: 13px;">Dados da Locação</span>
 			</div>
 			<div id="wb_Text2"
 				style="position: absolute; left: 22px; top: 54px; width: 131px; height: 16px; z-index: 1;">
-				<span style="color: #000000; font-family: Arial; font-size: 13px;">Data/Hora
-					Retirada:</span>
+				<span style="color: #000000; font-family: Arial; font-size: 13px;">Data/Hora Retirada:</span>
 			</div>
 			<div id="wb_Text3"
 				style="position: absolute; left: 22px; top: 90px; width: 131px; height: 16px; z-index: 2;">
-				<span style="color: #000000; font-family: Arial; font-size: 13px;">Data/Hora
-					Devolução:</span>
+				<span style="color: #000000; font-family: Arial; font-size: 13px;">Data/Hora Devolução:</span>
 			</div>
 			<div id="wb_Text4"
 				style="position: absolute; left: 22px; top: 126px; width: 131px; height: 16px; z-index: 3;">
-				<span style="color: #000000; font-family: Arial; font-size: 13px;">Tipo
-					de Tarifa:</span>
+				<span style="color: #000000; font-family: Arial; font-size: 13px;">Tipo	de Tarifa:</span>
 			</div>
 			<div id="wb_Text9"
 				style="position: absolute; left: 20px; top: 237px; width: 131px; height: 16px; z-index: 4;">
-				<span style="color: #000000; font-family: Arial; font-size: 13px;">Dados
-					do Veículo</span>
+				<span style="color: #000000; font-family: Arial; font-size: 13px;">Dados do Veículo</span>
 			</div>
 			<div id="wb_Text10"
 				style="position: absolute; left: 21px; top: 272px; width: 131px; height: 16px; z-index: 5;">
@@ -318,66 +328,64 @@ a:hover {
 			</div>
 			<input type="text" id="txtDtaRetirada_ID"
 				style="position: absolute; left: 160px; top: 54px; width: 126px; height: 19px; line-height: 19px; z-index: 6;"
-				name="txtDtaRetirada" value="" tabindex="1" readonly="readonly">
+				name="txtDtaRetirada" value="<%=DataFormatada.parseStringDataCompleta(locacao.getDtaRetirada())%>" tabindex="1" readonly="readonly">
 			<input type="text" id="txtDtaDevolucao_ID"
 				style="position: absolute; left: 160px; top: 88px; width: 126px; height: 19px; line-height: 19px; z-index: 7;"
-				name="txtDtaDevolucao" value="" tabindex="2" readonly="readonly">
+				name="txtDtaDevolucao" value="<%=DataFormatada.parseStringDataCompleta(locacao.getDtaPrevDevolucao())%>" tabindex="2" readonly="readonly">
 			<input type="text" id="txtTipoTarifa_ID"
 				style="position: absolute; left: 160px; top: 121px; width: 94px; height: 19px; line-height: 19px; z-index: 8;"
-				name="txtTipoTarifa" value="" tabindex="3" readonly="readonly">
+				name="txtTipoTarifa" value="<%=locacao.getTipoTarifa()%>" tabindex="3" readonly="readonly">
 			<input type="text" id="txtGrupo_ID"
 				style="position: absolute; left: 101px; top: 271px; width: 94px; height: 19px; line-height: 19px; z-index: 9;"
-				name="txtGrupo" value="" tabindex="8" readonly="readonly">
+				name="txtGrupo" value="<%=locacao.getVeiculoEscolhido().getGrupo().getNome()%>" tabindex="8" readonly="readonly">
 			<div id="wb_Text11"
 				style="position: absolute; left: 23px; top: 308px; width: 131px; height: 16px; z-index: 10;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Acessório:</span>
 			</div>
 			<input type="text" id="txtAcessorio_ID"
 				style="position: absolute; left: 101px; top: 305px; width: 94px; height: 19px; line-height: 19px; z-index: 11;"
-				name="txtAcessorio" value="" tabindex="9" readonly="readonly">
+				name="txtAcessorio" value="<%=locacao.getVeiculoEscolhido().getTotalAcessorios()%>" tabindex="9" readonly="readonly">
 			<div id="wb_Text5"
 				style="position: absolute; left: 331px; top: 54px; width: 131px; height: 16px; z-index: 12;">
-				<span style="color: #000000; font-family: Arial; font-size: 13px;">Agência
-					Retirada:</span>
+				<span style="color: #000000; font-family: Arial; font-size: 13px;">Agência Retirada:</span>
 			</div>
 			<div id="wb_Text6"
 				style="position: absolute; left: 331px; top: 90px; width: 131px; height: 16px; z-index: 13;">
-				<span style="color: #000000; font-family: Arial; font-size: 13px;">Agência
-					Devolução:</span>
+				<span style="color: #000000; font-family: Arial; font-size: 13px;">Agência Devolução:</span>
 			</div>
 			<div id="wb_Text7"
 				style="position: absolute; left: 331px; top: 126px; width: 131px; height: 16px; z-index: 14;">
-				<span style="color: #000000; font-family: Arial; font-size: 13px;">Qtd
-					Dias:</span>
+				<span style="color: #000000; font-family: Arial; font-size: 13px;">Qtd Dias:</span>
 			</div>
 			<div id="wb_Text8"
 				style="position: absolute; left: 331px; top: 158px; width: 131px; height: 16px; z-index: 15;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Total:</span>
 			</div>
-			<input type="button" id="btnVoltar_ID" name="btnVoltar"
-				value="Voltar"
-				style="position: absolute; left: 380px; top: 297px; width: 96px; height: 25px; z-index: 16;"
-				tabindex="11"> <input type="text" id="txtQtdDias_ID"
+			<input type="button" id="btnVoltar_ID" name="btnVoltar" value="Voltar"
+				style="position: absolute; left: 380px; top: 297px; width: 96px; height: 25px; z-index: 16;" tabindex="11" onclick="executar(this.form,'voltarCalcularLocacao')"> 
+			<input type="text" id="txtQtdDias_ID"
 				style="position: absolute; left: 461px; top: 124px; width: 75px; height: 19px; line-height: 19px; z-index: 17;"
-				name="txtQtdDias" value="" tabindex="6" readonly="readonly">
+				name="txtQtdDias" value="<%=locacao.getQtdDias()%>" tabindex="6" readonly="readonly">
 			<div id="wb_Text12"
 				style="position: absolute; left: 22px; top: 342px; width: 131px; height: 16px; z-index: 18;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Veículo:</span>
 			</div>
 			<input type="text" id="txtVeiculo_ID"
 				style="position: absolute; left: 101px; top: 340px; width: 94px; height: 19px; line-height: 19px; z-index: 19;"
-				name="txtVeiculo" value="" tabindex="10" readonly="readonly">
+				name="txtVeiculo" value="<%=locacao.getVeiculoEscolhido().getModelo()%>" tabindex="10" readonly="readonly">
 			<input type="text" id="txtTotal_ID"
 				style="position: absolute; left: 461px; top: 160px; width: 94px; height: 19px; line-height: 19px; z-index: 20;"
-				name="txtTotal" value="" tabindex="7" readonly="readonly"> <input
-				type="button" id="btnAvancar_ID" name="btnAvancar" value="Avançar"
+				name="txtTotal" value="<%="R$ " + Conversao.formatDouble(locacao.getTotal()) %>" tabindex="7" readonly="readonly"> 
+			<input
+				type="submit" id="btnAvancar_ID" name="btnAvancar" value="Avançar"
 				style="position: absolute; left: 491px; top: 297px; width: 96px; height: 25px; z-index: 21;"
-				tabindex="12"> <input type="text" id="txtAgenciaRetirada_ID"
+				tabindex="12"> 
+			<input type="text" id="txtAgenciaRetirada_ID"
 				style="position: absolute; left: 461px; top: 52px; width: 176px; height: 19px; line-height: 19px; z-index: 22;"
-				name="txtAgenciaRetirada" value="" tabindex="4" readonly="readonly">
+				name="txtAgenciaRetirada" value="<%=locacao.getAgenciaRetirada().getNome()%>" tabindex="4" readonly="readonly">
 			<input type="text" id="txtAgenciaDevolucao_ID"
 				style="position: absolute; left: 461px; top: 88px; width: 176px; height: 19px; line-height: 19px; z-index: 23;"
-				name="txtAgenciaDevolucao" value="" tabindex="5" readonly="readonly">
+				name="txtAgenciaDevolucao" value="<%=locacao.getAgenciaDevolucao().getNome()%>" tabindex="5" readonly="readonly">
 		</form>
 	</div>
 	<hr id="Line1"
