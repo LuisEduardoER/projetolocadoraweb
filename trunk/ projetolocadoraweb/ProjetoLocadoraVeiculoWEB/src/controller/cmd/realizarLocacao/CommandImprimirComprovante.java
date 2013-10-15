@@ -13,5 +13,25 @@ public class CommandImprimirComprovante extends Command{
 		
 		return "HomePageView.jsp";
 	}
+	
+	
+	/*if(locacao.getClienteEscolhido().getTipo().equals("PF")){
+		boolean isOk = ComprovanteLocacaoPF.imprimiComprovante(locacao);
+		if(isOk == true){
+			Mensagem.impressaoEfetuadaSucesso();
+			comprovanteView.dispose();
+		}else{
+			Mensagem.impressaoNaoEfetuada();
+		}
+	}else{
+		boolean isOk = ComprovanteLocacaoPJ.imprimiComprovante(locacao);
+		if(isOk == true){
+			Mensagem.impressaoEfetuadaSucesso();
+			comprovanteView.dispose();
+		}else{
+			Mensagem.impressaoNaoEfetuada();
+		}
+	}*/
+	
 
 }
