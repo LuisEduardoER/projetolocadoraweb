@@ -173,7 +173,7 @@ public class LocacaoDAO extends Dao{
 				Condutor cond = new Condutor();
 				cond.setId(rs.getInt("idCondutor")); 
 				cond.setKmInicialControlado(rs.getInt("kmInicialControlado"));
-				cond.setPf(ClienteDAO.consultarPfById(rs.getInt("idPfFk")));
+				cond.setPf(DaoFactoryDinamico.consultarPfById(rs.getInt("idPfFk")));
 				cond.setTotal(rs.getDouble("total"));
 				cond.setVeiculo(DaoFactoryDinamico.obterVeiculoDao().consultarById(rs.getInt("idVeiculoAgFK")));
 				
@@ -254,7 +254,7 @@ public class LocacaoDAO extends Dao{
 				
 				locacao.setVeiculoEscolhido(DaoFactoryDinamico.obterVeiculoDao().consultarById(rs.getInt("idVeiculoAgFK")));
 				
-				locacao.setClienteEscolhido(ClienteDAO.consultarById(rs.getInt("idClienteFK")));
+				locacao.setClienteEscolhido(DaoFactoryDinamico.consultarById(rs.getInt("idClienteFK")));
 				if(locacao.getClienteEscolhido().getTipo().equals("PJ")){
 					locacao.setCondutores(consultarCondutores(locacao.getId()));
 				}		
