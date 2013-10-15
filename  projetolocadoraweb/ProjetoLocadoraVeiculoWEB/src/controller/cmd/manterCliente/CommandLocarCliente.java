@@ -21,6 +21,7 @@ public class CommandLocarCliente extends Command{
 		pf.setEmail("dto.diego");
 		pf.setRegistro("123.123-01");
 		pf.setSexo("M");
+		pf.setId(1);
 		
 		request.getSession().setAttribute("clienteSelecionadoLocacao", pf);
 				

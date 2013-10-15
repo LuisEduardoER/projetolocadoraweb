@@ -53,9 +53,11 @@ public class CommandConfirmarPagamento extends Command {
 				locacao.setFormaPagamento(fp);
 				
 //				Criar uma Locação no Banco
-				LocacaoDAO dao = new LocacaoDAO();
-				dao.inserir(locacao);
-				locacao.setId(dao.obterUltimoRegistro());
+//				LocacaoDAO dao = new LocacaoDAO();
+//				dao.inserir(locacao);
+				locacao.inserir();
+				locacao.setId(locacao.obterUltimoRegistro());
+//				locacao.setId(dao.obterUltimoRegistro());
 				request.getSession().setAttribute("locacao", locacao);
 				
 				nextPage = "LocacaoComprovante.jsp";

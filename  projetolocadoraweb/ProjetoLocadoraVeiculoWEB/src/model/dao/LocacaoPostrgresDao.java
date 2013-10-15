@@ -1,4 +1,3 @@
-//Classe LocacaoDAO
 package model.dao;
 
 import java.sql.PreparedStatement;
@@ -11,87 +10,80 @@ import java.util.ArrayList;
 import model.Condutor;
 import model.Locacao;
 
-
-public class LocacaoDAO extends Dao{
+public class LocacaoPostrgresDao extends Dao implements RealizarLocacaoDao{
 	
-	public LocacaoDAO(){
+	public LocacaoPostrgresDao(){
 		super();
 	}
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------------
-	public void inserir(Locacao locacao)throws Exception{
-		
+	@Override
+	public void inserir(Locacao locacao) throws Exception {
 		String sqlInsert = "INSERT INTO LOCACAO ( tipoTarifa , dtaRetirada , dtaPrevDevolucao , total , kmInicialControlado, idAgenciaDevolucaoFK , idAgenciaRetiradaFK , " +
-							"idFormPagFK , idVeiculoAgFK , idClienteFK) VALUES " + 
-							"( ? , ? , ? , ? ,  ? , ? , ? , ? , ? , ?)";
-		
+				"idFormPagFK , idVeiculoAgFK , idClienteFK) VALUES " + 
+				"( ? , ? , ? , ? ,  ? , ? , ? , ? , ? , ?)";
+
 		PreparedStatement stm = null;
-		
-		try 
-		{
+
+		try {
 			//
 			// Inclusao dos dados na tabela LOCACAO
 			//
 			stm = conn.prepareStatement(sqlInsert);
-			
-//			Para inserir Data e Hora, devemos utilizar a classe Timestamp e passar como par�metro um hor�rio no tipo Long
-//			date.getTime() - retorno a data e hora no formato de Long
-			Timestamp dataRetirada = new Timestamp(locacao.getDtaRetirada().getTime());
-			Timestamp dataDevolucao = new Timestamp(locacao.getDtaPrevDevolucao().getTime());
-			
+
+			// Para inserir Data e Hora, devemos utilizar a classe Timestamp e
+			// passar como par�metro um hor�rio no tipo Long
+			// date.getTime() - retorno a data e hora no formato de Long
+			Timestamp dataRetirada = new Timestamp(locacao.getDtaRetirada()
+					.getTime());
+			Timestamp dataDevolucao = new Timestamp(locacao
+					.getDtaPrevDevolucao().getTime());
+
 			stm.setString(1, locacao.getTipoTarifa());
 			stm.setTimestamp(2, dataRetirada);
 			stm.setTimestamp(3, dataDevolucao);
 			stm.setDouble(4, locacao.getTotal());
-			try{
+			try {
 				stm.setInt(5, locacao.getKmInicialControlado());
-			}catch(Exception e){
+			} catch (Exception e) {
 				stm.setNull(5, Types.INTEGER);
 			}
 			stm.setInt(6, locacao.getAgenciaDevolucao().getCodigo());
 			stm.setInt(7, locacao.getAgenciaRetirada().getCodigo());
 			stm.setInt(8, locacao.getFormaPagamento().getId());
-			try{
-//				stm.setInt(9, locacao.getVeiculoEscolhido().getId());
+			try {
+				// stm.setInt(9, locacao.getVeiculoEscolhido().getId());
 				stm.setInt(9, locacao.getVeiculoEscolhido().getIdVeiculoAg());
-			}catch(Exception e){
+			} catch (Exception e) {
 				stm.setNull(9, Types.SMALLINT);
 			}
 			stm.setInt(10, locacao.getClienteEscolhido().getId());
-			
+
 			stm.execute();
 			conn.commit();
-			if(locacao.getClienteEscolhido().getTipo().equals("PJ")){
-				inserirCondutores(locacao.getCondutores(), obterUltimoRegistro());
+			if (locacao.getClienteEscolhido().getTipo().equals("PJ")) {
+				inserirCondutores(locacao.getCondutores(),
+						obterUltimoRegistro());
 			}
 
-		}
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-				try 
-				{
-					conn.rollback();
-				}
-				catch (SQLException e1) 
-				{
-					System.out.print(e1.getStackTrace());
-				}
-		} 
-		finally 
-		{
-			if (stm != null) 
-			{
-				try 
-				{
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				System.out.print(e1.getStackTrace());
+			}
+		} finally {
+			if (stm != null) {
+				try {
 					stm.close();
-				} 
-				catch (SQLException e1) 
-				{
+				} catch (SQLException e1) {
 					System.out.print(e1.getStackTrace());
 				}
 			}
 		}
+		
 	}
+	
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	private void inserirCondutores(ArrayList<Condutor> condutores , int idLocacao){
 		
@@ -190,8 +182,9 @@ public class LocacaoDAO extends Dao{
 			return condutores;
 		}
 	}
-	//------------------------------------------------------------------------------------------------------------------------------------------------------------
-	public int obterUltimoRegistro()throws Exception{
+	
+	@Override
+	public int obterUltimoRegistro() throws Exception {
 		int indice = -1;
 		String sqlSelect = "select MAX(idLocacao) as idLocacao from LOCACAO";
 		
@@ -221,9 +214,9 @@ public class LocacaoDAO extends Dao{
 			return indice;
 		}
 	}
-	//------------------------------------------------------------------------------------------------------------------------------------------------------------
-	
-	public Locacao consultar(int id){
+
+	@Override
+	public Locacao consultar(int id) {
 		Locacao locacao = null;
 		String sqlSelect = "SELECT * FROM locacao where idLocacao = ?";
 		
@@ -271,6 +264,7 @@ public class LocacaoDAO extends Dao{
 			return locacao;
 		}
 	}
+	
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	Retorna se a loca��o j� foi devolvida (true) ou n�o (false)
 	public boolean isDevolvido(int idLocacao){
@@ -300,9 +294,9 @@ public class LocacaoDAO extends Dao{
 			return flag;
 		}
 	}
-	//------------------------------------------------------------------------------------------------------------------------------------------------------------
-//	Retorna os n�meros das loca��es em aberto que o cliente PF efetuou
-	public ArrayList<Integer> consultaLocacao(String registro){
+
+	@Override
+	public ArrayList<Integer> consultaLocacao(String registro) {
 		ArrayList<Integer> nroLocacoes = new ArrayList<Integer>();
 		String sqlSelect = "select idLocacao from cliente " + 
 							"inner join (SELECT idClienteFK , idLocacao FROM locacao " + 
@@ -334,18 +328,18 @@ public class LocacaoDAO extends Dao{
 			return nroLocacoes;
 		}
 	}
-	//------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 //	INSERT INTO LOCACAO ( tipoTarifa , dtaRetirada , dtaPrevDevolucao , total , idAgenciaDevolucaoFK , idAgenciaRetiradaFK ,
-//            idFormPagFK , idVeiculoAgFK , idClienteFK) VALUES
+//  idFormPagFK , idVeiculoAgFK , idClienteFK) VALUES
 //( 'Livre' , '2012-10-15 00:00:00' , '2012-10-16 00:00:00' ,  123.32 , 2 , 1 , 1 , 1 , 1);
+
+/* 
+select idLocacao from pf
+inner join cliente on pf.idClienteFK = cliente.idCliente
+inner join (SELECT idClienteFK , idLocacao FROM locacao
+          WHERE locacao.idLocacao NOT IN (
+            SELECT DISTINCT idLocacaoFK FROM devolucao)) wti on cliente.idCliente = wti.idClienteFK
+where cpf = '321.123.321-01';
+*/
 	
-	/* 
-	select idLocacao from pf
-	  inner join cliente on pf.idClienteFK = cliente.idCliente
-	  inner join (SELECT idClienteFK , idLocacao FROM locacao
-	                WHERE locacao.idLocacao NOT IN (
-	                  SELECT DISTINCT idLocacaoFK FROM devolucao)) wti on cliente.idCliente = wti.idClienteFK
-	  where cpf = '321.123.321-01';
-	*/
 }

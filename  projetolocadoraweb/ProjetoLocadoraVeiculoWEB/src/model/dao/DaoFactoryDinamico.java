@@ -17,6 +17,7 @@ public class DaoFactoryDinamico {
 
 	private static String C_CHAVE_VEICULO = "dao.veiculo.impl";
 	private static String C_CHAVE_FORMA_PAGAMENTO = "dao.formaPagamento.impl";
+	private static String C_CHAVE_LOCACAO = "dao.locacao.impl";
 	
 	public static VeiculoDao obterVeiculoDao(){
 
@@ -26,7 +27,10 @@ public class DaoFactoryDinamico {
 	public static FormaPgtoDao obterFormaPagamentoDao(){
 		return (FormaPgtoDao) obtemDao(C_CHAVE_FORMA_PAGAMENTO);
 	}
-
+	
+	public static RealizarLocacaoDao obterLocacaoDao(){
+		return (RealizarLocacaoDao) obtemDao(C_CHAVE_FORMA_PAGAMENTO);
+	}
 
 	private static Object obtemDao(String chave) {
 		try {
