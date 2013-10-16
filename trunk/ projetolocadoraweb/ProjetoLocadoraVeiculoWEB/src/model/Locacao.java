@@ -217,4 +217,14 @@ public class Locacao {
 		return dao.isDevolvido(idLocacao);
 	}
 	
+	public Locacao consultar(int id){
+		RealizarLocacaoDao dao = DaoFactoryDinamico.obterLocacaoDao();
+		return dao.consultar(id);
+	}
+	
+	public ArrayList<Integer> consultaLocacao(String registro){
+		RealizarLocacaoDao dao = DaoFactoryDinamico.obterLocacaoDao();
+		return dao.consultaLocacao(registro);
+	}
+	
 }
