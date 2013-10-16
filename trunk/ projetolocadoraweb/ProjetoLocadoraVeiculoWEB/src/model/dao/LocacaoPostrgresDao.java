@@ -267,6 +267,7 @@ public class LocacaoPostrgresDao extends Dao implements RealizarLocacaoDao{
 	
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //	Retorna se a loca��o j� foi devolvida (true) ou n�o (false)
+	@Override
 	public boolean isDevolvido(int idLocacao){
 		boolean flag = false;
 		String sqlSelect = "select * from devolucao where idLocacaoFK = ?";
