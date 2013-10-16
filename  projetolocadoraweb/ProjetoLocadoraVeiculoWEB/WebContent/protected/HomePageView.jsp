@@ -83,7 +83,7 @@
 		font-size: 11px;
 	}
 	
-	#btnConslutarVeiuclos_id {
+	#btnConsultarVeiculos_id {
 		color: #000000;
 		font-family: Arial;
 		font-size: 11px;
@@ -177,15 +177,17 @@
 			<input type="button" id="btnRealizarLocacao_id"	name="btnRealizarLocacao" 
 				value="Realizar Locação"
 				style="position: absolute; left: 300px; top: 350px; width: 100px; height: 28px; z-index: 5;"
-				onclick="executar(this.form,'RealizarLocacaoHomePage')">
+				onclick="executar(this.form,'RealizarLocacaoHomePage')">				
 				
-			<input type="button" id="btnConslutarVeiuclos_id"
+			<input type="button" id="btnConsultarVeiculos_id"
 				name="btnConsultarVeiculos" value="Consultar Veiculos"
-				style="position: absolute; left: 300px; top: 400px; width: 100px; height: 28px; z-index: 6;">
+				style="position: absolute; left: 300px; top: 400px; width: 100px; height: 28px; z-index: 6;"
+				onclick="executar(this.form,'ManterVeiculoHomePage')">
 				
 			<input type="button" id="btnDevolverVeiculos_id"
 				name="btnDevolverVeiculos" value="Devolver Veiculos"
-				style="position: absolute; left: 300px; top: 450px; width: 100px; height: 28px; z-index: 7;">
+				style="position: absolute; left: 300px; top: 450px; width: 100px; height: 28px; z-index: 7;"
+				onclick="executar(this.form,'DevolverVeiculoHomePage')">
 				
 			<input type="button" id="btnConsultarClientes_id"
 				name="btnConsultarClientes" value="Consultar Clientes"

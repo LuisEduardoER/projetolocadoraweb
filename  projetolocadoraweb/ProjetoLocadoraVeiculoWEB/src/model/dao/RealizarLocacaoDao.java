@@ -14,4 +14,6 @@ public interface RealizarLocacaoDao {
 	
 	public ArrayList<Integer> consultaLocacao(String registro);
 	
+	public boolean isDevolvido(int idLocacao);
+	
 }

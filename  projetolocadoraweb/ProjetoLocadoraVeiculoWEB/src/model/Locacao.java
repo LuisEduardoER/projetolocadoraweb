@@ -6,7 +6,7 @@ import java.util.Date;
 
 import model.dao.DaoFactoryDinamico;
 import model.dao.RealizarLocacaoDao;
-import model.dao.VeiculoDao;
+
 
 public class Locacao {
 	private int id;
@@ -23,8 +23,22 @@ public class Locacao {
 	private FormaPagamento formaPagamento;
 	private ArrayList<Condutor> condutores;
 	
+//	Método Construtor
+//	Instancia os objs
 	public Locacao(){
 		condutores = new ArrayList<Condutor>();
+		setAgenciaDevolucao(new Agencia());
+		setAgenciaRetirada( new Agencia());
+		setClienteEscolhido(new Cliente());
+		setFormaPagamento(null);
+		setVeiculoEscolhido(new Veiculo());
+		setId(0);
+		setTipoTarifa("");
+		setDtaRetirada(new Date());
+		setDtaPrevDevolucao(new Date());
+		setTotal(0.0);
+		setQtdDias(0);
+		setKmInicialControlado(0);
 	}
 	
 	public int getId() {
@@ -196,6 +210,11 @@ public class Locacao {
 	public int obterUltimoRegistro() throws Exception{
 		RealizarLocacaoDao dao = DaoFactoryDinamico.obterLocacaoDao();
 		return dao.obterUltimoRegistro();
+	}
+	
+	public boolean isDevolvido(int idLocacao){
+		RealizarLocacaoDao dao = DaoFactoryDinamico.obterLocacaoDao();
+		return dao.isDevolvido(idLocacao);
 	}
 	
 }

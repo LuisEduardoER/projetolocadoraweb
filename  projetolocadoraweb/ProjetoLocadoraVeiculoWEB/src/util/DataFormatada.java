@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.sun.org.apache.xerces.internal.impl.dv.DatatypeException;
+
 //import Util.Idioma;
 
 public class DataFormatada extends Date{
@@ -34,9 +36,14 @@ public class DataFormatada extends Date{
 		return formatter.format(data);
 	}
 	
-	public static String parseStringDataCompleta(Date data){
+	public static String parseStringDataCompleta(Date data)throws Exception{
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		return formatter.format(data);
+		try{
+			return formatter.format(data);
+		}catch(NullPointerException  e){
+			return "";
+		}
+		
 	}
 	
 	public static Date parseDataCompleta(String textoData){
