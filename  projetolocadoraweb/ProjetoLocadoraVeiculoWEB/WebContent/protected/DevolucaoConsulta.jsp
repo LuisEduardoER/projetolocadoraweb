@@ -330,8 +330,9 @@ a:hover {
 				style="position: absolute; left: 200px; top: 120px; width: 250px; height: 16px; z-index: 1;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">CNPJ/CPF</span>
 			</div>
-			<input type="submit" id="btnConsultar_id" name="" value="Consultar"
-				style="position: absolute; left: 440px; top: 95px; width: 96px; height: 25px; z-index: 2;">
+			<input type="button" id="btnConsultar_id" name="" value="Consultar"
+				style="position: absolute; left: 440px; top: 95px; width: 96px; height: 25px; z-index: 2;"
+				onclick="executar(this.form,'consultarConsultaDevolucao')">
 			<input type="text" id="lblIdLocacao1_id"
 				style="position: absolute; left: 300px; top: 70px; width: 94px; height: 19px; line-height: 19px; z-index: 3;"
 				name="txtIdLocacaoConsulta" value="">
