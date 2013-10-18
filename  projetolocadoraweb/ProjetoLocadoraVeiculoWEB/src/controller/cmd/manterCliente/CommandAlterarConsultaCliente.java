@@ -3,11 +3,13 @@ package controller.cmd.manterCliente;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CommandAlterarClientePf extends CommandManterClientePfCtrl {
+public class CommandAlterarConsultaCliente extends CommandManterCliente{
 
 	@Override
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		return "ClientePFAlteracao.jsp";
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }

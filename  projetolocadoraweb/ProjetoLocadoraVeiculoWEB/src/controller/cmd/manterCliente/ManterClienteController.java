@@ -94,7 +94,7 @@ public class ManterClienteController extends HttpServlet {
 				v.setNome(request.getParameter("nome"));
 				v.setRg(request.getParameter("rg"));
 
-				v.alterar(new PessoaFisica());// IMPLENTAR O ALTERAR CORRETAMENTE**************************************
+				v.alterar();// IMPLENTAR O ALTERAR CORRETAMENTE**************************************
 				
 				request.getSession().setAttribute("listaCliente",
 						new ArrayList<PessoaFisica>());

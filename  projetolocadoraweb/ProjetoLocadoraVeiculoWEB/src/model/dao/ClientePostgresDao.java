@@ -14,7 +14,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		super();
 	}
 	//------------------------------------------------------------------------------------------------------------------------
-	public void cadastrar(PessoaFisica pf) {
+	public void cadastrar(PessoaFisica pf) throws Exception{
 		pf.setTipo("PF");
 		cadastrarCliente(pf);
 		
@@ -74,7 +74,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 	}
 	
 	//CADASTRAR PESSOA JURIDICA**--------------------------------------------------------------------------------------------
-	public void cadastrar(PessoaJuridica pj) {
+	public void cadastrar(PessoaJuridica pj) throws Exception{
 		pj.setTipo("PJ");
 		cadastrarCliente(pj);
 		
@@ -163,7 +163,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------------
-	public void cadastrarCliente(Cliente cliente){
+	private void cadastrarCliente(Cliente cliente){
 		
 		String sqlInsert = "INSERT INTO CLIENTE (nome , registro , telefone , email , tipo , status) VALUES ( ? , ? , ? , ? , ? , 'Y')";
 		
@@ -218,7 +218,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 	}
 
 	//ALTERAR PESSOA FISICA**
-	public void alterar(PessoaFisica pf) {
+	public void alterar(PessoaFisica pf) throws Exception{
 		alterarCliente(pf);
 				
 		String sqlInsert = "update pf set sexo = ? , dtaNascimento = ? , rg = ? , numHabilitacao = ? , "+
@@ -279,7 +279,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		
 	}
 	
-	public void alterar(PessoaJuridica pj) {
+	public void alterar(PessoaJuridica pj) throws Exception{
 		alterarCliente(pj);
 				
 		String sqlInsert = "UPDATE pj set razaoSocial = ?  where idClienteFK = ?";
@@ -331,7 +331,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		
 	}
 	//------------------------------------------------------------------------------------------------------------------------
-	public void alterarCliente(Cliente cliente){
+	private void alterarCliente(Cliente cliente){
 		String sqlInsert = "UPDATE cliente set nome = ? , registro = ? , telefone = ? , email = ? where idCliente = ?";
 		
 		PreparedStatement stm = null;
@@ -382,7 +382,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		
 	}
 
-	public void excluir(Cliente cliente) {
+	public void excluir(Cliente cliente) throws Exception{
 		String sqlDelete = "update cliente set status = 'N' where idCliente = ?";
 
 		PreparedStatement stm = null;
@@ -508,7 +508,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		}
 	}
 	//-----------------------------------------------------------------------------------------------------------------------
-	public Cliente consultar(int id) {
+	private Cliente consultar(int id) {
 		Cliente cliente = null;
 		String sqlSelect = "select * from cliente where idCliente = ?";
 		
@@ -546,7 +546,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		}
 	}
 	//------------------------------------------------------------------------------------------------------------------------
-	public String consultarRegistro(int id) {
+	private String consultarRegistro(int id) {
 		String sqlSelect = "select * from cliente where idCliente = ?";
 		String registro = null;
 		
@@ -576,7 +576,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 	}
 
 	//-----------------------------------------------------------------------------------------------------------------------
-	public PessoaFisica consultarPessoaFisica(int idPf){
+	private PessoaFisica consultarPessoaFisica(int idPf){
 		PessoaFisica pf = null;
 		String sqlSelect = "select * from pf inner join cliente on idCliente = idClienteFK where idPF = ?";
 		
@@ -620,12 +620,14 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		}
 	}
 
-	public Cliente consultarById(int id){
-		return this.consultar(id);
+	protected static Cliente consultarById(int id){
+		ClientePostgresDao dao = new ClientePostgresDao();
+		return dao.consultar(id);
 	}
 
-	public PessoaFisica consultarPfById(int id) {
-		return this.consultarPessoaFisica(id);
+	protected static PessoaFisica consultarPfById(int id) {
+		ClientePostgresDao dao = new ClientePostgresDao();
+		return dao.consultarPessoaFisica(id);
 	}
 
 }

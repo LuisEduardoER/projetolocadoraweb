@@ -5,36 +5,21 @@ import model.PessoaFisica;
 import model.PessoaJuridica;
 
 public interface ClienteDao {
-	public void cadastrar(PessoaFisica pf);
+	public void cadastrar(PessoaFisica pf)throws Exception;
 	
-	//CADASTRAR PESSOA JURIDICA**
-	public void cadastrar(PessoaJuridica pj);
+	public void cadastrar(PessoaJuridica pj)throws Exception;
 	
 	public int obterUltimoRegistro();
+		
+	public void alterar(PessoaFisica pf)throws Exception;
 	
-	public void cadastrarCliente(Cliente cliente);
-	
-	//ALTERAR PESSOA FISICA**
-	public void alterar(PessoaFisica pf);
-	
-	public void alterar(PessoaJuridica pj);
-	
-	public void alterarCliente(Cliente cliente);
-	
-	public void excluir(Cliente cliente);
+	public void alterar(PessoaJuridica pj)throws Exception;
+		
+	public void excluir(Cliente cliente)throws Exception;
 	
 	public PessoaJuridica consultarPJ(String cnpj);
 	
 	public PessoaFisica consultarPF(String cpf);
 	
-	public Cliente consultar(int id);
-	
-	public String consultarRegistro(int id);
-	
-	public PessoaFisica consultarPessoaFisica(int idPf);
-	
-	public Cliente consultarById(int id);
-
-	public PessoaFisica consultarPfById(int id);
 
 }

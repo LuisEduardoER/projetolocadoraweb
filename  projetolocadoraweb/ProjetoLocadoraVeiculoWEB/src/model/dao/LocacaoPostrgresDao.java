@@ -165,7 +165,7 @@ public class LocacaoPostrgresDao extends Dao implements RealizarLocacaoDao{
 				Condutor cond = new Condutor();
 				cond.setId(rs.getInt("idCondutor")); 
 				cond.setKmInicialControlado(rs.getInt("kmInicialControlado"));
-				cond.setPf(DaoFactoryDinamico.consultarPfById(rs.getInt("idPfFk")));
+				cond.setPf(ClientePostgresDao.consultarPfById(rs.getInt("idPfFk")));
 				cond.setTotal(rs.getDouble("total"));
 				cond.setVeiculo(DaoFactoryDinamico.obterVeiculoDao().consultarById(rs.getInt("idVeiculoAgFK")));
 				
@@ -247,12 +247,10 @@ public class LocacaoPostrgresDao extends Dao implements RealizarLocacaoDao{
 				
 				locacao.setVeiculoEscolhido(DaoFactoryDinamico.obterVeiculoDao().consultarById(rs.getInt("idVeiculoAgFK")));
 				
-				locacao.setClienteEscolhido(DaoFactoryDinamico.consultarById(rs.getInt("idClienteFK")));
+				locacao.setClienteEscolhido(ClientePostgresDao.consultarById(rs.getInt("idClienteFK")));
 				if(locacao.getClienteEscolhido().getTipo().equals("PJ")){
 					locacao.setCondutores(consultarCondutores(locacao.getId()));
-				}		
-				
-				
+				}
 			}
 			rs.close();
 			stm.close();

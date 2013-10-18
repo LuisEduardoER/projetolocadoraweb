@@ -1,6 +1,9 @@
 //Classe Cliente
 package model;
 
+import model.dao.ClienteDao;
+import model.dao.DaoFactoryDinamico;
+
 public class Cliente {
 	private int id;
 	private String nome;
@@ -70,8 +73,8 @@ public class Cliente {
 
 
 
-//	Métodos Get e Set do Registro
-//	Registro pode ser o CPF do cliente Pessoa Fisica ou o CNPF do cliente Pessoa Jurídica
+//	Mï¿½todos Get e Set do Registro
+//	Registro pode ser o CPF do cliente Pessoa Fisica ou o CNPF do cliente Pessoa Jurï¿½dica
 	public String getRegistro() {
 		return registro;
 	}
@@ -81,14 +84,26 @@ public class Cliente {
 	}
 
 
-//	Métodos Get e Set do Nome
-//	Nome pode ser o Nome do cliente Pessoa Fisica ou o Nome Fantasia do cliente Pessoa Jurídica
+//	Mï¿½todos Get e Set do Nome
+//	Nome pode ser o Nome do cliente Pessoa Fisica ou o Nome Fantasia do cliente Pessoa Jurï¿½dica
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public void incluir()throws Exception{
+		
+	}
+	
+	public void alterar() throws Exception{
+		
+	}
+	
+	public void excluir() throws Exception{
+		
 	}
 	
 }

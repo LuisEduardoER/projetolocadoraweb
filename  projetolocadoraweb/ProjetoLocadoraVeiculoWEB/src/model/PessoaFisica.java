@@ -6,7 +6,10 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import util.Verificacao;
+
 import model.dao.ClienteDao;
+import model.dao.DaoFactoryDinamico;
 
 public class PessoaFisica extends Cliente{
 	
@@ -128,24 +131,56 @@ public class PessoaFisica extends Cliente{
 	}
 	
 	//Metodo responsavel por incluir um novo cliente PF
-	public void incluir(){
-		ClienteDAO cDAO = new ClienteDao();
-		cDAO.cadastrar(this);
+	@Override
+	public void incluir()throws Exception{
+		ClienteDao dao = DaoFactoryDinamico.obterClienteDao();
+		dao.cadastrar(this);
 	}
 	
 	//Metodo responsavel por alterar um cliente existente no banco de dados
-	public void alterar(PessoaFisica pf){
-		ClienteDAO cDAO = new ClienteDao();
-		cDAO.alterar(this);	
+	@Override
+	public void alterar() throws Exception{
+		ClienteDao cDAO = DaoFactoryDinamico.obterClienteDao();
+		cDAO.alterar(this);
 	}
+	
 	//Metodo responsavel por exibir os dados de um cliente
 	public PessoaFisica pesquisar(){
-		ClienteDAO cDAO = new ClienteDao();
+		ClienteDao cDAO = DaoFactoryDinamico.obterClienteDao();
 		return cDAO.consultarPF(getRegistro());
 	}
 	//Metodo responsave por excluir um cliente da base de dados
-	public void excluir(){
+	@Override
+	public void excluir() throws Exception{
+		ClienteDao dao = DaoFactoryDinamico.obterClienteDao();
+		dao.excluir(this);
+	}
+	
+	/*Método que irá verificar se o cliente possui idade menor de 21 anos.
+	* true - Possui idade maior que 21 anos
+	* false - Possui idade menor que 21 anos
+	*/
+	public boolean verificarIdade(){
+		if(Verificacao.getTotalAnos(getDtaNascimento()) <= 21){
+			return false; //idade MENOR que 21 anos
+		}
+		else{
+			return true; //idade MAIOR que 21 anos
+		}
+	}
+	
+	/*Método que irá verificar se o cliente tem menos de 2 anos de habilitação.
+	* true - Cliente tem mais de 2 anos de habilitação
+	* false - Cliente não tem menos de 2 anos de habilitação
+	*/
+	public boolean verificarHabilitacao(){
 		
+		if(Verificacao.getTotalAnos(getPrimeiraHabilitacao()) < 2){
+			return false; //habilitação menor que 2 anos
+		}
+		else{
+			return true; //condutor com mais de 2 anos
+		}
 	}
 
 }
