@@ -103,8 +103,7 @@ public class FormaPagamentoGenericoPostgresDaoImpl extends Dao implements FormaP
 		
 		try{
 			
-			
-			stm = conn.prepareStatement(sqlSelect);
+			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			stm.setInt(1, id);
 			rs = stm.executeQuery();

@@ -67,9 +67,10 @@ public class FrontController extends HttpServlet {
 			IOException {
 		// envia para pagina de erro
 		//
-		request.getSession().setAttribute("erro", e.toString());
+		String error = e.toString() + "\n" + e.getMessage();
+		request.getSession().setAttribute("erro", error);
 		request.getSession().setAttribute("errorTitle", "Front Controller Error");
-		request.getRequestDispatcher("ManterVeiculoErro.jsp").forward(request, response);
+		request.getRequestDispatcher("protected/ManterVeiculoErro.jsp").forward(request, response);
 	}
 	
 

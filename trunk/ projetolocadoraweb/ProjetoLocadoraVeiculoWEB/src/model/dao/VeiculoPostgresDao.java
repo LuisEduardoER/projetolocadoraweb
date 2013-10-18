@@ -140,7 +140,7 @@ public class VeiculoPostgresDao extends Dao implements VeiculoDao{
 		
 		try{
 			
-			stm = conn.prepareStatement(sqlSelect);
+			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			stm.setInt(1, idVeiculoAg);
 			rs = stm.executeQuery();
 			

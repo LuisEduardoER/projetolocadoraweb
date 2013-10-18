@@ -15,7 +15,7 @@ public class AgenciaDAO extends Dao{
 		super();
 	}
 	
-	//MÉTODO IRÁ RETORNAR TODAS AS AGÊNCIAS
+	//Mï¿½TODO IRï¿½ RETORNAR TODAS AS AGï¿½NCIAS
 	public ArrayList<Agencia> getList(){
 		try{
 			ArrayList<Agencia> agencias = new ArrayList<Agencia>();
@@ -32,7 +32,7 @@ public class AgenciaDAO extends Dao{
 				ag.setPais(rs.getString("pais"));
 				ag.setIdCidade(rs.getInt("idCidade"));
 				
-				//adicionando o objeto à lista
+				//adicionando o objeto ï¿½ lista
 				agencias.add(ag);
 			}
 			rs.close();
@@ -46,7 +46,7 @@ public class AgenciaDAO extends Dao{
 		}
 	}
 	
-//	Método irá consultar uma agência pela FK
+//	Mï¿½todo irï¿½ consultar uma agï¿½ncia pela FK
 	private Agencia consultar(int codigo){
 		Agencia agencia = null;
 		String sqlSelect = "select * from agencia where idAgencia = ?";
@@ -56,8 +56,7 @@ public class AgenciaDAO extends Dao{
 		
 		try{
 			
-			
-			stm = conn.prepareStatement(sqlSelect);
+			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			stm.setInt(1, codigo);
 //			stm.setString(2, usuario.getSenha());

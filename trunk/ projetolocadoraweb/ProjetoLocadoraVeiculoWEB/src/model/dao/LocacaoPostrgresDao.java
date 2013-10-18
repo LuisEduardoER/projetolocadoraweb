@@ -226,7 +226,7 @@ public class LocacaoPostrgresDao extends Dao implements RealizarLocacaoDao{
 		try{
 			
 			
-			stm = conn.prepareStatement(sqlSelect);
+			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			stm.setInt(1, id);
 			rs = stm.executeQuery();
@@ -277,8 +277,8 @@ public class LocacaoPostrgresDao extends Dao implements RealizarLocacaoDao{
 		
 		
 		try{
-						
-			stm = conn.prepareStatement(sqlSelect);
+			
+			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			stm.setInt(1, idLocacao);
 			rs = stm.executeQuery();
 			
