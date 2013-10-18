@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="model.Cliente"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <script language="JavaScript">
@@ -186,17 +187,19 @@ a:hover {
 </style>
 </head>
 <body>
+  <%Cliente cliente = (Cliente) request.getSession().getAttribute("clienteSelecionado");%>
   <form action="fc" method="POST">
-    <input type="hidden" name="operacao" value="pesquisarCliente">
+    <input type="hidden" name="operacao" value="consultarCliente">
 	<div id="wb_txtCpnjCpf1_id"
 		style="position: absolute; left: 60px; top: 100px; width: 250px; height: 32px; z-index: 0;">
 		<span style="color: #000000; font-family: Arial; font-size: 13px;">CNPJ/CPF<br></span>
 	</div>
-	<input type="submit" id="btnPesquisar_id" name="" value="Pesquisar"
-		style="position: absolute; left: 400px; top: 100px; width: 96px; height: 25px; z-index: 1;">
+	<input type="button" id="btnPesquisar_id" name="" value="Pesquisar"
+		style="position: absolute; left: 400px; top: 100px; width: 96px; height: 25px; z-index: 1;"
+		onclick="executar(this.form,'consultarCliente')">
 	<input type="text" id="lblCpnjCpf1_id"
 		style="position: absolute; left: 180px; top: 100px; width: 178px; height: 19px; line-height: 19px; z-index: 2;"
-		name="Editbox1" value="">
+		name="txtCnpjCpf" value="">
 	<hr id="Line1"
 		style="margin: 0; padding: 0; position: absolute; left: 1px; top: 199px; width: 1000px; height: 1px; z-index: 3;">
 	<div id="wb_txtNome_id"
@@ -218,25 +221,29 @@ a:hover {
 	<hr id="Line2"
 		style="margin: 0; padding: 0; position: absolute; left: 0px; top: 528px; width: 1000px; height: 1px; z-index: 8;">
 	<input type="button" id="btnCancelar_id" name="" value="Cancelar"
-		style="position: absolute; left: 200px; top: 600px; width: 96px; height: 25px; z-index: 9;">
+		style="position: absolute; left: 200px; top: 600px; width: 96px; height: 25px; z-index: 9;"
+		onclick="executar(this.form,'cancelarConsultaCliente')">
 	<input type="button" id="btnAlterar_id" name="" value="Alterar"
-		style="position: absolute; left: 400px; top: 600px; width: 96px; height: 25px; z-index: 10;">
+		style="position: absolute; left: 400px; top: 600px; width: 96px; height: 25px; z-index: 10;"
+		onclick="executar(this.form,'alterarConsultaCliente')">
 	<input type="button" id="btnLocar_id" name="btnLocar" value="Locar"
-		style="position: absolute; left: 600px; top: 600px; width: 96px; height: 25px; z-index: 11;" onclick="executar(this.form,'locarCliente')">
+		style="position: absolute; left: 600px; top: 600px; width: 96px; height: 25px; z-index: 11;" 
+		onclick="executar(this.form,'locarCliente')">
 	<input type="button" id="btnDetalhes_id" name="" value="+ Detalhes"
-		style="position: absolute; left: 400px; top: 300px; width: 96px; height: 25px; z-index: 12;">
+		style="position: absolute; left: 400px; top: 300px; width: 96px; height: 25px; z-index: 12;"
+		onclick="executar(this.form,'detalhesConsultaCliente')">
 	<input type="text" id="lblNome_id"
 		style="position: absolute; left: 180px; top: 300px; width: 94px; height: 19px; line-height: 19px; z-index: 13;"
-		name="Editbox2" value="">
+		name="Editbox2" value="<%=cliente.getNome()%>">
 	<input type="text" id="lblCpnjCpf2_id"
 		style="position: absolute; left: 180px; top: 350px; width: 94px; height: 19px; line-height: 19px; z-index: 14;"
-		name="Editbox2" value="">
+		name="Editbox2" value="<%=cliente.getRegistro()%>">
 	<input type="text" id="lblTelefone_id"
 		style="position: absolute; left: 180px; top: 400px; width: 94px; height: 19px; line-height: 19px; z-index: 15;"
-		name="Editbox2" value="">
+		name="Editbox2" value="<%=cliente.getTelefone()%>">
 	<input type="text" id="lblEmail_id"
 		style="position: absolute; left: 180px; top: 450px; width: 94px; height: 19px; line-height: 19px; z-index: 16;"
-		name="Editbox2" value="">
+		name="Editbox2" value="<%=cliente.getEmail()%>">
 	</form>
 </body>
 </html>
