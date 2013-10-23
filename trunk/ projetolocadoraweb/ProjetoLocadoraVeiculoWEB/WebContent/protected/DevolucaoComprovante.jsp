@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="model.Locacao"%>
+<%@page import="model.Devolucao"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
@@ -345,7 +346,7 @@ a:hover {
 </head>
 <body>
 	<div id="wb_Form1" style="position: absolute; left: 6px; top: 10px; width: 718px; height: 507px; z-index: 29;">
-	    <%Locacao locacao = (Locacao) request.getSession().getAttribute("locacao");%>
+	    <%Devolucao devolucao = (Devolucao) request.getSession().getAttribute("devolucao");%>
 		<form action="fc" method="POST">
 		    <input type="hidden" name="operacao" value="imprimirComprovanteLocacao">
 			<div id="wb_Text1"
@@ -374,23 +375,23 @@ a:hover {
 			</div>
 			<input type="text" id="txtDataRetirada_ID"
 				style="position: absolute; left: 161px; top: 147px; width: 126px; height: 19px; line-height: 19px; z-index: 6;"
-				name="txtDataRetirada" value="<%=DataFormatada.parseStringDataCompleta(locacao.getDtaRetirada())%>" tabindex="4" readonly="readonly">
+				name="txtDataRetirada" value="<%=DataFormatada.parseStringDataCompleta(devolucao.getLocacao().getDtaRetirada())%>" tabindex="4" readonly="readonly">
 			<input type="text" id="txtDataDevolucao_ID"
 				style="position: absolute; left: 161px; top: 181px; width: 126px; height: 19px; line-height: 19px; z-index: 7;"
-				name="txtDataDevolucao" value="<%=DataFormatada.parseStringDataCompleta(locacao.getDtaPrevDevolucao())%>" tabindex="5" readonly="readonly">
+				name="txtDataDevolucao" value="<%=DataFormatada.parseStringDataCompleta(devolucao.getDtaDevolucao())%>" tabindex="5" readonly="readonly">
 			<input type="text" id="txtTipoTarifa_ID"
 				style="position: absolute; left: 161px; top: 214px; width: 94px; height: 19px; line-height: 19px; z-index: 8;"
-				name="txtTipoTarifa" value="<%=locacao.getTipoTarifa()%>" tabindex="6" readonly="readonly">
+				name="txtTipoTarifa" value="<%=devolucao.getLocacao().getTipoTarifa()%>" tabindex="6" readonly="readonly">
 			<input type="text" id="txtGrupo_ID"
 				style="position: absolute; left: 108px; top: 333px; width: 94px; height: 19px; line-height: 19px; z-index: 9;"
-				name="txtGrupo" value="<%=locacao.getVeiculoEscolhido().getGrupo().getNome()%>" tabindex="11" readonly="readonly">
+				name="txtGrupo" value="" tabindex="11" readonly="readonly">
 			<div id="wb_Text11"
 				style="position: absolute; left: 30px; top: 371px; width: 131px; height: 16px; z-index: 10;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Acessório:</span>
 			</div>
 			<input type="text" id="txtAcessorio_ID"
 				style="position: absolute; left: 108px; top: 368px; width: 94px; height: 19px; line-height: 19px; z-index: 11;"
-				name="txtAcessorio" value="<%=locacao.getVeiculoEscolhido().getTotalAcessorios()%>" tabindex="12" readonly="readonly">
+				name="txtAcessorio" value="" tabindex="12" readonly="readonly">
 			<div id="wb_Text5"
 				style="position: absolute; left: 332px; top: 147px; width: 131px; height: 16px; z-index: 12;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Agência Retirada:</span>
@@ -409,48 +410,48 @@ a:hover {
 			</div>
 			<input type="text" id="txtQtdDias_ID"
 				style="position: absolute; left: 462px; top: 217px; width: 75px; height: 19px; line-height: 19px; z-index: 16;"
-				name="txtQtdDias" value="<%=locacao.getQtdDias()%>" tabindex="9" readonly="readonly">
+				name="txtQtdDias" value="<%=devolucao.getQtdDias()%>" tabindex="9" readonly="readonly">
 			<div id="wb_Text12"
 				style="position: absolute; left: 29px; top: 405px; width: 131px; height: 16px; z-index: 17;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Veículo:</span>
 			</div>
 			<input type="text" id="txtVeiculo_ID"
 				style="position: absolute; left: 108px; top: 402px; width: 94px; height: 19px; line-height: 19px; z-index: 18;"
-				name="txtVeiculo" value="<%=locacao.getVeiculoEscolhido().getModelo()%>" tabindex="13" readonly="readonly">
+				name="txtVeiculo" value="" tabindex="13" readonly="readonly">
 			<input type="text" id="txtTotal_ID"
 				style="position: absolute; left: 462px; top: 253px; width: 94px; height: 19px; line-height: 19px; z-index: 19;"
-				name="txtTotal" value="<%="R$ " + Conversao.formatDouble(locacao.getTotal())%>" tabindex="10" readonly="readonly">
+				name="txtTotal" value="<%="R$ " + Conversao.formatDouble(devolucao.getTotal())%>" tabindex="10" readonly="readonly">
 			<input type="submit" id="btnImprimirComprovante_ID"
 				name="btnImprimirComprovante" value="Imprimir Comprovante"
 				style="position: absolute; left: 280px; top: 468px; width: 145px; height: 25px; z-index: 20;"
 				tabindex="14"> 
 			<input type="text" id="txtAgenciaRetirada_ID"
 				style="position: absolute; left: 462px; top: 145px; width: 176px; height: 19px; line-height: 19px; z-index: 21;"
-				name="txtAgenciaRetirada" value="<%=locacao.getAgenciaRetirada().getNome()%>" tabindex="7" readonly="readonly">
+				name="txtAgenciaRetirada" value="<%=devolucao.getLocacao().getAgenciaRetirada().getNome()%>" tabindex="7" readonly="readonly">
 			<input type="text" id="txtAgenciaDevolucao_ID"
 				style="position: absolute; left: 462px; top: 181px; width: 176px; height: 19px; line-height: 19px; z-index: 22;"
-				name="txtAgenciaDevolucao" value="<%=locacao.getAgenciaDevolucao().getNome()%>" tabindex="8" readonly="readonly">
+				name="txtAgenciaDevolucao" value="<%=devolucao.getAgenciaDevolucao().getNome()%>" tabindex="8" readonly="readonly">
 			<div id="wb_Text13"
 				style="position: absolute; left: 24px; top: 57px; width: 131px; height: 16px; z-index: 23;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Número:</span>
 			</div>
 			<input type="text" id="txtNumero_ID"
 				style="position: absolute; left: 106px; top: 54px; width: 69px; height: 19px; line-height: 19px; z-index: 24;"
-				name="txtNumero" value="<%=locacao.getId()%>" tabindex="1" readonly="readonly">
+				name="txtNumero" value="<%=devolucao.getId()%>" tabindex="1" readonly="readonly">
 			<div id="wb_Text14"
 				style="position: absolute; left: 24px; top: 89px; width: 131px; height: 16px; z-index: 25;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">Cliente:</span>
 			</div>
 			<input type="text" id="txtCliente_ID"
 				style="position: absolute; left: 106px; top: 86px; width: 182px; height: 19px; line-height: 19px; z-index: 26;"
-				name="txtCliente" value="<%=locacao.getClienteEscolhido().getNome()%>" tabindex="2" readonly="readonly">
+				name="txtCliente" value="<%=devolucao.getLocacao().getClienteEscolhido().getNome()%>" tabindex="2" readonly="readonly">
 			<div id="wb_Text15"
 				style="position: absolute; left: 300px; top: 88px; width: 132px; height: 16px; z-index: 27;">
 				<span style="color: #000000; font-family: Arial; font-size: 13px;">CNPJ/CPF:</span>
 			</div>
 			<input type="text" id="txtCnpjCpf_ID"
 				style="position: absolute; left: 380px; top: 86px; width: 95px; height: 19px; line-height: 19px; z-index: 28;"
-				name="txtCnpjCpf" value="<%=locacao.getClienteEscolhido().getRegistro()%>" tabindex="3" readonly="readonly">
+				name="txtCnpjCpf" value="<%=devolucao.getLocacao().getClienteEscolhido().getRegistro()%>" tabindex="3" readonly="readonly">
 		</form>
 	</div>
 	<hr id="Line1"

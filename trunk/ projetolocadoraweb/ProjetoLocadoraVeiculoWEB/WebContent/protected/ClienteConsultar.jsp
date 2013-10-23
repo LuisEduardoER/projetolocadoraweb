@@ -225,7 +225,7 @@ a:hover {
 		onclick="executar(this.form,'cancelarConsultaCliente')">
 	<input type="button" id="btnAlterar_id" name="" value="Alterar"
 		style="position: absolute; left: 400px; top: 600px; width: 96px; height: 25px; z-index: 10;"
-		onclick="executar(this.form,'alterarConsultaCliente')">
+		onclick="executar(this.form,'detalhesConsultaCliente')">
 	<input type="button" id="btnLocar_id" name="btnLocar" value="Locar"
 		style="position: absolute; left: 600px; top: 600px; width: 96px; height: 25px; z-index: 11;" 
 		onclick="executar(this.form,'locarCliente')">

@@ -1,7 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="model.Locacao"%>
+<%@page import="model.Devolucao"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Agencia"%>
+<%@page import="util.DataFormatada"%>
+<%@page import="util.Conversao"%>	
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script language="JavaScript">
+	function executar(form,operacao){
+			form.operacao.value = operacao;
+			form.submit();
+	}
+</script>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Devolver Veículo - Valores Adicionais</title>
@@ -305,6 +321,9 @@ a:hover {
 </style>
 </head>
 	<body>
+		<%Devolucao devolucao = (Devolucao) request.getSession().getAttribute("devolucao");%>
+		<form action="fc" method="POST">
+			<input type="hidden" name="operacao" value="avancarDevolucaoValAdicionais">
 		<div id="wb_txtNumero_id"
 			style="position: absolute; left: 60px; top: 60px; width: 250px; height: 16px; z-index: 0;">
 			<span style="color: #000000; font-family: Arial; font-size: 13px;">Número</span>
@@ -317,12 +336,15 @@ a:hover {
 			style="position: absolute; left: 400px; top: 100px; width: 250px; height: 16px; z-index: 2;">
 			<span style="color: #000000; font-family: Arial; font-size: 13px;">CNPJ/CPF</span>
 		</div>
+		<div id="wb_txtCnpjCpf_id"
+			style="position: absolute; left: 7400px; top: 100px; width: 250px; height: 16px; z-index: 3;">
+			<span style="color: #000000; font-family: Arial; font-size: 13px;">Total</span>
+		</div>
 		<hr id="Line1"
 			style="margin: 0; padding: 0; position: absolute; left: 0px; top: 176px; width: 1000px; height: 1px; z-index: 3;">
 		<div id="wb_txtValoresAdicionais_id"
 			style="position: absolute; left: 151px; top: 217px; width: 250px; height: 14px; z-index: 4;">
-			<span style="color: #000000; font-family: Arial; font-size: 11px;">Valores
-				Adicionais</span>
+			<span style="color: #000000; font-family: Arial; font-size: 11px;">Valores Adicionais</span>
 		</div>
 		<hr id="Line2"
 			style="margin: 0; padding: 0; position: absolute; left: 41px; top: 224px; width: 108px; height: 1px; z-index: 5;">
@@ -334,19 +356,24 @@ a:hover {
 			style="margin: 0; padding: 0; position: absolute; left: 793px; top: 225px; width: 1px; height: 265px; z-index: 8;">
 		<hr id="Line6"
 			style="margin: 0; padding: 0; position: absolute; left: 41px; top: 490px; width: 753px; height: 1px; z-index: 9;">
-		<input type="submit" id="btnVoltar_id" name="" value="Voltar"
-			style="position: absolute; left: 294px; top: 534px; width: 96px; height: 25px; z-index: 10;">
-		<input type="submit" id="btnAvancar_id" name="" value="Avançar"
-			style="position: absolute; left: 449px; top: 533px; width: 96px; height: 25px; z-index: 11;">
+		<input type="button" id="btnVoltar_id" name="" value="Voltar"
+			style="position: absolute; left: 294px; top: 534px; width: 96px; height: 25px; z-index: 10;"
+			onclick="executar(this.form,'voltarDevolucaoValAdicionais')">
+		<input type="button" id="btnAvancar_id" name="" value="Avançar"
+			style="position: absolute; left: 449px; top: 533px; width: 96px; height: 25px; z-index: 11;"
+			onclick="executar(this.form,'avancarDevolucaoValAdicionais')">
 		<input type="text" id="lblNumero_id"
 			style="position: absolute; left: 120px; top: 60px; width: 94px; height: 19px; line-height: 19px; z-index: 12;"
-			name="Editbox1" value="">
+			name="Editbox1" value="<%=devolucao.getLocacao().getId()%>">
 		<input type="text" id="lblCliente_id"
 			style="position: absolute; left: 120px; top: 100px; width: 94px; height: 19px; line-height: 19px; z-index: 13;"
-			name="Editbox1" value="">
+			name="Editbox1" value="<%=devolucao.getLocacao().getClienteEscolhido().getNome()%>">
 		<input type="text" id="lblCnpjCpf_id"
 			style="position: absolute; left: 480px; top: 100px; width: 94px; height: 19px; line-height: 19px; z-index: 14;"
-			name="Editbox1" value="">
+			name="Editbox1" value="<%=devolucao.getLocacao().getClienteEscolhido().getRegistro()%>">
+		<input type="text" id="lblCnpjCpf_id"
+			style="position: absolute; left: 8400px; top: 100px; width: 94px; height: 19px; line-height: 19px; z-index: 15;"
+			name="Editbox1" value="<%=devolucao.getTotal()%>">
 		<div id="wb_txtAcrescimo_id"
 			style="position: absolute; left: 90px; top: 250px; width: 250px; height: 16px; z-index: 15;">
 			<span style="color: #000000; font-family: Arial; font-size: 13px;">Acréscimo</span>
@@ -361,23 +388,19 @@ a:hover {
 			style="margin: 0; padding: 0; position: absolute; left: 480px; top: 280px; width: 220px; height: 1px; z-index: 18;">
 		<div id="wb_txtDataDevolucao_id"
 			style="position: absolute; left: 90px; top: 300px; width: 250px; height: 16px; z-index: 19;">
-			<span style="color: #000000; font-family: Arial; font-size: 13px;">Data
-				de Devolução</span>
+			<span style="color: #000000; font-family: Arial; font-size: 13px;">Data de Devolução</span>
 		</div>
 		<div id="wb_txtCidadeDevolucao_id"
 			style="position: absolute; left: 90px; top: 350px; width: 250px; height: 16px; z-index: 20;">
-			<span style="color: #000000; font-family: Arial; font-size: 13px;">Cidade
-				de Devolução</span>
+			<span style="color: #000000; font-family: Arial; font-size: 13px;">Cidade de Devolução</span>
 		</div>
 		<div id="wb_txtAgenciaDevolucao_id"
 			style="position: absolute; left: 90px; top: 400px; width: 250px; height: 16px; z-index: 21;">
-			<span style="color: #000000; font-family: Arial; font-size: 13px;">Agência
-				de Devolução</span>
+			<span style="color: #000000; font-family: Arial; font-size: 13px;">Agência de Devolução</span>
 		</div>
 		<div id="wb_txtDataDevolucao_id"
 			style="position: absolute; left: 480px; top: 300px; width: 250px; height: 16px; z-index: 22;">
-			<span style="color: #000000; font-family: Arial; font-size: 13px;">Data
-				de Devolução</span>
+			<span style="color: #000000; font-family: Arial; font-size: 13px;">Data de Devolução</span>
 		</div>
 		<div id="wb_txtSubTotal_id"
 			style="position: absolute; left: 90px; top: 450px; width: 250px; height: 16px; z-index: 23;">
@@ -405,5 +428,6 @@ a:hover {
 		<input type="text" id="lblDataDevolucao_id"
 			style="position: absolute; left: 620px; top: 300px; width: 78px; height: 19px; line-height: 19px; z-index: 30;"
 			name="Editbox4" value="">
+		</form>
 	</body>
 </html>

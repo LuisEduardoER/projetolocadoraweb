@@ -8,7 +8,7 @@ import model.Cliente;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 
-public class ClientePostgresDao extends Dao implements ClienteDao {
+public class ClientePostgresDao extends Dao implements ClienteDaoInterface {
 	
 	public ClientePostgresDao(){
 		super();
@@ -138,7 +138,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		try{
 			
 			
-			stm = conn.prepareStatement(sqlSelect);
+			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			rs = stm.executeQuery();
 			
@@ -473,8 +473,8 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		try{
 			
 			
-			stm = conn.prepareStatement(sqlSelect);
-
+			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			
 			stm.setString(1, cpf);
 //			stm.setString(2, usuario.getSenha());
 			rs = stm.executeQuery();
@@ -517,8 +517,9 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		
 		try{
 			
+			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			
-			stm = conn.prepareStatement(sqlSelect);
+			
 
 			stm.setInt(1, id);
 			rs = stm.executeQuery();
@@ -555,8 +556,7 @@ public class ClientePostgresDao extends Dao implements ClienteDao {
 		
 		try{
 			
-			
-			stm = conn.prepareStatement(sqlSelect);
+			stm = conn.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 			stm.setInt(1, id);
 			rs = stm.executeQuery();

@@ -1,14 +1,16 @@
-package controller.cmd.manterCliente;
+package controller.cmd.homePage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CommandAlterarConsultaCliente extends CommandManterCliente{
+import controller.cmd.Command;
+
+public class CommandCadastrarClienteHPCtrl extends Command{
 
 	@Override
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		return "ClienteCadastraPF.jsp";
+		return "ClienteCadastrarPF.jsp";
 	}
 
 }

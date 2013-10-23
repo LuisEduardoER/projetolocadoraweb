@@ -34,8 +34,8 @@ public class DaoFactoryDinamico {
 		return (RealizarLocacaoDao) obtemDao(C_CHAVE_LOCACAO);
 	}
 
-	public static ClienteDao obterClienteDao() {				
-		return (ClienteDao) obtemDao(C_CHAVE_CLIENTE);				
+	public static ClienteDaoInterface obterClienteDao() {				
+		return (ClienteDaoInterface) obtemDao(C_CHAVE_CLIENTE);				
 	}
 		
 	private static Object obtemDao(String chave) {

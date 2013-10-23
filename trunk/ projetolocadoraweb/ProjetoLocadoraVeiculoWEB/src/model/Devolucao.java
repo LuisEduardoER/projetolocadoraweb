@@ -3,6 +3,8 @@ package model;
 
 import java.util.Date;
 
+import util.Verificacao;
+
 public class Devolucao {
 	
 	private int id;
@@ -13,6 +15,26 @@ public class Devolucao {
 	private int kmFinalControlado;
 	private Locacao locacao;
 	private FormaPagamento formaPagamento;
+	
+	/*
+	 TABELA DE KM ENTRE CIDADES
+	 				Guarulhos	Carapicuíba		Rio		Sorocaba	São Paulo
+		Guarulhos		0			39.5	    425		  112			22
+		Carapicuíba	   39.5			 0			460		  77.4			34.4
+		Rio			   425			460			 0		  532			439
+		Sorocaba	   112			77.4		532		   0			101
+		São Paulo		22			34.4		439		  101			 0	  
+	 */
+		
+	private final double[][] cidDistancia = 
+		{ {0 ,	39.5 ,	425 ,	112	, 22} ,
+		  {39.5 ,	0 ,	460	, 77.4 , 34.4} ,
+		  {	425	, 460	, 0	, 532	,439},
+		  {	112 , 77.4	, 532	, 0	, 101} ,
+		  {	22	, 34.4	, 439	, 101 , 0} };
+	
+	private double subtotalAcrescimo;
+	private double subtotalDecrescimo;
 	
 	public Devolucao(){
 		
@@ -85,6 +107,134 @@ public class Devolucao {
 	public void setKmFinalControlado(int kmFinalControlado) {
 		this.kmFinalControlado = kmFinalControlado;
 	}
+	
+	private void calcularAcrescimo(int difDias){
+		double dtaAcrescimo;
+		System.out.println(difDias); //debug
+		if(difDias >= 0){
+			dtaAcrescimo = 0.0;
+		}
+		else{
+			difDias = difDias * -1;
+			dtaAcrescimo = calcularDifData(difDias);
+		}
+		
+		double cidadeAcrescimo = calcularDifCidade();
+		double agAcrescimo = calcularDifAgencia();
+		setSubtotalAcrescimo((dtaAcrescimo + cidadeAcrescimo + agAcrescimo));
+//		Atualiza os valores nos campos da View
+//		calcularView.setTxtDtaDevolucaoAcrescimo(dtaAcrescimo);
+//		calcularView.setTxtCidadeDevolucao(cidadeAcrescimo);
+//		calcularView.setTxtAgenciaDevolucao(agAcrescimo);
+	}
+	
+//	Calcula diferença pela data prevista (30% a mais ou a menos por dia do valor da locação do automóvel)
+	private double calcularDifData(int difDias){
+//		int difDias = Verificacao.getDiferencaDias(devolucao.getDtaDevolucao(), devolucao.getLocacao().getDtaPrevDevolucao());
+		double valor;
+		valor = getLocacao().getTotal() * 0.30;
+		valor = valor * (double) difDias;
+		return valor;
+	}
+	
+//	Método para Calcular a Cidade de Devolução diferente da retirada
+//	Acréscimo de R$2.50 por km de distância
+	private double calcularDifCidade(){
+		int cidRetirada = getLocacao().getAgenciaRetirada().getIdCidade();
+		int cidDevolucao = getAgenciaDevolucao().getIdCidade();
+		
+		if(cidRetirada == cidDevolucao){ 
+			return 0.0; //Agência de devolução pertence na mesma cidade de retirada
+		}else{ //Cidade de Devolução diferente da retirada
+			
+			double valor = cidDistancia[cidRetirada][cidDevolucao];
+			return valor * 2.50;
+		}
+	}
+	
+//	Método para Calcular a Agência da Devolução diferente da retirada
+//	quando na mesma cidade da retirada, Acréscimo de R$20,00
+	private double calcularDifAgencia(){
+		String cidRetirada = getLocacao().getAgenciaRetirada().getCidade();
+		String cidDevolucao = getAgenciaDevolucao().getCidade();
+		
+		if(!cidRetirada.equals(cidDevolucao)){
+			return 0.0;
+		}
+		else{
+			int agRetirada = getLocacao().getAgenciaRetirada().getCodigo();
+			int agDevolucao = getAgenciaDevolucao().getCodigo();
+			
+			if(agRetirada != agDevolucao){
+				return 20.0;
+			}
+			else{
+				return 0.0;
+			}
+		}
+	}
+	
+	private void calcularDecrescimo(int difDias){
+		double valor = 0.0;
+		if(difDias >= 0){
+			difDias = 1 * difDias;
+			valor = calcularDifData(difDias);
+			setSubtotalDecrescimo(valor);
+			
+		}
+		else{
+			setSubtotalDecrescimo(valor);
+		}
+//		calcularView.setTxtDtaDevolucaoDecrescimo(valor);
+	}
+	
+	public void calcularValAdicionais(){
+		int difDias = Verificacao.getDiferencaDias(getDtaDevolucao(), getLocacao().getDtaPrevDevolucao());
+		setQtdDias(difDias);
+		calcularAcrescimo(difDias);
+		calcularDecrescimo(difDias);
+//		calcularView.setTxtSubTotalAcrescimo(subtotalAcrescimo);
+//		calcularView.setTxtSubTotalDecrescimo(subtotalDecrescimo);
+		double total = getSubtotalAcrescimo() - getSubtotalDecrescimo();
+		if(getLocacao().getTipoTarifa().equals("controlado")){
+			total = total + calcularKmControlado();
+		}
+//		calcularView.setTxtTotal(total);
+		setTotal(total);
+	}
+	
+	private double calcularKmControlado(){
+		if(getLocacao().getClienteEscolhido().getTipo().equals("PF")){
+			int totalKm = getKmFinalControlado() - getLocacao().getKmInicialControlado();
+			return getLocacao().getVeiculoEscolhido().getGrupo().getKmExtra() * (double) totalKm;
+		}else{
+			int i = 0;
+			double total = 0.0;
+			while(i < getLocacao().getCondutores().size()){
+				int totalKm = getLocacao().getCondutor(i).getKmFinalControlado() - getLocacao().getCondutor(i).getKmInicialControlado(); 
+				total = total + (getLocacao().getCondutor(i).getVeiculo().getGrupo().getKmExtra() * (double) totalKm);
+				i++;
+			}
+			return total;
+		}
+	}
+
+	public double getSubtotalAcrescimo() {
+		return subtotalAcrescimo;
+	}
+
+	public void setSubtotalAcrescimo(double subtotalAcrescimo) {
+		this.subtotalAcrescimo = subtotalAcrescimo;
+	}
+
+	public double getSubtotalDecrescimo() {
+		return subtotalDecrescimo;
+	}
+
+	public void setSubtotalDecrescimo(double subtotalDecrescimo) {
+		this.subtotalDecrescimo = subtotalDecrescimo;
+	}
+	
 	
 
 }

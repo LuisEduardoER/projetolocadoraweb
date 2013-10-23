@@ -35,6 +35,7 @@ public class CommandConsultarConsultaDevolucao extends Command{
 						nextPage = "DevolucaoConsulta.jsp";
 					}else{
 						calculaQtdDias(locacao);
+						request.getSession().setAttribute("locacao", locacao);
 //						carregarValoresCampos();
 						//ENCAMINHAR PARA A MESMA TELA COM OS DADOS DA CONSULTA
 						nextPage = "DevolucaoConsulta.jsp";
@@ -60,6 +61,7 @@ public class CommandConsultarConsultaDevolucao extends Command{
 					}
 //					JOptionPane.showMessageDialog(null, resultado); //mostra todos os IDs das locações do cliente
 					request.getSession().setAttribute("listaIDsLocacao", resultado);
+					System.out.println(resultado);
 					nextPage = "DevolucaoConsulta.jsp";
 				}
 			}else{

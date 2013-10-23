@@ -2,6 +2,14 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script language="JavaScript">
+
+		function executar(form,operacao){
+				form.operacao.value = operacao;
+				form.submit();
+		}
+		
+</script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastrar Cliente PF</title>
@@ -293,6 +301,8 @@ a:hover {
 </style>
 </head>
 <body>
+<form action="fc" method="POST">
+    <input type="hidden" name="operacao" value="consultarCliente">
 	<div id="wb_txtDadosPessoais_id"
 		style="position: absolute; left: 290px; top: 40px; width: 307px; height: 19px; z-index: 0;">
 		<span style="color: #000000; font-family: Arial; font-size: 16px;"><strong>Dados
@@ -328,27 +338,29 @@ a:hover {
 		<span style="color: #000000; font-family: Arial; font-size: 13px;">Documento
 			de Identificação</span>
 	</div>
+	
 	<input type="text" id="lblEmail_id"
 		style="position: absolute; left: 120px; top: 300px; width: 94px; height: 19px; line-height: 19px; z-index: 8;"
-		name="Editbox1" value="">
+		name="textEmail" value="">
 	<input type="text" id="lblTelefone_id"
 		style="position: absolute; left: 120px; top: 250px; width: 94px; height: 19px; line-height: 19px; z-index: 9;"
-		name="Editbox2" value="">
+		name="textTelefone" value="">
 	<input type="text" id="lblCpf_id"
 		style="position: absolute; left: 120px; top: 200px; width: 94px; height: 19px; line-height: 19px; z-index: 10;"
-		name="Editbox2" value="">
+		name="textCpf" value="">
 	<input type="text" id="lblSexo_id"
 		style="position: absolute; left: 120px; top: 150px; width: 94px; height: 19px; line-height: 19px; z-index: 11;"
-		name="Editbox2" value="">
+		name="textSexo" value="">
 	<input type="text" id="lblNome_id"
 		style="position: absolute; left: 120px; top: 100px; width: 94px; height: 19px; line-height: 19px; z-index: 12;"
-		name="Editbox2" value="">
+		name="textNome" value="">
 	<input type="text" id="lblDataNascimento_id"
 		style="position: absolute; left: 520px; top: 100px; width: 94px; height: 19px; line-height: 19px; z-index: 13;"
-		name="Editbox2" value="">
+		name="textDataNascimento" value="">
 	<input type="text" id="lblDocumentoIdent_id"
 		style="position: absolute; left: 520px; top: 150px; width: 94px; height: 19px; line-height: 19px; z-index: 14;"
-		name="Editbox2" value="">
+		name="textRg" value="">
+		
 	<hr id="Line1"
 		style="margin: 0; padding: 0; position: absolute; left: 1px; top: 354px; width: 1000px; height: 1px; z-index: 15;">
 	<div id="wb_txtDadosMotorista_id"
@@ -358,9 +370,13 @@ a:hover {
 	</div>
 	<input type="button" id="btnCancelar_id" name="Cancelar"
 		value="Cancelar"
-		style="position: absolute; left: 300px; top: 690px; width: 96px; height: 25px; z-index: 17;">
+		style="position: absolute; left: 300px; top: 690px; width: 96px; height: 25px; z-index: 17;"
+		onclick="executar(this.form,'cancelarCadastraClientePf')">
+		
 	<input type="button" id="btnSalvar_id" name="Cancelar" value="Salvar"
-		style="position: absolute; left: 500px; top: 690px; width: 96px; height: 25px; z-index: 18;">
+		style="position: absolute; left: 500px; top: 690px; width: 96px; height: 25px; z-index: 18;"
+		onclick="executar(this.form,'salvarCadastraClientePf')">
+		
 	<div id="wb_txtNumeroHab_id"
 		style="position: absolute; left: 60px; top: 467px; width: 250px; height: 16px; z-index: 19;">
 		<span style="color: #000000; font-family: Arial; font-size: 13px;">Número
@@ -393,5 +409,6 @@ a:hover {
 	<input type="text" id="lblData1Hab_id"
 		style="position: absolute; left: 281px; top: 567px; width: 94px; height: 19px; line-height: 19px; z-index: 26;"
 		name="Editbox8" value="">
+	</form>
 </body>
 </html>

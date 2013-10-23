@@ -191,19 +191,23 @@
 				
 			<input type="button" id="btnConsultarClientes_id"
 				name="btnConsultarClientes" value="Consultar Clientes"
-				style="position: absolute; left: 550px; top: 300px; width: 100px; height: 28px; z-index: 8;">
+				style="position: absolute; left: 550px; top: 300px; width: 100px; height: 28px; z-index: 8;"
+				onclick="executar(this.form,'ConsultarClienteHomePage')">
 				
 			<input type="button" id="btnCadastrarClientes_id"
 				name="btnCadastrarClientes" value="Cadastrar Clientes"
-				style="position: absolute; left: 550px; top: 350px; width: 100px; height: 28px; z-index: 9;">
+				style="position: absolute; left: 550px; top: 350px; width: 100px; height: 28px; z-index: 9;"
+				onclick="executar(this.form,'CadastrarClienteHomePage')">
 				
 			<input type="button" id="btnAlterarClientes_id"
 				name="btnAlterarClientes" value="Alterar Clientes"
-				style="position: absolute; left: 550px; top: 400px; width: 100px; height: 28px; z-index: 10;">
+				style="position: absolute; left: 550px; top: 400px; width: 100px; height: 28px; z-index: 10;"
+				onclick="executar(this.form,'AlterarClienteHomePage')">
 				
 			<input type="button" id="btnExcluirClientes_id"
 				name="btnExcluirClientes" value="Excluir Clientes"
-				style="position: absolute; left: 550px; top: 450px; width: 100px; height: 28px; z-index: 11;">
+				style="position: absolute; left: 550px; top: 450px; width: 100px; height: 28px; z-index: 11;"
+				onclick="executar(this.form,'ExcluirClienteHomePage')">
 				
 			<div id="wb_txtPaginaInicial_id"
 				style="position: absolute; left: 177px; top: 252px; width: 80px; height: 32px; z-index: 12;">
