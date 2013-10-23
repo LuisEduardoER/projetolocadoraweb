@@ -1,7 +1,13 @@
 package controller.cmd.devolverVeiculo;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Agencia;
+import model.Devolucao;
+import model.Locacao;
 
 import controller.cmd.Command;
 
@@ -11,30 +17,30 @@ public class CommandAvancarConsultaDevolucao extends Command {
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		return null;
-	}
-	
-	
-//	if(locacao == null){
-//		Mensagem.entreCodigoLocacao();
-//	}
-//	else{
-//		devolucao = new Devolucao();
-//		devolucao.setAgenciaDevolucao(agenciaDevolucao);
-//		devolucao.setDtaDevolucao(new Date());
-//		devolucao.setLocacao(locacao);
-//		consultaView.dispose();
-//		if(locacao.getTipoTarifa().equals("livre")){
-//			CalcularDevolucaoCtrl calcularCtrl = new CalcularDevolucaoCtrl(devolucao);
-//		}
-//		else{
-//			TarifaControladaCtrl controladaCtrl = new TarifaControladaCtrl(devolucao);
-//		}
-//		
-//	}
-	
-	
+		Locacao locacao = (Locacao) request.getSession().getAttribute("locacao");
+		if(locacao == null){
+			return "DevolucaoConsulta.jsp";
+		}else{
 			
-	
+			Devolucao devolucao = new Devolucao();
+			devolucao.setAgenciaDevolucao((Agencia)request.getSession().getAttribute("agenciaSelecionada"));
+			devolucao.setDtaDevolucao(new Date());
+			devolucao.setLocacao(locacao);
+			devolucao.calcularValAdicionais();
+			
+//			devolucao = new Devolucao();
+//			devolucao.setAgenciaDevolucao(agencia);
+//			devolucao.setDtaDevolucao(new Date());
+//			devolucao.setLocacao(locacao);
+//			calcularView = new DevolucaoValAdicionaisView();
+//			adicionarListener();
+//			carregarCamposSuperior();
+//			calcularValAdicionais();
+			
+			
+			return "DevolucaoValoresAdicionais.jsp";
+		}
+	}
+		
 
 }

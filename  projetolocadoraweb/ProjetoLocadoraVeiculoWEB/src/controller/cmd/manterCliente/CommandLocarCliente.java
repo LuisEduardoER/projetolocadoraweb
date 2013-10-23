@@ -16,16 +16,22 @@ public class CommandLocarCliente extends Command{
 //		TESTE LOCAÇÃO PARA CAPTURAR O CLIENTE
 //		CLIENTE PF
 		
-		PessoaFisica pf = new PessoaFisica();
-		pf.setNome("Diego");
-		pf.setEmail("dto.diego");
-		pf.setRegistro("123.123-01");
-		pf.setSexo("M");
-		pf.setId(1);
+//		PessoaFisica pf = new PessoaFisica();
+//		pf.setNome("Diego");
+//		pf.setEmail("dto.diego");
+//		pf.setRegistro("123.123-01");
+//		pf.setSexo("M");
+//		pf.setId(1);
 		
-		request.getSession().setAttribute("clienteSelecionadoLocacao", pf);
-				
-		return "VeiculoConsulta.jsp";
+		PessoaFisica pf = (PessoaFisica) request.getSession().getAttribute("clienteSelecionado");
+		
+		if(pf == null){
+			return "ClienteConsultar.jsp";
+		}else{
+			request.getSession().setAttribute("clienteSelecionadoLocacao", pf);
+			return "VeiculoConsulta.jsp";
+		}				
+		
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import util.Verificacao;
 
 import model.dao.ClienteDao;
+import model.dao.ClienteDaoInterface;
 import model.dao.DaoFactoryDinamico;
 
 public class PessoaFisica extends Cliente{
@@ -133,26 +134,26 @@ public class PessoaFisica extends Cliente{
 	//Metodo responsavel por incluir um novo cliente PF
 	@Override
 	public void incluir()throws Exception{
-		ClienteDao dao = DaoFactoryDinamico.obterClienteDao();
+		ClienteDaoInterface dao = DaoFactoryDinamico.obterClienteDao();
 		dao.cadastrar(this);
 	}
 	
 	//Metodo responsavel por alterar um cliente existente no banco de dados
 	@Override
 	public void alterar() throws Exception{
-		ClienteDao cDAO = DaoFactoryDinamico.obterClienteDao();
+		ClienteDaoInterface cDAO = DaoFactoryDinamico.obterClienteDao();
 		cDAO.alterar(this);
 	}
 	
 	//Metodo responsavel por exibir os dados de um cliente
 	public PessoaFisica pesquisar(){
-		ClienteDao cDAO = DaoFactoryDinamico.obterClienteDao();
+		ClienteDaoInterface cDAO = DaoFactoryDinamico.obterClienteDao();
 		return cDAO.consultarPF(getRegistro());
 	}
 	//Metodo responsave por excluir um cliente da base de dados
 	@Override
 	public void excluir() throws Exception{
-		ClienteDao dao = DaoFactoryDinamico.obterClienteDao();
+		ClienteDaoInterface dao = DaoFactoryDinamico.obterClienteDao();
 		dao.excluir(this);
 	}
 	
