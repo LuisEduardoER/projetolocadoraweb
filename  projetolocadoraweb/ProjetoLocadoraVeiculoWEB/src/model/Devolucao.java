@@ -1,6 +1,7 @@
 //Classe Devolucao
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import util.Verificacao;
@@ -15,6 +16,7 @@ public class Devolucao {
 	private int kmFinalControlado;
 	private Locacao locacao;
 	private FormaPagamento formaPagamento;
+	private ArrayList valoresAdicionais;
 	
 	/*
 	 TABELA DE KM ENTRE CIDADES
@@ -37,7 +39,7 @@ public class Devolucao {
 	private double subtotalDecrescimo;
 	
 	public Devolucao(){
-		
+		setValoresAdicionais(new ArrayList<>());
 	}
 	
 	public Devolucao(int id){
@@ -123,6 +125,10 @@ public class Devolucao {
 		double agAcrescimo = calcularDifAgencia();
 		setSubtotalAcrescimo((dtaAcrescimo + cidadeAcrescimo + agAcrescimo));
 //		Atualiza os valores nos campos da View
+		getValoresAdicionais().add(0, dtaAcrescimo);
+		getValoresAdicionais().add(1, cidadeAcrescimo);
+		getValoresAdicionais().add(2, agAcrescimo);
+		
 //		calcularView.setTxtDtaDevolucaoAcrescimo(dtaAcrescimo);
 //		calcularView.setTxtCidadeDevolucao(cidadeAcrescimo);
 //		calcularView.setTxtAgenciaDevolucao(agAcrescimo);
@@ -185,6 +191,7 @@ public class Devolucao {
 		else{
 			setSubtotalDecrescimo(valor);
 		}
+		getValoresAdicionais().add(3, valor);
 //		calcularView.setTxtDtaDevolucaoDecrescimo(valor);
 	}
 	
@@ -193,6 +200,8 @@ public class Devolucao {
 		setQtdDias(difDias);
 		calcularAcrescimo(difDias);
 		calcularDecrescimo(difDias);
+		getValoresAdicionais().add(4, getSubtotalAcrescimo());
+		getValoresAdicionais().add(5, getSubtotalDecrescimo());
 //		calcularView.setTxtSubTotalAcrescimo(subtotalAcrescimo);
 //		calcularView.setTxtSubTotalDecrescimo(subtotalDecrescimo);
 		double total = getSubtotalAcrescimo() - getSubtotalDecrescimo();
@@ -233,6 +242,14 @@ public class Devolucao {
 
 	public void setSubtotalDecrescimo(double subtotalDecrescimo) {
 		this.subtotalDecrescimo = subtotalDecrescimo;
+	}
+
+	public ArrayList getValoresAdicionais() {
+		return valoresAdicionais;
+	}
+
+	public void setValoresAdicionais(ArrayList valoresAdicionais) {
+		this.valoresAdicionais = valoresAdicionais;
 	}
 	
 	

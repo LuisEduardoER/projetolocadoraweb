@@ -337,7 +337,7 @@ a:hover {
 			<span style="color: #000000; font-family: Arial; font-size: 13px;">CNPJ/CPF</span>
 		</div>
 		<div id="wb_txtCnpjCpf_id"
-			style="position: absolute; left: 7400px; top: 100px; width: 250px; height: 16px; z-index: 3;">
+			style="position: absolute; left: 740px; top: 100px; width: 250px; height: 16px; z-index: 3;">
 			<span style="color: #000000; font-family: Arial; font-size: 13px;">Total</span>
 		</div>
 		<hr id="Line1"
@@ -372,8 +372,8 @@ a:hover {
 			style="position: absolute; left: 480px; top: 100px; width: 94px; height: 19px; line-height: 19px; z-index: 14;"
 			name="Editbox1" value="<%=devolucao.getLocacao().getClienteEscolhido().getRegistro()%>">
 		<input type="text" id="lblCnpjCpf_id"
-			style="position: absolute; left: 8400px; top: 100px; width: 94px; height: 19px; line-height: 19px; z-index: 15;"
-			name="Editbox1" value="<%=devolucao.getTotal()%>">
+			style="position: absolute; left: 840px; top: 100px; width: 94px; height: 19px; line-height: 19px; z-index: 15;"
+			name="Editbox1" value="<%="R$ " + Conversao.formatDouble(devolucao.getTotal())%>">
 		<div id="wb_txtAcrescimo_id"
 			style="position: absolute; left: 90px; top: 250px; width: 250px; height: 16px; z-index: 15;">
 			<span style="color: #000000; font-family: Arial; font-size: 13px;">Acréscimo</span>
@@ -412,22 +412,22 @@ a:hover {
 		</div>
 		<input type="text" id="lblDataDevolucao_id"
 			style="position: absolute; left: 250px; top: 300px; width: 78px; height: 19px; line-height: 19px; z-index: 25;"
-			name="Editbox4" value="">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(0))%>">
 		<input type="text" id="lblAgenciaDevolucao_id"
 			style="position: absolute; left: 250px; top: 400px; width: 78px; height: 19px; line-height: 19px; z-index: 26;"
-			name="Editbox4" value="">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(1))%>">
 		<input type="text" id="lblCidadeDevolucao_id"
 			style="position: absolute; left: 250px; top: 350px; width: 78px; height: 19px; line-height: 19px; z-index: 27;"
-			name="Editbox4" value="">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(2))%>">
 		<input type="text" id="lblSubTotal_id"
 			style="position: absolute; left: 250px; top: 450px; width: 78px; height: 19px; line-height: 19px; z-index: 28;"
-			name="Editbox4" value="">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(4))%>">
 		<input type="text" id="lblSubTotal_id"
 			style="position: absolute; left: 620px; top: 450px; width: 78px; height: 19px; line-height: 19px; z-index: 29;"
-			name="Editbox4" value="">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(3))%>">
 		<input type="text" id="lblDataDevolucao_id"
 			style="position: absolute; left: 620px; top: 300px; width: 78px; height: 19px; line-height: 19px; z-index: 30;"
-			name="Editbox4" value="">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(5))%>">
 		</form>
 	</body>
 </html>
