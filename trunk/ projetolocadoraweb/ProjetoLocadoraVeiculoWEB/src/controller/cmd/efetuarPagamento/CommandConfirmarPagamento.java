@@ -1,10 +1,15 @@
 package controller.cmd.efetuarPagamento;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import util.DataFormatada;
 import model.Cartao;
 import model.Cheque;
+import model.Devolucao;
 import model.Dinheiro;
 import model.FormaPagamento;
 import model.Locacao;
@@ -63,7 +68,17 @@ public class CommandConfirmarPagamento extends Command {
 				nextPage = "LocacaoComprovante.jsp";
 				
 			}else if("Devolver".equals(acao)){
-				nextPage = "LocacaoComprovante.jsp";
+//				Recupera a Devolução e adiciona a Forma Pagamento
+				Devolucao devolucao = (Devolucao) request.getSession().getAttribute("devolucao");
+				devolucao.setFormaPagamento(fp);
+				
+//				Criar uma Devolução no Banco
+				devolucao.inserir();
+				devolucao.setId(devolucao.obterUltimoRegistro());
+				request.getSession().setAttribute("devolucao", devolucao);
+				nextPage = "DevolucaoComprovante.jsp";
+								
+				
 			}
 			
 		}catch(Exception e){
@@ -168,8 +183,18 @@ public class CommandConfirmarPagamento extends Command {
 		 * DATA EST� VINDO DO JSP NO FORMATO yyyy-MM-dd
 		 * tem q ser tratado no formato dd-MM-yyyy
 		 * */
-		cartao.setDtaValidade(DataFormatada.parseDataSimples(
-								request.getParameter("txtDtaValidadeCartao")));
+//		cartao.setDtaValidade(DataFormatada.parseDataSimples(
+//								request.getParameter("txtDtaValidadeCartao")));
+		
+		Date dt = null;
+		try {
+			dt = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("txtDtaValidadeCartao"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String data = new SimpleDateFormat("dd/MM/yyyy").format(dt);
+		dt = DataFormatada.parseDataSimples(data);
 //		----BUG----
 				
 		cartao.setCodSeguranca(request.getParameter("txtCodSegCartao"));

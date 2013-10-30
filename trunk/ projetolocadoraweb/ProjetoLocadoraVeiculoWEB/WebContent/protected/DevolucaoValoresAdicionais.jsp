@@ -412,22 +412,22 @@ a:hover {
 		</div>
 		<input type="text" id="lblDataDevolucao_id"
 			style="position: absolute; left: 250px; top: 300px; width: 78px; height: 19px; line-height: 19px; z-index: 25;"
-			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(0))%>">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((Double) request.getSession().getAttribute("dataAcrescimo"))%>">
 		<input type="text" id="lblAgenciaDevolucao_id"
 			style="position: absolute; left: 250px; top: 400px; width: 78px; height: 19px; line-height: 19px; z-index: 26;"
-			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(1))%>">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((Double) request.getSession().getAttribute("cidadeAcrescimo"))%>">
 		<input type="text" id="lblCidadeDevolucao_id"
 			style="position: absolute; left: 250px; top: 350px; width: 78px; height: 19px; line-height: 19px; z-index: 27;"
-			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(2))%>">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((Double) request.getSession().getAttribute("agenciaAcrescimo"))%>">
 		<input type="text" id="lblSubTotal_id"
 			style="position: absolute; left: 250px; top: 450px; width: 78px; height: 19px; line-height: 19px; z-index: 28;"
-			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(4))%>">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((Double) request.getSession().getAttribute("dataDecrescimo"))%>">
 		<input type="text" id="lblSubTotal_id"
 			style="position: absolute; left: 620px; top: 450px; width: 78px; height: 19px; line-height: 19px; z-index: 29;"
-			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(3))%>">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((Double) request.getSession().getAttribute("subtotalAcrescimo"))%>">
 		<input type="text" id="lblDataDevolucao_id"
 			style="position: absolute; left: 620px; top: 300px; width: 78px; height: 19px; line-height: 19px; z-index: 30;"
-			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((double) devolucao.getValoresAdicionais().get(5))%>">
+			name="Editbox4" value="<%="R$ " + Conversao.formatDouble((Double) request.getSession().getAttribute("subtotalDecrescimo"))%>">
 		</form>
 	</body>
 </html>

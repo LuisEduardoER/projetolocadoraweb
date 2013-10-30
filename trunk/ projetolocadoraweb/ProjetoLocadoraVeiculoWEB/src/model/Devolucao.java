@@ -4,6 +4,10 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import model.dao.DaoFactoryDinamico;
+import model.dao.DevolucaoDaoInterface;
+import model.dao.RealizarLocacaoDao;
+
 import util.Verificacao;
 
 public class Devolucao {
@@ -252,6 +256,14 @@ public class Devolucao {
 		this.valoresAdicionais = valoresAdicionais;
 	}
 	
+	public void inserir() throws Exception {
+		DevolucaoDaoInterface dao = DaoFactoryDinamico.obterDevolucaoDao();
+		dao.inserir(this);
+	}
 	
+	public int obterUltimoRegistro() throws Exception{
+		DevolucaoDaoInterface dao = DaoFactoryDinamico.obterDevolucaoDao();
+		return dao.obterUltimoRegistro();
+	}
 
 }
