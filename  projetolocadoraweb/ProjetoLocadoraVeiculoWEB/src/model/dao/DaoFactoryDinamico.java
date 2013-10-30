@@ -20,6 +20,7 @@ public class DaoFactoryDinamico {
 	private static String C_CHAVE_FORMA_PAGAMENTO = "dao.formaPagamento.impl";
 	private static String C_CHAVE_LOCACAO = "dao.locacao.impl";
 	private static String C_CHAVE_CLIENTE = "dao.cliente.impl";
+	private static String C_CHAVE_DEVOLUCAO = "dao.devolucao.impl";
 	
 	public static VeiculoDao obterVeiculoDao(){
 
@@ -36,6 +37,10 @@ public class DaoFactoryDinamico {
 
 	public static ClienteDaoInterface obterClienteDao() {				
 		return (ClienteDaoInterface) obtemDao(C_CHAVE_CLIENTE);				
+	}
+	
+	public static DevolucaoDaoInterface obterDevolucaoDao() {				
+		return (DevolucaoDaoInterface) obtemDao(C_CHAVE_DEVOLUCAO);				
 	}
 		
 	private static Object obtemDao(String chave) {

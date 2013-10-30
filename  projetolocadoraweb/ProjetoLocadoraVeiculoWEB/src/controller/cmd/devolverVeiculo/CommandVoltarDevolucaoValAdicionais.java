@@ -11,7 +11,7 @@ public class CommandVoltarDevolucaoValAdicionais extends Command{
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		return null;
+		return "DevolucaoConsulta.jsp";
 	}
 
 }

@@ -28,26 +28,15 @@ public class CommandAvancarConsultaDevolucao extends Command {
 			devolucao.setLocacao(locacao);
 			devolucao.calcularValAdicionais();
 			
-//			request.getSession().setAttribute("dataAcrescimo", (double) devolucao.getValoresAdicionais().get(0));
-//			request.getSession().setAttribute("cidadeAcrescimo", (double) devolucao.getValoresAdicionais().get(1));
-//			request.getSession().setAttribute("agenciaAcrescimo", (double) devolucao.getValoresAdicionais().get(2));
-//			request.getSession().setAttribute("dataDecrescimo", (double) devolucao.getValoresAdicionais().get(3));
-//			request.getSession().setAttribute("subtotalAcrescimo", (double) devolucao.getValoresAdicionais().get(4));
-//			request.getSession().setAttribute("subtotalDecrescimo", (double) devolucao.getValoresAdicionais().get(5));
-			
-			
+			request.getSession().setAttribute("dataAcrescimo", (Double) devolucao.getValoresAdicionais().get(0));
+			request.getSession().setAttribute("cidadeAcrescimo", (Double) devolucao.getValoresAdicionais().get(1));
+			request.getSession().setAttribute("agenciaAcrescimo", (Double) devolucao.getValoresAdicionais().get(2));
+			request.getSession().setAttribute("dataDecrescimo", (Double) devolucao.getValoresAdicionais().get(3));
+			request.getSession().setAttribute("subtotalAcrescimo", (Double) devolucao.getValoresAdicionais().get(4));
+			request.getSession().setAttribute("subtotalDecrescimo", (Double) devolucao.getValoresAdicionais().get(5));
+						
 			request.getSession().setAttribute("devolucao", devolucao);
-			
-//			devolucao = new Devolucao();
-//			devolucao.setAgenciaDevolucao(agencia);
-//			devolucao.setDtaDevolucao(new Date());
-//			devolucao.setLocacao(locacao);
-//			calcularView = new DevolucaoValAdicionaisView();
-//			adicionarListener();
-//			carregarCamposSuperior();
-//			calcularValAdicionais();
-			
-			
+						
 			return "DevolucaoValoresAdicionais.jsp";
 		}
 	}

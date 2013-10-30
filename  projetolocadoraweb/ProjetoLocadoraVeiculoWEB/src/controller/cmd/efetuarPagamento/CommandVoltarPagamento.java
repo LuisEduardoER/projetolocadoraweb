@@ -11,7 +11,18 @@ public class CommandVoltarPagamento extends Command{
 	public String executar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		return "HomePageView.jsp";
+		String nextPage = "";
+		
+		String acao = (String) request.getSession().getAttribute("acaoLocarDevolver");
+		if("Locar".equals(acao)){
+			nextPage = "LocacaoDados.jsp";
+		}else if("Devolver".equals(acao)){
+			nextPage = "DevolucaoConsulta.jsp";
+		}else{
+			nextPage = "HomePageView.jsp";
+		}
+		
+		return nextPage;
 	}
 
 }
